@@ -68,22 +68,7 @@ public class Gelaxka extends Observable {
 		}
 	}
 	
-	public Object zerDago() {
-		switch (this.blokeMota) {
-			case SUA:
-				return this.sua;
-	        case BOMBA:
-	        	return this.bomba;
-	        case BLOKEBIGUNA:
-	        	return this.blokeBiguna;	
-			case BLOKEGOGORRA:
-				return this.blokeGogorra;		
-			case ETSAIA:
-				return this.etsaia;
-			case JOKALARIA:
-				return this.jokalari;
-			default:
-				return null;
-			}
+	public BlokeMota zerDago() {
+		return blokeMota;
 	}
 }

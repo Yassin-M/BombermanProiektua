@@ -47,11 +47,9 @@ public class Laberintoa extends Observable{
 				}
 			}
 		}
-		setChanged();
-		notifyObservers();
 	}
 	
-	public Object zerDago(int i, int j) {
+	public BlokeMota zerDago(int i, int j) {
 		return laberintoa[i][j].zerDago();
 	}
 }
