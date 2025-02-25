@@ -23,22 +23,23 @@ public class Laberintoa extends Observable{
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
 			for (int j=0; j<17; j++) {
+				laberintoa[i][j] = new Gelaxka();
 				if (i==0 && j==0) {
-					//laberintoa[i][j] = new Gelaxka().setJokalaria();
+					//laberintoa[i][j].setJokalaria();
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
-					laberintoa[i][j] = new Gelaxka();
+					continue;
 				}
 				else if (i%2 != 0 && i%2 != 0) {
-					//laberintoa[i][j] = new Gelaxka().setBlokeGogorra();
+					laberintoa[i][j].setBlokeGogorra();
 				}
 				else {
 					Random r = new Random();
 					if (r.nextInt(100) >= 40) {
-						//laberintoa[i][j] = new Gelaxka().setBlokeBiguna();
+						laberintoa[i][j].setBlokeBiguna();
 					}
 					else if (r.nextInt(100) >= 90) {
-						//laberintoa[i][j] = new Gelaxka().setEtsaia();
+						//laberintoa[i][j].setEtsaia();
 					}
 					else {
 						laberintoa[i][j] = new Gelaxka();
