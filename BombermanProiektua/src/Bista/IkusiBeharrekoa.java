@@ -67,15 +67,15 @@ public class IkusiBeharrekoa extends JFrame {
 				if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Etsaia) {
 					irudia = "pass1.png";
 				}
-				else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Sua) {
+				/*else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Sua) {
 					irudia = "kaBomb1.png";
-				}
+				}*/
 				else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof BlokeBiguna) {
 					irudia = "soft1.png";
 				}
-				else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Bomba) {
+				/*else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Bomba) {
 					irudia = "bomb1.png";
-				}
+				}*/
 				else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof BlokeGogorra) {
 					irudia = "hard1.png";				
 				}
