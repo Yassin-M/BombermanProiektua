@@ -50,4 +50,8 @@ public class Laberintoa extends Observable{
 		setChanged();
 		notifyObservers();
 	}
+	
+	public Object zerDago(int i, int j) {
+		return laberintoa[i][j].zerDago();
+	}
 }

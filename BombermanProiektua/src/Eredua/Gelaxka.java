@@ -1,6 +1,7 @@
 package Eredua;
 
 import java.util.Observable;
+@SuppressWarnings("deprecation")
 
 public class Gelaxka extends Observable {
 	private Sua sua;
@@ -65,5 +66,24 @@ public class Gelaxka extends Observable {
 				this.jokalari = null;
 				break;
 		}
+	}
+	
+	public Object zerDago() {
+		switch (this.blokeMota) {
+			case SUA:
+				return this.sua;
+	        case BOMBA:
+	        	return this.bomba;
+	        case BLOKEBIGUNA:
+	        	return this.blokeBiguna;	
+			case BLOKEGOGORRA:
+				return this.blokeGogorra;		
+			case ETSAIA:
+				return this.etsaia;
+			case JOKALARIA:
+				return this.jokalari;
+			default:
+				return null;
+			}
 	}
 }
