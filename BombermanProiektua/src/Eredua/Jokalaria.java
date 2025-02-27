@@ -12,4 +12,20 @@ public abstract class Jokalaria {
 		Xposizioa = pXposizioa;
 		Yposizioa = pYposizioa;
 	}
+
+	public void mugituEskuinera() {
+		Xposizioa++;
+	}
+
+	public void mugituEzkerretara() {
+		Xposizioa--;
+	}
+
+	public void mugituGora() {
+		Yposizioa--;
+	}
+
+	public void mugituBehera() {
+		Yposizioa++;
+	}
 }
