@@ -30,7 +30,7 @@ public class Laberintoa extends Observable{
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
 					continue;
 				}
-				else if (i%2 != 0 && i%2 != 0) {
+				else if (i%2 != 0 && j%2 != 0) {
 					laberintoa[i][j].setBlokeGogorra();
 				}
 				else {
