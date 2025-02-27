@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 public class Sua extends Observable{
 	
-	private static final int PERIODO = 3;
+	private static final int PERIODO = 2;
 	private int kont;
 	private Timer timer = null;
 	
