@@ -66,6 +66,8 @@ public class Gelaxka extends Observable {
 				this.jokalari = null;
 				break;
 		}
+		setChanged();
+		notifyObservers();
 	}
 	
 	public BlokeMota zerDago() {
