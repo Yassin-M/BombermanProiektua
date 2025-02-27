@@ -52,4 +52,8 @@ public class Laberintoa extends Observable{
 	public BlokeMota zerDago(int i, int j) {
 		return laberintoa[i][j].zerDago();
 	}
+	
+	public void bombaJarri(int i, int j, boolean pUltrabomba) {
+		laberintoa[i][j].setBomba(pUltrabomba);
+	}
 }

@@ -1,5 +1,5 @@
 package Eredua;
 
-public class UltraBomba {
+public class UltraBomba extends Bomba{
 
 }

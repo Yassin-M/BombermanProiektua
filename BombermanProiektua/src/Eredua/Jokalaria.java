@@ -1,10 +1,10 @@
 package Eredua;
 
 public abstract class Jokalaria {
-	private int bombaKont;
-	private boolean bizirik;
-	private int Xposizioa;
-	private int Yposizioa;
+	protected int bombaKont;
+	protected boolean bizirik;
+	protected int Xposizioa;
+	protected int Yposizioa;
 	
 	public Jokalaria (int pBombaKont, boolean pBizirik, int pXposizioa, int pYposizioa) {
 		bombaKont = pBombaKont;
@@ -28,4 +28,6 @@ public abstract class Jokalaria {
 	public void mugituBehera() {
 		Yposizioa++;
 	}
+	
+	public abstract void bombaJarri();
 }

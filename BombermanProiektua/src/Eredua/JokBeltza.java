@@ -6,4 +6,8 @@ public class JokBeltza extends Jokalaria {
 		super(pBombaKont, pBizirik, pXposizioa, pYposizioa);
 	}
 
+	@Override
+	public void bombaJarri() {
+		//TODO
+	}
 }
