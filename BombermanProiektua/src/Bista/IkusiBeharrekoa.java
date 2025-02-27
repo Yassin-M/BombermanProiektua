@@ -64,20 +64,23 @@ public class IkusiBeharrekoa extends JFrame {
 			for (int j = 0; j < 17; j++) {
 				String irudia = null;
 				JLabel lbl = new JLabel();
-				if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Etsaia) {
-					irudia = "pass1.png";
-				}
-				/*else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Sua) {
-					irudia = "kaBomb1.png";
-				}*/
-				else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof BlokeBiguna) {
-					irudia = "soft1.png";
-				}
-				/*else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof Bomba) {
-					irudia = "bomb1.png";
-				}*/
-				else if (Laberintoa.getNireLaberintoa().zerDago(i,j) instanceof BlokeGogorra) {
-					irudia = "hard1.png";				
+				
+				switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
+		            case BLOKEBIGUNA:
+		            	irudia = "soft1.png";
+						break;
+					case BLOKEGOGORRA:
+						irudia = "hard1.png";
+						break;
+					case ETSAIA:
+						irudia = "pass1.png";
+						break;
+					case JOKALARIA:
+						irudia = "whitedown1.png";
+						break;
+				default:
+					System.out.println("Errorea: hasieran "+Laberintoa.getNireLaberintoa().zerDago(i,j).toString()+" gelaxka aurkitu da." );
+					break;
 				}
 				lbl.setIcon(new ImageIcon(irudia));
 				panel.add(lbl);
