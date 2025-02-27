@@ -25,7 +25,9 @@ public class Gelaxka extends Observable {
 	
 	public void setJokalaria(Jokalaria pJok) {
 		this.jokalari = pJok;
-		kenduAurrekoa();
+		if(blokeMota!=null) {
+			kenduAurrekoa();
+		}
 		this.blokeMota = BlokeMota.JOKALARIA;
 		setChanged();
 		notifyObservers();
