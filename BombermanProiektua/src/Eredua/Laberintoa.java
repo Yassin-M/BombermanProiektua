@@ -25,7 +25,7 @@ public class Laberintoa extends Observable{
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka();
 				if (i==0 && j==0) {
-					//laberintoa[i][j].setJokalaria();
+					laberintoa[i][j].setJokalaria(new JokZuria(10,true,0,0));
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
 					continue;
