@@ -16,16 +16,19 @@ import Eredua.Sua;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import javax.swing.JLayeredPane;
 
 public class IkusiBeharrekoa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private JLabel label;
+	private JLayeredPane layeredPane;
 
 	/**
 	 * Launch the application.
@@ -50,15 +53,24 @@ public class IkusiBeharrekoa extends JFrame {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		getContentPane().add(getLabel());
-		getContentPane().add(getPanel(), BorderLayout.SOUTH);
-		labirintoaBistaratu();
-        getContentPane().add(VentanaConFondo());
+		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
+		addComponentListener(new ComponentAdapter() {
+			   @Override
+			   public void componentResized(ComponentEvent e) {
+				   layeredPane.setSize(getWidth(), getHeight());
+				   panel.setSize(getWidth(), getHeight());
+				   panel.revalidate();
+				   panel.repaint();
+			   }
+			  });
+        
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setLayout(new GridLayout(11, 17, 0, 0));
+			panel.setOpaque(false);
+			labirintoaBistaratu();
 		}
 		return panel;
 	}
@@ -96,13 +108,6 @@ public class IkusiBeharrekoa extends JFrame {
 		}
 
 	}
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel("");
-			label.setIcon(new ImageIcon(IkusiBeharrekoa.class.getResource("/Bista/irudiak/stageBack1.png")));
-		}
-		return label;
-	}
 	
 	public JLabel VentanaConFondo() {
         setTitle("Fondo con JLabel - paintComponent");
@@ -119,8 +124,32 @@ public class IkusiBeharrekoa extends JFrame {
                 g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
             }
         };
-
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                fondoLabel.setSize(getWidth(), getHeight());
+                fondoLabel.repaint();
+            }
+        });
+        
         fondoLabel.setBounds(0, 0, getWidth(), getHeight());
+        fondoLabel.setOpaque(false);
         return fondoLabel;
-   }
+	}
+
+	private JLayeredPane getLayeredPane_1() {
+		if (layeredPane == null) {
+			layeredPane = new JLayeredPane();
+			layeredPane.setLayout(null);
+			JLabel fondoLabel = VentanaConFondo();
+			fondoLabel.setBounds(0, 0, getWidth(), getHeight());
+			layeredPane.add(fondoLabel, new Integer(0));
+
+			JPanel panel = getPanel();
+			panel.setBounds(0, 0, getWidth(), getHeight());
+			layeredPane.add(panel, new Integer(1));
+			
+		}
+		return layeredPane;
+	}
 }
