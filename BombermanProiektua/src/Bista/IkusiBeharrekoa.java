@@ -63,7 +63,6 @@ public class IkusiBeharrekoa extends JFrame {
 				   panel.repaint();
 			   }
 			  });
-        
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -109,7 +108,7 @@ public class IkusiBeharrekoa extends JFrame {
 
 	}
 	
-	public JLabel VentanaConFondo() {
+	public JLabel Fondoa() {
         setTitle("Fondo con JLabel - paintComponent");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -141,7 +140,7 @@ public class IkusiBeharrekoa extends JFrame {
 		if (layeredPane == null) {
 			layeredPane = new JLayeredPane();
 			layeredPane.setLayout(null);
-			JLabel fondoLabel = VentanaConFondo();
+			JLabel fondoLabel = Fondoa();
 			fondoLabel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(fondoLabel, new Integer(0));
 

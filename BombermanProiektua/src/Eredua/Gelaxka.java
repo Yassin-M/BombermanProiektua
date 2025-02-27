@@ -62,6 +62,20 @@ public class Gelaxka extends Observable {
 		notifyObservers();
 	}
 	
+	public void setBomba(boolean pUltrabomba)  {
+		if (pUltrabomba) {
+			this.bomba = new UltraBomba();
+		} else {
+			this.bomba = new Bomba();
+		}
+		if(blokeMota!=null) {
+			kenduAurrekoa();
+		}
+		this.blokeMota = BlokeMota.BOMBA;
+		setChanged();
+		notifyObservers();
+	}
+	
 	private void kenduAurrekoa() {
 		switch (this.blokeMota) {
 			case SUA:
