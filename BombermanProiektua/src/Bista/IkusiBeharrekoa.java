@@ -15,8 +15,11 @@ import Eredua.Sua;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 
 public class IkusiBeharrekoa extends JFrame {
 
@@ -50,7 +53,7 @@ public class IkusiBeharrekoa extends JFrame {
 		getContentPane().add(getLabel());
 		getContentPane().add(getPanel(), BorderLayout.SOUTH);
 		labirintoaBistaratu();
-
+        getContentPane().add(VentanaConFondo());
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -101,5 +104,23 @@ public class IkusiBeharrekoa extends JFrame {
 		return label;
 	}
 	
-	
+	public JLabel VentanaConFondo() {
+        setTitle("Fondo con JLabel - paintComponent");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        JLabel fondoLabel = new JLabel() {
+            private Image fondo = new ImageIcon(getClass().getResource("/Bista/irudiak/stageBack1.png")).getImage();
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+        fondoLabel.setBounds(0, 0, getWidth(), getHeight());
+        return fondoLabel;
+   }
 }
