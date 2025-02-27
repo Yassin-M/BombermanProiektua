@@ -53,7 +53,7 @@ public class IkusiBeharrekoa extends JFrame {
 		getContentPane().add(getLabel());
 		getContentPane().add(getPanel(), BorderLayout.SOUTH);
 		labirintoaBistaratu();
-        getContentPane().add(VentanaConFondo());
+        getContentPane().add(Fondoa());
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -104,7 +104,7 @@ public class IkusiBeharrekoa extends JFrame {
 		return label;
 	}
 	
-	public JLabel VentanaConFondo() {
+	public JLabel Fondoa() {
         setTitle("Fondo con JLabel - paintComponent");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
