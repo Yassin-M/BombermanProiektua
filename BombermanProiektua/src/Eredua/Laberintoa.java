@@ -54,6 +54,23 @@ public class Laberintoa extends Observable{
 	}
 	
 	public void bombaJarri(int i, int j, boolean pUltrabomba) {
-		laberintoa[i][j].setBomba(pUltrabomba);
+		laberintoa[i][j].setBomba(i,j,pUltrabomba);
+	}
+	
+	public void suaJarri(int i, int j, boolean pUltrabomba) {
+		if (!pUltrabomba) {
+			laberintoa[i][j].setSua(i,j);
+			laberintoa[i][j+1].setSua(i,j);
+			laberintoa[i][j-1].setSua(i,j);
+			laberintoa[i+1][j].setSua(i,j);
+			laberintoa[i-1][j].setSua(i,j);
+		}
+		else {
+			//TODO
+		}
+	}
+	
+	public void suaKendu(int i, int j) {
+		laberintoa[i][j].kenduAurrekoa();
 	}
 }

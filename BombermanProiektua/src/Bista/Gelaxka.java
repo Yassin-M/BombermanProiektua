@@ -1,10 +1,11 @@
 package Bista;
 
-import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+@SuppressWarnings("deprecation")
 
 public class Gelaxka extends JLabel implements Observer{
+	private static final long serialVersionUID = -6493016058572553189L;
 	int lerroa;
 	int zutabea;
 	

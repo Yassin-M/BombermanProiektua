@@ -34,14 +34,16 @@ public class Gelaxka extends Observable {
 	}
 	
 	
-	public void setSua() {
-		this.sua = new Sua();
-		if(blokeMota!=null) {
-			kenduAurrekoa();
+	public void setSua(int i, int j) {
+		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {
+			this.sua = new Sua(i,j);
+			if(blokeMota!=null) {
+				kenduAurrekoa();
+			}
+			this.blokeMota = BlokeMota.SUA;
+			setChanged();
+			notifyObservers();
 		}
-		this.blokeMota = BlokeMota.SUA;
-		setChanged();
-		notifyObservers();
 	}
 	public void setBlokeBiguna() {
 		this.blokeBiguna = new BlokeBiguna();
@@ -62,21 +64,22 @@ public class Gelaxka extends Observable {
 		notifyObservers();
 	}
 	
-	public void setBomba(boolean pUltrabomba)  {
+	public void setBomba(int i,int j,boolean pUltrabomba)  {
 		if (pUltrabomba) {
-			this.bomba = new UltraBomba();
+			this.bomba = new UltraBomba(i,j);
+			this.blokeMota = BlokeMota.ULTRABOMBA;
 		} else {
-			this.bomba = new Bomba();
+			this.bomba = new Bomba(i,j);
+			this.blokeMota = BlokeMota.BOMBA;
 		}
 		if(blokeMota!=null) {
 			kenduAurrekoa();
 		}
-		this.blokeMota = BlokeMota.BOMBA;
 		setChanged();
 		notifyObservers();
 	}
 	
-	private void kenduAurrekoa() {
+	public void kenduAurrekoa() {
 		switch (this.blokeMota) {
 			case SUA:
                 this.sua = null;
@@ -84,6 +87,9 @@ public class Gelaxka extends Observable {
             case BOMBA:
             	this.bomba = null;
                 break;
+			case ULTRABOMBA:
+				this.bomba = null;
+				break;
             case BLOKEBIGUNA:
             	this.blokeBiguna = null;
 				break;
@@ -95,6 +101,8 @@ public class Gelaxka extends Observable {
 				break;
 			case JOKALARIA:
 				this.jokalari = null;
+				break;
+			default:
 				break;
 		}
 		setChanged();
