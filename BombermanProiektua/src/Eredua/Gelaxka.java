@@ -25,21 +25,27 @@ public class Gelaxka extends Observable {
 	
 	public void setSua() {
 		this.sua = new Sua();
-		kenduAurrekoa();
+		if(blokeMota!=null) {
+			kenduAurrekoa();
+		}
 		this.blokeMota = BlokeMota.SUA;
 		setChanged();
 		notifyObservers();
 	}
 	public void setBlokeBiguna() {
 		this.blokeBiguna = new BlokeBiguna();
-		kenduAurrekoa();
+		if(blokeMota!=null) {
+			kenduAurrekoa();
+		}
 		this.blokeMota = BlokeMota.BLOKEBIGUNA;
 		setChanged();
 		notifyObservers();
 	}
 	public void setBlokeGogorra() {
 		this.blokeGogorra = new BlokeGogorra();
-		kenduAurrekoa();
+		if(blokeMota!=null) {
+			kenduAurrekoa();
+		}
 		this.blokeMota = BlokeMota.BLOKEGOGORRA;
 		setChanged();
 		notifyObservers();

@@ -46,9 +46,10 @@ public class IkusiBeharrekoa extends JFrame {
 	public IkusiBeharrekoa() {
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(getLabel());
-		getContentPane().add(getPanel());
+		getContentPane().add(getPanel(), BorderLayout.SOUTH);
+		labirintoaBistaratu();
 
 	}
 	private JPanel getPanel() {
@@ -63,27 +64,31 @@ public class IkusiBeharrekoa extends JFrame {
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				String irudia = null;
-				JLabel lbl = new JLabel();
+				Gelaxka gelaxka = new Gelaxka(i,j);
 				
 				switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
 		            case BLOKEBIGUNA:
-		            	irudia = "soft1.png";
+		            	irudia = "/Bista/irudiak/soft1.png";
 						break;
 					case BLOKEGOGORRA:
-						irudia = "hard1.png";
+						irudia = "/Bista/irudiak/hard1.png";
 						break;
 					case ETSAIA:
-						irudia = "pass1.png";
+						irudia = "/Bista/irudiak/pass1.png";
 						break;
 					case JOKALARIA:
-						irudia = "whitedown1.png";
+						irudia = "/Bista/irudiak/whitedown1.png";
+						break;
+					case null:
 						break;
 				default:
 					System.out.println("Errorea: hasieran "+Laberintoa.getNireLaberintoa().zerDago(i,j).toString()+" gelaxka aurkitu da." );
 					break;
 				}
-				lbl.setIcon(new ImageIcon(irudia));
-				panel.add(lbl);
+				if(irudia!=null) {
+					gelaxka.setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+				}
+				panel.add(gelaxka);
 			}
 		}
 
@@ -95,4 +100,6 @@ public class IkusiBeharrekoa extends JFrame {
 		}
 		return label;
 	}
+	
+	
 }
