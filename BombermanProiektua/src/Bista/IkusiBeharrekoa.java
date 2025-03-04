@@ -28,6 +28,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JPanel panel;
 	private JLayeredPane layeredPane;
 	private JLabel jokalariaLabel;
+	private JLabel fondoLabel;
 
 	/**
 	 * Launch the application.
@@ -55,16 +56,17 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
-		addComponentListener(new ComponentAdapter() {
+		/*addComponentListener(new ComponentAdapter() {
 			   @Override
 			   public void componentResized(ComponentEvent e) {
 				   layeredPane.setSize(getWidth(), getHeight());
 				   panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
-
 				   panel.revalidate();
 				   panel.repaint();
+				   fondoLabel.setSize(getWidth(), getHeight());
+				   fondoLabel.repaint();
 			   }
-			  });
+			  });*/
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -72,6 +74,15 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			panel.setLayout(new GridLayout(11, 17, 0, 0));
 			panel.setOpaque(false);
 			labirintoaBistaratu();
+			addComponentListener(new ComponentAdapter() {
+			   @Override
+			   public void componentResized(ComponentEvent e) {  
+				   panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
+				   panel.revalidate();
+				   panel.repaint();
+			   }
+			  });
+			
 		}
 		return panel;
 	}
@@ -144,13 +155,21 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (layeredPane == null) {
 			layeredPane = new JLayeredPane();
 			layeredPane.setLayout(null);
-			JLabel fondoLabel = Fondoa();
+			fondoLabel = Fondoa();
 			fondoLabel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(fondoLabel, new Integer(0));
 
-			JPanel panel = getPanel();
+			panel = getPanel();
 			panel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(panel, new Integer(1));
+			
+			addComponentListener(new ComponentAdapter() {
+			   @Override
+			   public void componentResized(ComponentEvent e) {
+				   fondoLabel.setSize(getWidth(), getHeight());
+				   fondoLabel.repaint();
+			   }
+			  });
 			
 		}
 		return layeredPane;
