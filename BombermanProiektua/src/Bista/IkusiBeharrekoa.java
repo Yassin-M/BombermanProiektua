@@ -51,6 +51,8 @@ public class IkusiBeharrekoa extends JFrame {
 	 */
 	public IkusiBeharrekoa() {
 		setBounds(100, 100, 450, 300);
+        setTitle("Bomberman");
+		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
@@ -58,7 +60,8 @@ public class IkusiBeharrekoa extends JFrame {
 			   @Override
 			   public void componentResized(ComponentEvent e) {
 				   layeredPane.setSize(getWidth(), getHeight());
-				   panel.setSize(getWidth(), getHeight());
+				   panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
+
 				   panel.revalidate();
 				   panel.repaint();
 			   }
@@ -100,7 +103,7 @@ public class IkusiBeharrekoa extends JFrame {
 					break;
 				}
 				if(irudia!=null) {
-					gelaxka.setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+					gelaxka.setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));	
 				}
 				panel.add(gelaxka);
 			}
@@ -109,8 +112,7 @@ public class IkusiBeharrekoa extends JFrame {
 	}
 	
 	public JLabel Fondoa() {
-        setTitle("Fondo con JLabel - paintComponent");
-        setSize(800, 600);
+        setSize(663, 429 + 38);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
