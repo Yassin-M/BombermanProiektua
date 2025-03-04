@@ -12,6 +12,8 @@ import Eredua.Jokalaria;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.Observable;
@@ -28,6 +30,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JPanel panel;
 	private JLayeredPane layeredPane;
 	private JLabel fondoLabel;
+	private Controler controler = null;
 
 	/**
 	 * Launch the application.
@@ -170,6 +173,20 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		return layeredPane;
 	}
+	//KONTROLADOREA
+	private Controler getControler() {
+        if (controler == null) {
+            controler = new Controler();
+        }
+        return controler;
+	}
+	
+	private class Controler implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			//TODO
+		}
+		
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -177,5 +194,35 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			
 		}
 		
+	}
+	
+	private class Gelaxka extends JLabel implements Observer{
+		private static final long serialVersionUID = -6493016058572553189L;
+		int lerroa;
+		int zutabea;
+		
+		
+		public Gelaxka(int pLerroa, int pZutabea) {
+			this.lerroa = pLerroa;
+			this.zutabea = pZutabea;
+			this.setEnabled(true);
+			addComponentListener(new ComponentAdapter() {
+			    @Override
+			    public void componentResized(ComponentEvent e) {
+			        	setSize(getWidth(), getHeight());
+			        	ImageIcon icon = (ImageIcon) getIcon();
+						if (icon != null) {
+							Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+							setIcon(new ImageIcon(img));
+						}
+			    }
+			});
+			this.addActionListener(getControler());
+		}
+		
+		@Override
+		public void update(Observable arg0, Object arg1) {
+			
+		}
 	}
 }
