@@ -87,41 +87,37 @@ public class Laberintoa extends Observable{
 	
 	public void jokalariaMugituEskuinera() {
 		Jokalaria j = getJokalaria();
-		if (laberintoa[j.getXposizioa() + 1][j.getYposizioa()].zerDago() == null) {
-			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
-			laberintoa[j.getXposizioa() + 1][j.getYposizioa()].setJokalaria(j);
+		if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == null) {
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
 			j.mugituEskuinera();
-			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
+            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 		}
 	}
 	
 	public void jokalariaMugituEzkerretara() {
 		Jokalaria j = getJokalaria();
-		if (laberintoa[j.getXposizioa() - 1][j.getYposizioa()].zerDago() == null) {
-			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
-			laberintoa[j.getXposizioa() - 1][j.getYposizioa()].setJokalaria(j);
+		if (laberintoa[j.getYposizioa()][j.getXposizioa()-1].zerDago() == null) {
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
 			j.mugituEzkerretara();
-			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
+            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 		}
 	}
 	
 	public void jokalariaMugituGora() {
 		Jokalaria j = getJokalaria();
-		if (laberintoa[j.getXposizioa()][j.getYposizioa() - 1].zerDago() == null) {
-			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
-			laberintoa[j.getXposizioa()][j.getYposizioa() - 1].setJokalaria(j);
+		if (laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == null) {
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
 			j.mugituGora();
-			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
+            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 		}
 	}
 	
 	public void jokalariaMugituBehera() {
         Jokalaria j = getJokalaria();
-        if (laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == null) {
-            laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
+        if (laberintoa[j.getYposizioa()+1][j.getXposizioa()].zerDago() == null) {
+            laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
             j.mugituBehera();
-            laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
-            setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
+            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
         }
         
 	}
