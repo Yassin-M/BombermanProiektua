@@ -83,24 +83,31 @@ public class Gelaxka extends Observable {
 		switch (this.blokeMota) {
 			case SUA:
                 this.sua = null;
+                this.blokeMota = null;
                 break;
             case BOMBA:
             	this.bomba = null;
+                this.blokeMota = null;
                 break;
 			case ULTRABOMBA:
 				this.bomba = null;
+                this.blokeMota = null;
 				break;
             case BLOKEBIGUNA:
             	this.blokeBiguna = null;
-				break;
+                this.blokeMota = null;
+                break;
 			case BLOKEGOGORRA:
 				this.blokeGogorra = null;
+                this.blokeMota = null;
 				break;
 			case ETSAIA:
 				this.etsaia = null;
+                this.blokeMota = null;
 				break;
 			case JOKALARIA:
 				this.jokalari = null;
+                this.blokeMota = null;
 				break;
 			default:
 				break;

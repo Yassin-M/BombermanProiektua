@@ -8,6 +8,7 @@ import java.util.Random;
 public class Laberintoa extends Observable{
 	private static Laberintoa nireLaberintoa;
 	private Gelaxka[][] laberintoa;
+	private Jokalaria jokalaria;
 	
 	private Laberintoa() {
 		laberintoaSortu();
@@ -26,7 +27,8 @@ public class Laberintoa extends Observable{
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka();
 				if (i==0 && j==0) {
-					laberintoa[i][j].setJokalaria(new JokZuria(10,true,0,0));
+					this.jokalaria = new JokZuria(10,true,0,0);
+					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
 					continue;
@@ -77,7 +79,7 @@ public class Laberintoa extends Observable{
 	
 	public void jokalariaMugituEskuinera() {
 		Jokalaria j = getJokalaria();
-		if (laberintoa[j.getXposizioa() + 1][j.getYposizioa()].zerDago() == null || laberintoa[j.getXposizioa() + 1][j.getYposizioa()].zerDago() == BlokeMota.BLOKEGOGORRA) {
+		if (laberintoa[j.getXposizioa() + 1][j.getYposizioa()].zerDago() == null) {
 			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
 			laberintoa[j.getXposizioa() + 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEskuinera();
@@ -86,7 +88,7 @@ public class Laberintoa extends Observable{
 	
 	public void jokalariaMugituEzkerretara() {
 		Jokalaria j = getJokalaria();
-		if (laberintoa[j.getXposizioa() - 1][j.getYposizioa()].zerDago() == null || laberintoa[j.getXposizioa() - 1][j.getYposizioa()].zerDago() == BlokeMota.BLOKEGOGORRA) {
+		if (laberintoa[j.getXposizioa() - 1][j.getYposizioa()].zerDago() == null) {
 			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
 			laberintoa[j.getXposizioa() - 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEzkerretara();
@@ -95,7 +97,7 @@ public class Laberintoa extends Observable{
 	
 	public void jokalariaMugituGora() {
 		Jokalaria j = getJokalaria();
-		if (laberintoa[j.getXposizioa()][j.getYposizioa() - 1].zerDago() == null || laberintoa[j.getXposizioa()][j.getYposizioa() - 1].zerDago() == BlokeMota.BLOKEGOGORRA) {
+		if (laberintoa[j.getXposizioa()][j.getYposizioa() - 1].zerDago() == null) {
 			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
 			laberintoa[j.getXposizioa()][j.getYposizioa() - 1].setJokalaria(j);
 			j.mugituGora();
@@ -104,7 +106,7 @@ public class Laberintoa extends Observable{
 	
 	public void jokalariaMugituBehera() {
         Jokalaria j = getJokalaria();
-        if (laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == null || laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == BlokeMota.BLOKEGOGORRA) {
+        if (laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == null) {
             laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
             laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
             j.mugituBehera();
@@ -113,13 +115,6 @@ public class Laberintoa extends Observable{
 	}
 	
 	public Jokalaria getJokalaria() {
-        for (int i = 0; i < 11; i++) {
-            for (int j = 0; j < 17; j++) {
-                if (laberintoa[i][j].getJokalaria() != null) {
-                    return laberintoa[i][j].getJokalaria(); 
-                }
-            }
-        }
-        return null; 
+        return this.jokalaria;
     }
 }
