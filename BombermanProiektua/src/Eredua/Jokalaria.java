@@ -1,6 +1,8 @@
 package Eredua;
 
-public abstract class Jokalaria {
+import java.util.*;
+
+public abstract class Jokalaria extends Observable {
 	protected int bombaKont;
 	protected boolean bizirik;
 	protected int Xposizioa;
@@ -14,19 +16,35 @@ public abstract class Jokalaria {
 	}
 
 	public void mugituEskuinera() {
-		Xposizioa++;
+		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa+1, Yposizioa)==null) {
+			Xposizioa++;
+			setChanged();
+			notifyObservers();
+		}
 	}
 
 	public void mugituEzkerretara() {
-		Xposizioa--;
+		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa-1, Yposizioa)==null) {
+			Xposizioa--;
+			setChanged();
+			notifyObservers();
+		}
 	}
 
 	public void mugituGora() {
-		Yposizioa--;
+		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa, Yposizioa-1)==null) {
+			Yposizioa--;
+			setChanged();
+			notifyObservers();
+		}
 	}
 
 	public void mugituBehera() {
-		Yposizioa++;
+		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa, Yposizioa+1)==null) {
+			Yposizioa++;
+			setChanged();
+			notifyObservers();
+		}
 	}
 	
 	public abstract void bombaJarri();
