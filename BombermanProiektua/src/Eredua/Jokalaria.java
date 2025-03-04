@@ -47,5 +47,13 @@ public abstract class Jokalaria extends Observable {
 		}
 	}
 	
+	public int getXposizioa() {
+		return this.Xposizioa;
+	}
+	
+	public int getYposizioa() {
+        return this.Yposizioa;
+    }
+	
 	public abstract void bombaJarri();
 }

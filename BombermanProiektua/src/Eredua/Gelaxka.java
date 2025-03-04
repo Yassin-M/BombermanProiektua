@@ -108,6 +108,10 @@ public class Gelaxka extends Observable {
 		setChanged();
 		notifyObservers();
 	}
+
+	public Jokalaria getJokalaria() {
+		return this.jokalari;
+	}
 	
 	public BlokeMota zerDago() {
 		return blokeMota;

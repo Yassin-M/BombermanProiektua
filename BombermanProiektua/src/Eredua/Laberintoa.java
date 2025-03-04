@@ -2,6 +2,7 @@ package Eredua;
 
 import java.util.Observable;
 import java.util.Random;
+
 @SuppressWarnings("deprecation")
 
 public class Laberintoa extends Observable{
@@ -73,4 +74,52 @@ public class Laberintoa extends Observable{
 	public void suaKendu(int i, int j) {
 		laberintoa[i][j].kenduAurrekoa();
 	}
+	
+	public void jokalariaMugituEskuinera() {
+		Jokalaria j = getJokalaria();
+		if (laberintoa[j.getXposizioa() + 1][j.getYposizioa()].zerDago() == null || laberintoa[j.getXposizioa() + 1][j.getYposizioa()].zerDago() == BlokeMota.BLOKEGOGORRA) {
+			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+			laberintoa[j.getXposizioa() + 1][j.getYposizioa()].setJokalaria(j);
+			j.mugituEskuinera();
+		}
+	}
+	
+	public void jokalariaMugituEzkerretara() {
+		Jokalaria j = getJokalaria();
+		if (laberintoa[j.getXposizioa() - 1][j.getYposizioa()].zerDago() == null || laberintoa[j.getXposizioa() - 1][j.getYposizioa()].zerDago() == BlokeMota.BLOKEGOGORRA) {
+			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+			laberintoa[j.getXposizioa() - 1][j.getYposizioa()].setJokalaria(j);
+			j.mugituEzkerretara();
+		}
+	}
+	
+	public void jokalariaMugituGora() {
+		Jokalaria j = getJokalaria();
+		if (laberintoa[j.getXposizioa()][j.getYposizioa() - 1].zerDago() == null || laberintoa[j.getXposizioa()][j.getYposizioa() - 1].zerDago() == BlokeMota.BLOKEGOGORRA) {
+			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+			laberintoa[j.getXposizioa()][j.getYposizioa() - 1].setJokalaria(j);
+			j.mugituGora();
+		}
+	}
+	
+	public void jokalariaMugituBehera() {
+        Jokalaria j = getJokalaria();
+        if (laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == null || laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == BlokeMota.BLOKEGOGORRA) {
+            laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+            laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
+            j.mugituBehera();
+        }
+        
+	}
+	
+	public Jokalaria getJokalaria() {
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 17; j++) {
+                if (laberintoa[i][j].getJokalaria() != null) {
+                    return laberintoa[i][j].getJokalaria(); 
+                }
+            }
+        }
+        return null; 
+    }
 }
