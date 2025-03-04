@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -30,7 +32,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JPanel panel;
 	private JLayeredPane layeredPane;
 	private JLabel fondoLabel;
-	private Controler controler = null;
+	private Controler controler;
 
 	/**
 	 * Launch the application.
@@ -181,9 +183,39 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
         return controler;
 	}
 	
-	private class Controler implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			//TODO
+	private class Controler implements KeyListener {
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int key = e.getKeyCode();
+
+	        switch (key) {
+	            case KeyEvent.VK_UP:
+	                Laberintoa.getNireLaberintoa().jokalariaMugituGora();
+	                break;
+	            case KeyEvent.VK_DOWN:
+	                Laberintoa.getNireLaberintoa().jokalariaMugituBehera();
+	                break;
+	            case KeyEvent.VK_LEFT:
+	                Laberintoa.getNireLaberintoa().jokalariaMugituEzkerretara();
+	                break;
+	            case KeyEvent.VK_RIGHT:
+	                Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
+	                break;
+	        }
+
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 		
 	}
@@ -197,10 +229,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	}
 	
 	private class Gelaxka extends JLabel implements Observer{
-		private static final long serialVersionUID = -6493016058572553189L;
 		int lerroa;
 		int zutabea;
-		
 		
 		public Gelaxka(int pLerroa, int pZutabea) {
 			this.lerroa = pLerroa;
@@ -217,12 +247,21 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 						}
 			    }
 			});
-			this.addActionListener(getControler());
+			addKeyListener(getControler());
+			setFocusable(true);
+			Laberintoa.getNireLaberintoa().getGelaxka(pLerroa, pZutabea).addObserver(this);
 		}
 		
 		@Override
-		public void update(Observable arg0, Object arg1) {
-			
-		}
+	    public void update(Observable o, Object arg) {
+	        if (o instanceof Eredua.Gelaxka && arg instanceof int[]) {
+	            int[] pos = (int[]) arg;
+	            if (pos[0] == lerroa && pos[1] == zutabea) {
+	                // Actualiza la gelaxka
+	                String irudia = "/Bista/irudiak/whitedown1.png";
+	                setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+	            }
+	        }
+	    }
 	}
 }

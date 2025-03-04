@@ -30,7 +30,7 @@ public class Gelaxka extends Observable {
 		}
 		this.blokeMota = BlokeMota.JOKALARIA;
 		setChanged();
-		notifyObservers();
+		notifyObservers(new int[] {pJok.getXposizioa(), pJok.getYposizioa()});
 	}
 	
 	

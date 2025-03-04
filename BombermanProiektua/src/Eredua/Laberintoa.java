@@ -54,6 +54,14 @@ public class Laberintoa extends Observable{
 		return laberintoa[i][j].zerDago();
 	}
 	
+	public Gelaxka getGelaxka(int i, int j) {
+		return laberintoa[i][j];
+	}
+
+	public void setJokalaria(int i, int j, Jokalaria pJok) {
+		laberintoa[i][j].setJokalaria(pJok);
+	}
+	
 	public void bombaJarri(int i, int j, boolean pUltrabomba) {
 		laberintoa[i][j].setBomba(i,j,pUltrabomba);
 	}
@@ -81,6 +89,7 @@ public class Laberintoa extends Observable{
 			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
 			laberintoa[j.getXposizioa() + 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEskuinera();
+			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
 		}
 	}
 	
@@ -90,6 +99,7 @@ public class Laberintoa extends Observable{
 			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
 			laberintoa[j.getXposizioa() - 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEzkerretara();
+			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
 		}
 	}
 	
@@ -99,6 +109,7 @@ public class Laberintoa extends Observable{
 			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
 			laberintoa[j.getXposizioa()][j.getYposizioa() - 1].setJokalaria(j);
 			j.mugituGora();
+			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
 		}
 	}
 	
@@ -108,6 +119,7 @@ public class Laberintoa extends Observable{
             laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
             laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
             j.mugituBehera();
+            setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
         }
         
 	}
