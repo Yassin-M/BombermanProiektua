@@ -30,10 +30,10 @@ public class Bomba extends Observable {
 			kont--;
 			if(kont==0) {
 				Laberintoa.getNireLaberintoa().suaJarri(i, j, false);
+				timer.cancel();
+				timer = null;
+				setChanged();
+				notifyObservers();
 			}
-			setChanged();
-			notifyObservers();
 		}
-	
-
 }

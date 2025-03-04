@@ -31,6 +31,8 @@ public class Sua extends Observable{
 		kont--;
 		if(kont==0) {
 			Laberintoa.getNireLaberintoa().suaKendu(i,j);
+			timer.cancel();
+			timer = null;
 			setChanged();
 			notifyObservers();
 		}
