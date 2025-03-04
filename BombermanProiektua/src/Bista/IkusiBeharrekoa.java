@@ -195,6 +195,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	            case KeyEvent.VK_RIGHT:
 	                Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
 	                break;
+		     case KeyEvent.VK_SPACE:
+			Laberintoa.getNireLaberintoa().bombaJarri(Laberintoa.getNireLaberintoa().getJokalaria().getXposizioa(), Laberintoa.getNireLaberintoa().getJokalaria().getYposizioa(), true);
+			break;
 	        }
 
 			
@@ -249,6 +252,10 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	                String irudia = "/Bista/irudiak/whitedown1.png";
 	                setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
 	            }
+	        }
+		if (o instanceof Eredua.Gelaxka) {
+                	String irudia = "/Bista/irudiak/bomb1.png";
+                	setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
 	        }
 	    }
 	}
