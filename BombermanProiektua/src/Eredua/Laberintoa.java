@@ -44,9 +44,6 @@ public class Laberintoa extends Observable{
 					else if (r.nextInt(100) >= 90) {
 						//laberintoa[i][j].setEtsaia();
 					}
-					else {
-						laberintoa[i][j] = new Gelaxka(i,j);
-					}
 				}
 			}
 		}

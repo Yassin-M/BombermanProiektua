@@ -16,7 +16,7 @@ public abstract class Jokalaria extends Observable {
 	}
 
 	public void mugituEskuinera() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa+1, Yposizioa)==null) {
+		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa, Xposizioa+1)==null) {
 			Xposizioa++;
 			setChanged();
 			notifyObservers(new int[] {Yposizioa, Xposizioa});
@@ -24,7 +24,7 @@ public abstract class Jokalaria extends Observable {
 	}
 
 	public void mugituEzkerretara() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa-1, Yposizioa)==null) {
+		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa, Xposizioa-1)==null) {
 			Xposizioa--;
 			setChanged();
 			notifyObservers(new int[] {Yposizioa, Xposizioa});
@@ -32,7 +32,7 @@ public abstract class Jokalaria extends Observable {
 	}
 
 	public void mugituGora() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa, Yposizioa-1)==null) {
+		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa-1, Xposizioa)==null) {
 			Yposizioa--;
 			setChanged();
 			notifyObservers(new int[] {Yposizioa, Xposizioa});
@@ -40,7 +40,7 @@ public abstract class Jokalaria extends Observable {
 	}
 
 	public void mugituBehera() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Xposizioa, Yposizioa+1)==null) {
+		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa+1, Xposizioa)==null) {
 			Yposizioa++;
 			setChanged();
 			notifyObservers(new int[] {Yposizioa, Xposizioa});
