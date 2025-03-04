@@ -195,9 +195,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	            case KeyEvent.VK_RIGHT:
 	                Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
 	                break;
-		     case KeyEvent.VK_SPACE:
-			Laberintoa.getNireLaberintoa().bombaJarri(Laberintoa.getNireLaberintoa().getJokalaria().getXposizioa(), Laberintoa.getNireLaberintoa().getJokalaria().getYposizioa(), true);
-			break;
+	            case KeyEvent.VK_SPACE:
+	            	Laberintoa.getNireLaberintoa().bombaJarri(Laberintoa.getNireLaberintoa().getJokalaria().getXposizioa(), Laberintoa.getNireLaberintoa().getJokalaria().getYposizioa(), true);
+	            	break;
 	        }
 
 			
@@ -245,18 +245,25 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		
 		@Override
 	    public void update(Observable o, Object arg) {
-			Eredua.Gelaxka gelaxka = (Eredua.Gelaxka) o;
-			int[] pos = (int[]) arg;
-	        if (gelaxka.getX() == lerroa && gelaxka.getY() == zutabea) {
-	                // Actualiza la gelaxka
-	                if (gelaxka.zerDago()==BlokeMota.JOKALARIA) {
-	                	String irudia = "/Bista/irudiak/whitedown1.png";
-		                setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
-	                } else if (gelaxka.zerDago()==null) {
-	                	setIcon(null);
-	                }
-	            }
-	        } 
-	    }
+			if (o instanceof Eredua.Gelaxka && arg instanceof int[]) {
+				Eredua.Gelaxka gelaxka = (Eredua.Gelaxka) o;
+				int[] pos = (int[]) arg;
+		        if (gelaxka.getX() == lerroa && gelaxka.getY() == zutabea) {
+		        	// Actualiza la gelaxka
+		        	if (gelaxka.zerDago()==BlokeMota.JOKALARIA) {
+		                	String irudia = "/Bista/irudiak/whitedown1.png";
+		                	setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+		           } else if (gelaxka.zerDago()==null) {
+		                	setIcon(null);
+		                }
+		        }
+				
+			}
+			if (o instanceof Eredua.Gelaxka && arg instanceof Boolean) {
+				String irudia = "/Bista/irudiak/bomb1.png";
+				setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+			}
+	    } 
+	}
 }
 

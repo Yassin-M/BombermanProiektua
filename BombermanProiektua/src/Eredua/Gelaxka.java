@@ -87,7 +87,7 @@ public class Gelaxka extends Observable {
 			kenduAurrekoa();
 		}
 		setChanged();
-		notifyObservers();
+		notifyObservers(true);
 	}
 	
 	public void kenduAurrekoa() {
