@@ -196,7 +196,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	                Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
 	                break;
 	            case KeyEvent.VK_SPACE:
-	            	Laberintoa.getNireLaberintoa().bombaJarri(Laberintoa.getNireLaberintoa().getJokalaria().getXposizioa(), Laberintoa.getNireLaberintoa().getJokalaria().getYposizioa(), true);
+	            	Laberintoa.getNireLaberintoa().bombaJarri(Laberintoa.getNireLaberintoa().getJokalaria().getYposizioa(), Laberintoa.getNireLaberintoa().getJokalaria().getXposizioa(), true);
 	            	break;
 	        }
 
@@ -244,20 +244,19 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		
 		@Override
-	    public void update(Observable o, Object arg) {
+		public void update(Observable o, Object arg) {
 			if (o instanceof Eredua.Gelaxka && arg instanceof int[]) {
 				Eredua.Gelaxka gelaxka = (Eredua.Gelaxka) o;
 				int[] pos = (int[]) arg;
-		        if (gelaxka.getX() == lerroa && gelaxka.getY() == zutabea) {
-		        	// Actualiza la gelaxka
-		        	if (gelaxka.zerDago()==BlokeMota.JOKALARIA) {
-		                	String irudia = "/Bista/irudiak/whitedown1.png";
-		                	setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
-		           } else if (gelaxka.zerDago()==null) {
+				if (gelaxka.getX() == lerroa && gelaxka.getY() == zutabea) {
+					// Actualiza la gelaxka
+					if (gelaxka.zerDago()==BlokeMota.JOKALARIA) {
+						String irudia = "/Bista/irudiak/whitedown1.png";
+						setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+					} else if (gelaxka.zerDago()==null) {
 		                	setIcon(null);
-		                }
-		        }
-				
+		            }
+				}
 			}
 			if (o instanceof Eredua.Gelaxka && arg instanceof Boolean) {
 				String irudia = "/Bista/irudiak/bomb1.png";
