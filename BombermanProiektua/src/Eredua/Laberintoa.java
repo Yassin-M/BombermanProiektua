@@ -119,8 +119,8 @@ public class Laberintoa extends Observable{
         Jokalaria j = getJokalaria();
         if (laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == null) {
             laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
-            laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
             j.mugituBehera();
+            laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
             setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
         }
         
