@@ -88,7 +88,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituEskuinera() {
 		Jokalaria j = getJokalaria();
 		if (laberintoa[j.getXposizioa() + 1][j.getYposizioa()].zerDago() == null) {
-			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
 			laberintoa[j.getXposizioa() + 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEskuinera();
 			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
@@ -98,7 +98,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituEzkerretara() {
 		Jokalaria j = getJokalaria();
 		if (laberintoa[j.getXposizioa() - 1][j.getYposizioa()].zerDago() == null) {
-			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
 			laberintoa[j.getXposizioa() - 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEzkerretara();
 			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
@@ -108,7 +108,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituGora() {
 		Jokalaria j = getJokalaria();
 		if (laberintoa[j.getXposizioa()][j.getYposizioa() - 1].zerDago() == null) {
-			laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
 			laberintoa[j.getXposizioa()][j.getYposizioa() - 1].setJokalaria(j);
 			j.mugituGora();
 			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
@@ -118,7 +118,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituBehera() {
         Jokalaria j = getJokalaria();
         if (laberintoa[j.getXposizioa()][j.getYposizioa() + 1].zerDago() == null) {
-            laberintoa[j.getXposizioa()][j.getYposizioa()].setJokalaria(null);
+            laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
             laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
             j.mugituBehera();
             setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
