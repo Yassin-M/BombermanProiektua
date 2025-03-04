@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import Eredua.BlokeBiguna;
 import Eredua.BlokeGogorra;
@@ -29,6 +30,7 @@ public class IkusiBeharrekoa extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JLayeredPane layeredPane;
+	private JLabel fondoLabel;
 
 	/**
 	 * Launch the application.
@@ -56,23 +58,47 @@ public class IkusiBeharrekoa extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
-		addComponentListener(new ComponentAdapter() {
-			   @Override
-			   public void componentResized(ComponentEvent e) {
-				   layeredPane.setSize(getWidth(), getHeight());
-				   panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
-
-				   panel.revalidate();
-				   panel.repaint();
-			   }
-			  });
+		/*addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentResized(ComponentEvent e) {
+		    	layeredPane.setSize(getWidth(), getHeight());
+		    	panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
+		    	panel.revalidate();
+		    	panel.repaint();
+		    	fondoLabel.setSize(getWidth(), getHeight());
+		    	fondoLabel.repaint();
+		    }
+		});*/
 	}
+	
+	/*private void resizeGelaxkas() {
+		int width = panel.getWidth() / 17;
+		int height = panel.getHeight() / 11;
+		for (int i = 0; i < panel.getComponentCount(); i++) {
+			JLabel gelaxka = (JLabel) panel.getComponent(i);
+			gelaxka.setSize(width, height);
+			ImageIcon icon = (ImageIcon) gelaxka.getIcon();
+			if (icon != null) {
+				Image img = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+				gelaxka.setIcon(new ImageIcon(img));
+			}
+		 }
+     }*/
+	 
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setLayout(new GridLayout(11, 17, 0, 0));
 			panel.setOpaque(false);
 			labirintoaBistaratu();
+			addComponentListener(new ComponentAdapter() {
+			    @Override
+			    public void componentResized(ComponentEvent e) {
+			    	panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
+			    	panel.revalidate();
+			    	panel.repaint();
+			    }
+			});
 		}
 		return panel;
 	}
@@ -132,7 +158,6 @@ public class IkusiBeharrekoa extends JFrame {
                 fondoLabel.repaint();
             }
         });
-        
         fondoLabel.setBounds(0, 0, getWidth(), getHeight());
         fondoLabel.setOpaque(false);
         return fondoLabel;
@@ -142,13 +167,20 @@ public class IkusiBeharrekoa extends JFrame {
 		if (layeredPane == null) {
 			layeredPane = new JLayeredPane();
 			layeredPane.setLayout(null);
-			JLabel fondoLabel = Fondoa();
+			fondoLabel = Fondoa();
 			fondoLabel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(fondoLabel, new Integer(0));
 
-			JPanel panel = getPanel();
+			panel = getPanel();
 			panel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(panel, new Integer(1));
+			
+			addComponentListener(new ComponentAdapter() {
+			    @Override
+			    public void componentResized(ComponentEvent e) {
+			    	layeredPane.setSize(getWidth(), getHeight());
+			    }
+			});
 			
 		}
 		return layeredPane;
