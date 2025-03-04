@@ -91,7 +91,6 @@ public class Laberintoa extends Observable{
 			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
 			laberintoa[j.getXposizioa() + 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEskuinera();
-			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
 		}
 	}
 	
@@ -101,7 +100,6 @@ public class Laberintoa extends Observable{
 			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
 			laberintoa[j.getXposizioa() - 1][j.getYposizioa()].setJokalaria(j);
 			j.mugituEzkerretara();
-			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
 		}
 	}
 	
@@ -111,7 +109,6 @@ public class Laberintoa extends Observable{
 			laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
 			laberintoa[j.getXposizioa()][j.getYposizioa() - 1].setJokalaria(j);
 			j.mugituGora();
-			setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
 		}
 	}
 	
@@ -121,7 +118,6 @@ public class Laberintoa extends Observable{
             laberintoa[j.getXposizioa()][j.getYposizioa()].kenduAurrekoa();
             laberintoa[j.getXposizioa()][j.getYposizioa() + 1].setJokalaria(j);
             j.mugituBehera();
-            setJokalaria(j.getXposizioa(), j.getYposizioa(), j);
         }
         
 	}
