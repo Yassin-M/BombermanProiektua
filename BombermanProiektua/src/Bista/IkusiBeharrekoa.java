@@ -37,18 +37,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IkusiBeharrekoa frame = new IkusiBeharrekoa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
