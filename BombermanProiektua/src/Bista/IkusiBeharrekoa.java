@@ -259,7 +259,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				}
 			}
 			if (o instanceof Eredua.Gelaxka && arg instanceof Boolean) {
-				String irudia = "/Bista/irudiak/bomb1.png";
+				String irudia = "/Bista/irudiak/whitewithbomb1.png";
 				setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
 			}
 	    } 

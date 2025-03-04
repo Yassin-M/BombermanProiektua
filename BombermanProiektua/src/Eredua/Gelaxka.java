@@ -83,9 +83,6 @@ public class Gelaxka extends Observable {
 			this.bomba = new Bomba(i,j);
 			this.blokeMota = BlokeMota.BOMBA;
 		}
-		if(blokeMota!=null) {
-			kenduAurrekoa();
-		}
 		setChanged();
 		notifyObservers(true);
 	}
