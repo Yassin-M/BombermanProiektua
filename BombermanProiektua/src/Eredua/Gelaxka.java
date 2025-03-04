@@ -11,9 +11,11 @@ public class Gelaxka extends Observable {
 	private Etsaia etsaia;
 	private Jokalaria jokalari;
 	private BlokeMota blokeMota;
+	private int x; 
+	private int y;
 	
 	
-	public Gelaxka() {
+	public Gelaxka(int pX, int pY) {
 		this.sua = null;
         this.bomba = null;
         this.blokeBiguna = null;
@@ -21,7 +23,17 @@ public class Gelaxka extends Observable {
         this.etsaia = null;
         this.jokalari = null;
         this.blokeMota = null;
+        this.x = pX;
+        this.y = pY;
 	}
+	
+	public int getX() {
+        return x;
+    }
+	
+	public int getY() {
+        return y;
+    }
 	
 	public void setJokalaria(Jokalaria pJok) {
 		this.jokalari = pJok;
@@ -30,9 +42,8 @@ public class Gelaxka extends Observable {
 		}
 		this.blokeMota = BlokeMota.JOKALARIA;
 		setChanged();
-		notifyObservers(new int[] {pJok.getYposizioa(), pJok.getXposizioa()});
+		notifyObservers(new int[] {pJok.getXposizioa(), pJok.getYposizioa()});
 	}
-	
 	
 	public void setSua(int i, int j) {
 		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {

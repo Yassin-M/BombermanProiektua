@@ -25,7 +25,7 @@ public class Laberintoa extends Observable{
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
 			for (int j=0; j<17; j++) {
-				laberintoa[i][j] = new Gelaxka();
+				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
 					this.jokalaria = new JokZuria(10,true,0,0);
 					laberintoa[i][j].setJokalaria(this.jokalaria);
@@ -45,7 +45,7 @@ public class Laberintoa extends Observable{
 						//laberintoa[i][j].setEtsaia();
 					}
 					else {
-						laberintoa[i][j] = new Gelaxka();
+						laberintoa[i][j] = new Gelaxka(i,j);
 					}
 				}
 			}

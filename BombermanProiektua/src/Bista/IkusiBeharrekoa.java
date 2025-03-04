@@ -245,18 +245,18 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		
 		@Override
 	    public void update(Observable o, Object arg) {
-	        if (o instanceof Eredua.Gelaxka && arg instanceof int[]) {
-	            int[] pos = (int[]) arg;
-	            if (pos[0] == lerroa && pos[1] == zutabea) {
+			Eredua.Gelaxka gelaxka = (Eredua.Gelaxka) o;
+			int[] pos = (int[]) arg;
+	        if (gelaxka.getX() == lerroa && gelaxka.getY() == zutabea) {
 	                // Actualiza la gelaxka
-	                String irudia = "/Bista/irudiak/whitedown1.png";
-	                setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+	                if (gelaxka.zerDago()==BlokeMota.JOKALARIA) {
+	                	String irudia = "/Bista/irudiak/whitedown1.png";
+		                setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
+	                } else if (gelaxka.zerDago()==null) {
+	                	setIcon(null);
+	                }
 	            }
-	        }
-		if (o instanceof Eredua.Gelaxka) {
-                	String irudia = "/Bista/irudiak/bomb1.png";
-                	setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
-	        }
+	        } 
 	    }
-	}
 }
+
