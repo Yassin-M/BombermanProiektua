@@ -27,7 +27,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JLayeredPane layeredPane;
-	private JLabel jokalariaLabel;
 	private JLabel fondoLabel;
 
 	/**
@@ -103,6 +102,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					case ETSAIA:
 						irudia = "/Bista/irudiak/pass1.png";
 						break;
+					case JOKALARIA:
+						irudia = "/Bista/irudiak/whitedown1.png";
+						break;
 					case null:
 						break;
 				default:
@@ -112,13 +114,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				if(irudia!=null) {
 					gelaxka.setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));	
 				}
-				if (i == 0 && j == 0) {
-					jokalariaLabel = new JLabel();
-                    jokalariaLabel.setIcon(new ImageIcon(Gelaxka.class.getResource("/Bista/irudiak/whitedown1.png")));
-                    panel.add(jokalariaLabel);
-				} else {
-					panel.add(gelaxka);
-				}
+				panel.add(gelaxka);
 			}
 		}
 
@@ -178,9 +174,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof Jokalaria && arg instanceof String) {
-			Laberintoa lab = Laberintoa.getNireLaberintoa();
-			Jokalaria jok = lab.getJokalaria();
-			jokalariaLabel.setLocation(jok.getXposizioa(), jok.getYposizioa());
+			
 		}
 		
 	}
