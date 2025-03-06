@@ -90,7 +90,7 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void setBomba(int i,int j,boolean pUltrabomba)  {
-		if (this.jokalari.bizirik) {
+		if (this.jokalari != null) {
 			if (pUltrabomba) {
 				this.bomba = new UltraBomba(i,j);
 				this.blokeMota = BlokeMota.ULTRABOMBA;
