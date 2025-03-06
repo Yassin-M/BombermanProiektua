@@ -84,15 +84,17 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void setBomba(int i,int j,boolean pUltrabomba)  {
-		if (pUltrabomba) {
-			this.bomba = new UltraBomba(i,j);
-			this.blokeMota = BlokeMota.ULTRABOMBA;
-		} else {
-			this.bomba = new Bomba(i,j);
-			this.blokeMota = BlokeMota.BOMBA;
+		if (this.jokalari.bizirik) {
+			if (pUltrabomba) {
+				this.bomba = new UltraBomba(i,j);
+				this.blokeMota = BlokeMota.ULTRABOMBA;
+			} else {
+				this.bomba = new Bomba(i,j);
+				this.blokeMota = BlokeMota.BOMBA;
+			}
+			setChanged();
+			notifyObservers(lortuEgoera());
 		}
-		setChanged();
-		notifyObservers(lortuEgoera());
 	}
 	
 	public void kenduAurrekoa() {
