@@ -1,6 +1,7 @@
 package Eredua;
 
 import java.util.Observable;
+
 @SuppressWarnings("deprecation")
 
 public class Gelaxka extends Observable {
@@ -54,10 +55,10 @@ public class Gelaxka extends Observable {
 	
 	public void setSua(int i, int j) {
 		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {
-			this.sua = new Sua(i,j);
 			if(blokeMota!=null) {
 				kenduAurrekoa();
 			}
+			this.sua = new Sua(i,j);
 			this.blokeMota = BlokeMota.SUA;
 			setChanged();
 			notifyObservers(lortuEgoera());
@@ -130,7 +131,12 @@ public class Gelaxka extends Observable {
 	}
 	public void kenduJokalaria() {
 		this.jokalari = null;
-        this.blokeMota = null;
+        if(this.bomba!=null) {
+        	this.blokeMota=BlokeMota.BOMBA;
+        }
+        else {
+        	this.blokeMota=null;
+        }
         setChanged();
         notifyObservers(lortuEgoera());
 	}
