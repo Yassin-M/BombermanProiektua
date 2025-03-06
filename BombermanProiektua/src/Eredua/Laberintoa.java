@@ -94,53 +94,61 @@ public class Laberintoa extends Observable{
 	
 	public void jokalariaMugituEskuinera() {
 		Jokalaria j = getJokalaria();
-		if(j.getXposizioa() < 16) {
-			if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == null) {
-				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
-				j.mugituEskuinera();
-	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu();
+		if (j.bizirik) {
+			if(j.getXposizioa() < 16) {
+				if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == null) {
+					laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+					j.mugituEskuinera();
+		            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
+				} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+					partidaAmaitu(j);
+				}
 			}
 		}
 	}
 	
 	public void jokalariaMugituEzkerretara() {
 		Jokalaria j = getJokalaria();
-		if(j.getXposizioa() > 0) {
-			if (laberintoa[j.getYposizioa()][j.getXposizioa()-1].zerDago() == null) {
-				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
-				j.mugituEzkerretara();
-	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu();
+		if (j.bizirik) {
+			if(j.getXposizioa() > 0) {
+				if (laberintoa[j.getYposizioa()][j.getXposizioa()-1].zerDago() == null) {
+					laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+					j.mugituEzkerretara();
+		            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
+				} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+					partidaAmaitu(j);
+				}
 			}
 		}
 	}
 	
 	public void jokalariaMugituGora() {
 		Jokalaria j = getJokalaria();
-		if(j.getYposizioa() > 0) {
-			if (laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == null) {
-				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
-				j.mugituGora();
-	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu();
+		if (j.bizirik) {
+			if(j.getYposizioa() > 0) {
+				if (laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == null) {
+					laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+					j.mugituGora();
+		            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
+				} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+					partidaAmaitu(j);
+				}
 			}
 		}
 	}
 	
 	public void jokalariaMugituBehera() {
         Jokalaria j = getJokalaria();
-        if(j.getYposizioa() < 10) {
-	        if (laberintoa[j.getYposizioa()+1][j.getXposizioa()].zerDago() == null) {
-	            laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
-	            j.mugituBehera();
-	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-	        } else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu();
-			}
+        if (j.bizirik) {
+	        if(j.getYposizioa() < 10) {
+		        if (laberintoa[j.getYposizioa()+1][j.getXposizioa()].zerDago() == null) {
+		            laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+		            j.mugituBehera();
+		            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
+		        } else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+					partidaAmaitu(j);
+				}
+	        }
         }
         
 	}
@@ -149,7 +157,8 @@ public class Laberintoa extends Observable{
         return this.jokalaria;
     }
 	
-	public void partidaAmaitu() {
-		// TODO
+	public void partidaAmaitu(Jokalaria j) {
+		laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+		j.jokalariaHil();
 	}
  }

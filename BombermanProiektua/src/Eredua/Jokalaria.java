@@ -48,4 +48,8 @@ public abstract class Jokalaria extends Observable {
     }
 	
 	public abstract void bombaJarri();
+	
+	public void jokalariaHil () {
+		bizirik = false;
+	}
 }
