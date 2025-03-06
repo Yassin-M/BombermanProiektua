@@ -99,6 +99,8 @@ public class Laberintoa extends Observable{
 				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 				j.mugituEskuinera();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
+			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+				partidaAmaitu();
 			}
 		}
 	}
@@ -110,6 +112,8 @@ public class Laberintoa extends Observable{
 				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 				j.mugituEzkerretara();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
+			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+				partidaAmaitu();
 			}
 		}
 	}
@@ -121,6 +125,8 @@ public class Laberintoa extends Observable{
 				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 				j.mugituGora();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
+			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+				partidaAmaitu();
 			}
 		}
 	}
@@ -132,7 +138,9 @@ public class Laberintoa extends Observable{
 	            laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 	            j.mugituBehera();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-	        }
+	        } else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+				partidaAmaitu();
+			}
         }
         
 	}
@@ -140,4 +148,8 @@ public class Laberintoa extends Observable{
 	public Jokalaria getJokalaria() {
         return this.jokalaria;
     }
-}
+	
+	public void partidaAmaitu() {
+		// TODO
+	}
+ }
