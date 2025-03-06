@@ -63,7 +63,13 @@ public class Laberintoa extends Observable{
 	}
 	
 	public void bombaJarri(int i, int j, boolean pUltrabomba) {
-		laberintoa[i][j].setBomba(i,j,pUltrabomba);
+		if(jokalaria.bombaKont>0) {
+			laberintoa[i][j].setBomba(i,j,pUltrabomba);
+			jokalaria.bombaKont--;
+			if(jokalaria.bombaKont==0) {
+				jokalaria.timerBomba();
+			}
+		}
 	}
 	
 	public void suaJarri(int i, int j, boolean pUltrabomba) {
