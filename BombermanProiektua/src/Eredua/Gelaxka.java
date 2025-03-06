@@ -55,13 +55,13 @@ public class Gelaxka extends Observable {
 	
 	public void setSua(int i, int j) {
 		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {
-			if(blokeMota!=null) {
-				kenduAurrekoa();
-			}
 			if(this.blokeMota == BlokeMota.JOKALARIA) {
 				kenduJokalaria();
 			}
-				
+			else if(blokeMota!=null) {
+				kenduAurrekoa();
+			}
+			
 			this.sua = new Sua(i,j);
 			this.blokeMota = BlokeMota.SUA;
 			setChanged();
