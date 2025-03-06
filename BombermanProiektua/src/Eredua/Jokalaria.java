@@ -2,6 +2,7 @@ package Eredua;
 
 import java.util.*;
 
+@SuppressWarnings("deprecation")
 public abstract class Jokalaria extends Observable {
 	protected int bombaKont;
 	protected boolean bizirik;
