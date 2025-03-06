@@ -55,6 +55,9 @@ public class Gelaxka extends Observable {
 	
 	public void setSua(int i, int j) {
 		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {
+			if(blokeMota == BlokeMota.JOKALARIA) {
+				Laberintoa.getNireLaberintoa().partidaAmaitu(jokalari);
+			}
 			if(blokeMota!=null) {
 				kenduAurrekoa();
 				

@@ -67,32 +67,22 @@ public class Laberintoa extends Observable{
 	
 	public void suaJarri(int i, int j, boolean pUltrabomba) {
 		if (!pUltrabomba) {
-			if (laberintoa[i][j].zerDago() == BlokeMota.JOKALARIA ) {
-				partidaAmaitu(getJokalaria());
-			}
+			
 			laberintoa[i][j].setSua(i,j);
 			if (i > 0) {
-				if (laberintoa[i - 1][j].zerDago() == BlokeMota.JOKALARIA) {
-					partidaAmaitu(getJokalaria());
-				}
+				
 				laberintoa[i-1][j].setSua(i-1, j);
 			}
 			if (i < 10) {
-				if (laberintoa[i + 1][j].zerDago() == BlokeMota.JOKALARIA) {
-					partidaAmaitu(getJokalaria());
-				}
+				
 				laberintoa[i+1][j].setSua(i+1, j);
 			}
 			if (j > 0) {
-				if (laberintoa[i][j - 1].zerDago() == BlokeMota.JOKALARIA) {
-					partidaAmaitu(getJokalaria());
-				}
+				
 				laberintoa[i][j-1].setSua(i, j-1);
 			}
 			if (j < 16) {
-				if (laberintoa[i][j + 1].zerDago() == BlokeMota.JOKALARIA) {
-					partidaAmaitu(getJokalaria());
-				}
+				
 				laberintoa[i][j+1].setSua(i, j+1);
 			}
 		}
