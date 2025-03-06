@@ -269,6 +269,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	        else if (gelaxka.zerDago()==null) {
 	        	setIcon(null);
 	        }
+
 	    } 
 	}
 }
