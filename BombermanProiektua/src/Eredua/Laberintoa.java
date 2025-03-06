@@ -85,7 +85,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituEskuinera() {
 		Jokalaria j = getJokalaria();
 		if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == null) {
-			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.mugituEskuinera();
             setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 		}
@@ -94,7 +94,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituEzkerretara() {
 		Jokalaria j = getJokalaria();
 		if (laberintoa[j.getYposizioa()][j.getXposizioa()-1].zerDago() == null) {
-			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.mugituEzkerretara();
             setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 		}
@@ -103,7 +103,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituGora() {
 		Jokalaria j = getJokalaria();
 		if (laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == null) {
-			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.mugituGora();
             setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 		}
@@ -112,7 +112,7 @@ public class Laberintoa extends Observable{
 	public void jokalariaMugituBehera() {
         Jokalaria j = getJokalaria();
         if (laberintoa[j.getYposizioa()+1][j.getXposizioa()].zerDago() == null) {
-            laberintoa[j.getYposizioa()][j.getXposizioa()].kenduAurrekoa();
+            laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
             j.mugituBehera();
             setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
         }

@@ -26,6 +26,16 @@ public class Gelaxka extends Observable {
         this.x = pX;
         this.y = pY;
 	}
+	private boolean[] lortuEgoera() {
+		boolean[] emaitza = new boolean[6];
+		emaitza[0] = this.sua != null;
+		emaitza[1] = this.bomba != null;
+		emaitza[2] = this.blokeBiguna != null;
+		emaitza[3] = this.blokeGogorra != null;
+		emaitza[4] = this.etsaia != null;
+		emaitza[5] = this.jokalari != null;
+		return emaitza;
+	}
 	
 	public int getX() {
         return x;
@@ -37,12 +47,9 @@ public class Gelaxka extends Observable {
 	
 	public void setJokalaria(Jokalaria pJok) {
 		this.jokalari = pJok;
-		if(blokeMota!=null) {
-			kenduAurrekoa();
-		}
 		this.blokeMota = BlokeMota.JOKALARIA;
 		setChanged();
-		notifyObservers(new int[] {pJok.getXposizioa(), pJok.getYposizioa()});
+		notifyObservers(lortuEgoera());
 	}
 	
 	public void setSua(int i, int j) {
@@ -53,7 +60,7 @@ public class Gelaxka extends Observable {
 			}
 			this.blokeMota = BlokeMota.SUA;
 			setChanged();
-			notifyObservers();
+			notifyObservers(lortuEgoera());
 		}
 	}
 	public void setBlokeBiguna() {
@@ -63,7 +70,7 @@ public class Gelaxka extends Observable {
 		}
 		this.blokeMota = BlokeMota.BLOKEBIGUNA;
 		setChanged();
-		notifyObservers();
+		notifyObservers(lortuEgoera());
 	}
 	public void setBlokeGogorra() {
 		this.blokeGogorra = new BlokeGogorra();
@@ -72,7 +79,7 @@ public class Gelaxka extends Observable {
 		}
 		this.blokeMota = BlokeMota.BLOKEGOGORRA;
 		setChanged();
-		notifyObservers();
+		notifyObservers(lortuEgoera());
 	}
 	
 	public void setBomba(int i,int j,boolean pUltrabomba)  {
@@ -83,48 +90,49 @@ public class Gelaxka extends Observable {
 			this.bomba = new Bomba(i,j);
 			this.blokeMota = BlokeMota.BOMBA;
 		}
-		if(blokeMota!=null) {
-			kenduAurrekoa();
-		}
 		setChanged();
-		notifyObservers(true);
+		notifyObservers(lortuEgoera());
 	}
 	
 	public void kenduAurrekoa() {
-		switch (this.blokeMota) {
-			case SUA:
-                this.sua = null;
-                this.blokeMota = null;
-                break;
-            case BOMBA:
-            	this.bomba = null;
-                this.blokeMota = null;
-                break;
-			case ULTRABOMBA:
-				this.bomba = null;
-                this.blokeMota = null;
-				break;
-            case BLOKEBIGUNA:
-            	this.blokeBiguna = null;
-                this.blokeMota = null;
-                break;
-			case BLOKEGOGORRA:
-				this.blokeGogorra = null;
-                this.blokeMota = null;
-				break;
-			case ETSAIA:
-				this.etsaia = null;
-                this.blokeMota = null;
-				break;
-			case JOKALARIA:
-				this.jokalari = null;
-                this.blokeMota = null;
-				break;
-			default:
-				break;
+		if (this.blokeMota!=null) {
+			switch (this.blokeMota) {
+				case SUA:
+	                this.sua = null;
+	                this.blokeMota = null;
+	                break;
+	            case BOMBA:
+	            	this.bomba = null;
+	                this.blokeMota = null;
+	                break;
+				case ULTRABOMBA:
+					this.bomba = null;
+	                this.blokeMota = null;
+					break;
+	            case BLOKEBIGUNA:
+	            	this.blokeBiguna = null;
+	                this.blokeMota = null;
+	                break;
+				case BLOKEGOGORRA:
+					this.blokeGogorra = null;
+	                this.blokeMota = null;
+					break;
+				case ETSAIA:
+					this.etsaia = null;
+	                this.blokeMota = null;
+					break;
+				default:
+					break;
+			}
 		}
 		setChanged();
-		notifyObservers();
+		notifyObservers(lortuEgoera());
+	}
+	public void kenduJokalaria() {
+		this.jokalari = null;
+        this.blokeMota = null;
+        setChanged();
+        notifyObservers(lortuEgoera());
 	}
 
 	public Jokalaria getJokalaria() {

@@ -244,24 +244,31 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		
 		@Override
-		public void update(Observable o, Object arg) {
-			if (o instanceof Eredua.Gelaxka && arg instanceof int[]) {
-				Eredua.Gelaxka gelaxka = (Eredua.Gelaxka) o;
-				int[] pos = (int[]) arg;
-				if (gelaxka.getX() == lerroa && gelaxka.getY() == zutabea) {
-					// Actualiza la gelaxka
-					if (gelaxka.zerDago()==BlokeMota.JOKALARIA) {
-						String irudia = "/Bista/irudiak/whitedown1.png";
-						setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
-					} else if (gelaxka.zerDago()==null) {
-		                	setIcon(null);
-		            }
+	    public void update(Observable o, Object arg) {
+			Eredua.Gelaxka gelaxka = (Eredua.Gelaxka) o;
+			boolean[] egoera = (boolean[]) arg;
+			String irudia;
+	        // Actualiza la gelaxka
+	        if (egoera[5]) {
+	        	if(egoera[1]) {
+	        		irudia = "/Bista/irudiak/whitewithbomb1.png";
+				} else {
+					irudia = "/Bista/irudiak/whitedown1.png";
 				}
-			}
-			if (o instanceof Eredua.Gelaxka && arg instanceof Boolean) {
-				String irudia = "/Bista/irudiak/bomb1.png";
-				setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));
-			}
+	            ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
+		        setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
+	        } else if (egoera[1]) {
+				irudia = "/Bista/irudiak/bomb1.png";
+				ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
+				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
+	        } else if (egoera[0]) {
+	        	irudia = "/Bista/irudiak/blackdown1.png";
+	        	ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
+	        	setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
+	        }
+	        else if (gelaxka.zerDago()==null) {
+	        	setIcon(null);
+	        }
 	    } 
 	}
 }
