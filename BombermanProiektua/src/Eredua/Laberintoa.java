@@ -66,8 +66,11 @@ public class Laberintoa extends Observable{
 	}
 	
 	public void suaJarri(int i, int j, boolean pUltrabomba) {
+		Jokalaria jokalaria = getJokalaria();
 		if (!pUltrabomba) {
-			
+			if (i==jokalaria.getYposizioa() && j==jokalaria.getXposizioa()) {
+				partidaAmaitu(getJokalaria());
+			}
 			laberintoa[i][j].setSua(i,j);
 			if (i > 0) {
 				
