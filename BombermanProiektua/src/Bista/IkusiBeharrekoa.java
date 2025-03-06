@@ -10,6 +10,8 @@ import Eredua.*;
 import Eredua.Jokalaria;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -262,9 +264,10 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
 	        } else if (egoera[0]) {
-	        	irudia = "/Bista/irudiak/blackdown1.png";
+	        	irudia = "/Bista/irudiak/miniBlast2.gif";
 	        	ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
-	        	setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
+	        	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
+                setIcon(new ImageIcon(img));
 	        }
 	        else if (gelaxka.zerDago()==null) {
 	        	setIcon(null);
