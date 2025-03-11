@@ -59,6 +59,9 @@ public class Gelaxka extends Observable {
 				Laberintoa.getNireLaberintoa().partidaAmaitu(jokalari);
 			}
 			if(blokeMota!=null) {
+				if (blokeMota == BlokeMota.BLOKEBIGUNA) {
+					Laberintoa.getNireLaberintoa().addScore(100);
+				}
 				kenduAurrekoa();
 				
 			}
