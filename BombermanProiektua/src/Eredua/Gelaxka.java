@@ -62,15 +62,15 @@ public class Gelaxka extends Observable {
 				if (blokeMota == BlokeMota.BLOKEBIGUNA) {
 					Laberintoa.getNireLaberintoa().addScore(100);
 				}
-				kenduAurrekoa();
-				
+				if (blokeMota == BlokeMota.ETSAIA) {
+					Laberintoa.getNireLaberintoa().addScore(500);
+				}
+				kenduAurrekoa();	
 			}
-				this.sua = new Sua(i,j);
-				this.blokeMota = BlokeMota.SUA;
-				setChanged();
-				notifyObservers(lortuEgoera());
-			
-			
+			this.sua = new Sua(i,j);
+			this.blokeMota = BlokeMota.SUA;
+			setChanged();
+			notifyObservers(lortuEgoera());			
 		}
 	}
 	public void setBlokeBiguna() {

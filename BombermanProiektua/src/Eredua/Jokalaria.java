@@ -8,11 +8,13 @@ public abstract class Jokalaria extends Observable {
 	protected boolean bizirik;
 	protected int Xposizioa;
 	protected int Yposizioa;
+	private Norabidea norabidea;
+	
 	protected Timer timer = null;
 	protected int kont;
 	protected static final int PERIODO = 3;
 	
-	public Jokalaria (int pBombaKont, boolean pBizirik, int pXposizioa, int pYposizioa) {
+	protected Jokalaria (int pBombaKont, boolean pBizirik, int pXposizioa, int pYposizioa) {
 		bombaKont = pBombaKont;
 		bizirik = pBizirik;
 		Xposizioa = pXposizioa;
@@ -22,24 +24,28 @@ public abstract class Jokalaria extends Observable {
 	public void mugituEskuinera() {
 		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa, Xposizioa+1)==null) {
 			Xposizioa++;
+			this.norabidea = Norabidea.ESKUINERA;
 		}
 	}
 
 	public void mugituEzkerretara() {
 		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa, Xposizioa-1)==null) {
 			Xposizioa--;
+			this.norabidea = Norabidea.EZKERRERA;
 		}
 	}
 
 	public void mugituGora() {
 		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa-1, Xposizioa)==null) {
 			Yposizioa--;
+			this.norabidea = Norabidea.GORA;
 		}
 	}
 
 	public void mugituBehera() {
 		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa+1, Xposizioa)==null) {
 			Yposizioa++;
+			this.norabidea = Norabidea.BEHERA;
 		}
 	}
 	
@@ -76,5 +82,9 @@ public abstract class Jokalaria extends Observable {
 	
 	public void jokalariaHil () {
 		bizirik = false;
+	}
+	
+	public Norabidea getNorabidea() {
+		return this.norabidea;
 	}
 }
