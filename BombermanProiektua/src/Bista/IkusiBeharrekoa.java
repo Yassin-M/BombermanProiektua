@@ -50,24 +50,13 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
-		/*addComponentListener(new ComponentAdapter() {
-			   @Override
-			   public void componentResized(ComponentEvent e) {
-				   layeredPane.setSize(getWidth(), getHeight());
-				   panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
-				   panel.revalidate();
-				   panel.repaint();
-				   fondoLabel.setSize(getWidth(), getHeight());
-				   fondoLabel.repaint();
-			   }
-			  });*/
+		Laberintoa.getNireLaberintoa().addObserver(this);
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setLayout(new GridLayout(11, 17, 0, 0));
 			panel.setOpaque(false);
-			labirintoaBistaratu();
 			addComponentListener(new ComponentAdapter() {
 			   @Override
 			   public void componentResized(ComponentEvent e) {  
@@ -79,40 +68,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			
 		}
 		return panel;
-	}
-	
-	public void labirintoaBistaratu() {
-		for (int i = 0; i < 11; i++) {
-			for (int j = 0; j < 17; j++) {
-				String irudia = null;
-				Gelaxka gelaxka = new Gelaxka(i,j);
-				
-				switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
-		            case BLOKEBIGUNA:
-		            	irudia = "/Bista/irudiak/soft1.png";
-						break;
-					case BLOKEGOGORRA:
-						irudia = "/Bista/irudiak/hard1.png";
-						break;
-					case ETSAIA:
-						irudia = "/Bista/irudiak/pass1.png";
-						break;
-					case JOKALARIA:
-						irudia = "/Bista/irudiak/whitedown1.png";
-						break;
-					case null:
-						break;
-				default:
-					System.out.println("Errorea: hasieran "+Laberintoa.getNireLaberintoa().zerDago(i,j).toString()+" gelaxka aurkitu da." );
-					break;
-				}
-				if(irudia!=null) {
-					gelaxka.setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));	
-				}
-				panel.add(gelaxka);
-			}
-		}
-
 	}
 	
 	public JLabel Fondoa() {
@@ -215,10 +170,38 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (o instanceof Jokalaria && arg instanceof String) {
-			
+		if (o instanceof Laberintoa) {
+			for (int i = 0; i < 11; i++) {
+				for (int j = 0; j < 17; j++) {
+					String irudia = null;
+					Gelaxka gelaxka = new Gelaxka(i,j);
+					
+					switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
+			            case BLOKEBIGUNA:
+			            	irudia = "/Bista/irudiak/soft1.png";
+							break;
+						case BLOKEGOGORRA:
+							irudia = "/Bista/irudiak/hard1.png";
+							break;
+						case ETSAIA:
+							irudia = "/Bista/irudiak/pass1.png";
+							break;
+						case JOKALARIA:
+							irudia = "/Bista/irudiak/whitedown1.png";
+							break;
+						case null:
+							break;
+					default:
+						System.out.println("Errorea: hasieran "+Laberintoa.getNireLaberintoa().zerDago(i,j).toString()+" gelaxka aurkitu da." );
+						break;
+					}
+					if(irudia!=null) {
+						gelaxka.setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));	
+					}
+					panel.add(gelaxka);
+				}
+			}
 		}
-		
 	}
 	
 	private class Gelaxka extends JLabel implements Observer{

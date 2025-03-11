@@ -11,7 +11,7 @@ public class Laberintoa extends Observable{
 	private Jokalaria jokalaria;
 	
 	private Laberintoa() {
-		laberintoaSortu();
+		//laberintoaSortu();
 	}
 	
 	public static Laberintoa getNireLaberintoa() {
@@ -21,7 +21,7 @@ public class Laberintoa extends Observable{
 		return nireLaberintoa;
 	}
 	
-	private void laberintoaSortu() {
+	public void laberintoaSortu() {
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
 			for (int j=0; j<17; j++) {
@@ -47,8 +47,9 @@ public class Laberintoa extends Observable{
 				}
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
-	//aaa
 	
 	public BlokeMota zerDago(int i, int j) {
 		return laberintoa[i][j].zerDago();

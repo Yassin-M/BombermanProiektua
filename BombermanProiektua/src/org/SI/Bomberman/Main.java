@@ -1,7 +1,7 @@
 package org.SI.Bomberman;
 
 import java.awt.EventQueue;
-
+import Eredua.*;
 import Bista.IkusiBeharrekoa;
 
 public class Main {
@@ -12,6 +12,7 @@ public class Main {
 				try {
 					IkusiBeharrekoa frame = new IkusiBeharrekoa();
 					frame.setVisible(true);
+					Laberintoa.getNireLaberintoa().laberintoaSortu();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
