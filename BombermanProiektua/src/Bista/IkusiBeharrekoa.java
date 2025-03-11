@@ -238,6 +238,21 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	        	if(egoera[1]) {
 	        		irudia = "/Bista/irudiak/whitewithbomb1.png";
 				} else {
+					switch(Laberintoa.getNireLaberintoa().getJokalaria().getNorabidea()) {
+					case GORA:
+						irudia = "/Bista/irudiak/whiteup1.png";
+						break;
+						
+					case BEHERA:
+						irudia = "/Bista/irudiak/whitedown1.png";
+						break;
+					case EZKERRA:
+						irudia = "/Bista/irudiak/whiteleft1.png";
+						break;
+					case ESKUINA:
+						irudia = "/Bista/irudiak/whiteright1.png";
+                        break;
+					}
 					irudia = "/Bista/irudiak/whitedown1.png";
 				}
 	            ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
