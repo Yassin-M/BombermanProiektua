@@ -9,6 +9,7 @@ public class Laberintoa extends Observable{
 	private static Laberintoa nireLaberintoa;
 	private Gelaxka[][] laberintoa;
 	private Jokalaria jokalaria;
+	private int score = 0;
 	
 	private Laberintoa() {
 		//laberintoaSortu();
@@ -163,6 +164,14 @@ public class Laberintoa extends Observable{
 	public Jokalaria getJokalaria() {
         return this.jokalaria;
     }
+	
+	public int getScore() {
+		return this.score;
+	}
+	
+	public void addScore(int pScore) {
+		this.score += pScore;
+	}
 	
 	public void partidaAmaitu(Jokalaria j) {
 		laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
