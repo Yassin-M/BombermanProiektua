@@ -262,7 +262,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
 	        } else if (egoera[0]) {
-	        	irudia = "/Bista/irudiak/miniBlast2.gif";
+	        	irudia = "/Bista/irudiak/miniBlast1.gif";
 	        	ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 	        	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
                 setIcon(new ImageIcon(img));
