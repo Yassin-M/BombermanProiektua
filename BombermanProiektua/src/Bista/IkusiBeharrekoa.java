@@ -1,21 +1,14 @@
 package Bista;
 
-import java.awt.EventQueue;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Eredua.*;
-import Eredua.Jokalaria;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
@@ -24,9 +17,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import javax.swing.JLayeredPane;
+
+@SuppressWarnings({"deprecation","removal"})
 
 public class IkusiBeharrekoa extends JFrame implements Observer {
 
@@ -78,7 +72,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
         setLocationRelativeTo(null);
 
         JLabel fondoLabel = new JLabel() {
-            private Image fondo = new ImageIcon(getClass().getResource("/Bista/irudiak/stageBack1.png")).getImage();
+            private static final long serialVersionUID = 2028779831537105750L;
+			private Image fondo = new ImageIcon(getClass().getResource("/Bista/irudiak/stageBack1.png")).getImage();
 
             @Override
             protected void paintComponent(Graphics g) {
@@ -155,7 +150,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	                Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
 	                break;
 	            case KeyEvent.VK_SPACE:
-	            	Laberintoa.getNireLaberintoa().bombaJarri(Laberintoa.getNireLaberintoa().getJokalaria().getYposizioa(), Laberintoa.getNireLaberintoa().getJokalaria().getXposizioa(), true);
+	            	Laberintoa.getNireLaberintoa().getJokalaria().bombaJarri();
 	            	break;
 	        }
 

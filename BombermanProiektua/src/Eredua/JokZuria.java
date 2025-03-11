@@ -8,6 +8,6 @@ public class JokZuria extends Jokalaria{
 
 	@Override
 	public void bombaJarri() {
-		Laberintoa.getNireLaberintoa().bombaJarri(Xposizioa, Yposizioa, false);
+		Laberintoa.getNireLaberintoa().bombaJarri(Yposizioa, Xposizioa, false);
 	}
 }

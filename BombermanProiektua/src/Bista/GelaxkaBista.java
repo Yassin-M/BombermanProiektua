@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import Eredua.Gelaxka;
 import Eredua.Laberintoa;
 
+@SuppressWarnings("deprecation")
 public class GelaxkaBista extends JLabel implements Observer{
+	private static final long serialVersionUID = 4860883700750938819L;
 	int lerroa;
 	int zutabea;
 	
@@ -44,7 +46,6 @@ public class GelaxkaBista extends JLabel implements Observer{
         	if(egoera[1]) {
         		irudia = "/Bista/irudiak/whitewithbomb1.png";
 			} else {
-				irudia = "/Bista/irudiak/whitedown1.png";
 				switch(Laberintoa.getNireLaberintoa().getJokalaria().getNorabidea()) {
 				case GORA:
 					irudia = "/Bista/irudiak/whiteup1.png";
@@ -58,6 +59,9 @@ public class GelaxkaBista extends JLabel implements Observer{
 				case ESKUINERA:
 					irudia = "/Bista/irudiak/whiteright1.png";
                     break;
+				default:
+					irudia = "/Bista/irudiak/whitedown1.png";
+					break;
 				}
 			}
             ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));

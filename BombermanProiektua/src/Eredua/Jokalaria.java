@@ -19,34 +19,27 @@ public abstract class Jokalaria extends Observable {
 		bizirik = pBizirik;
 		Xposizioa = pXposizioa;
 		Yposizioa = pYposizioa;
+		norabidea = Norabidea.HASIERA;
 	}
 
 	public void mugituEskuinera() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa, Xposizioa+1)==null) {
-			Xposizioa++;
-			this.norabidea = Norabidea.ESKUINERA;
-		}
+		Xposizioa++;
+		this.norabidea = Norabidea.ESKUINERA;
 	}
 
 	public void mugituEzkerretara() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa, Xposizioa-1)==null) {
-			Xposizioa--;
-			this.norabidea = Norabidea.EZKERRERA;
-		}
+		Xposizioa--;
+		this.norabidea = Norabidea.EZKERRERA;
 	}
 
 	public void mugituGora() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa-1, Xposizioa)==null) {
-			Yposizioa--;
-			this.norabidea = Norabidea.GORA;
-		}
+		Yposizioa--;
+		this.norabidea = Norabidea.GORA;
 	}
 
 	public void mugituBehera() {
-		if(Laberintoa.getNireLaberintoa().zerDago(Yposizioa+1, Xposizioa)==null) {
-			Yposizioa++;
-			this.norabidea = Norabidea.BEHERA;
-		}
+		Yposizioa++;
+		this.norabidea = Norabidea.BEHERA;
 	}
 	
 	public int getXposizioa() {
