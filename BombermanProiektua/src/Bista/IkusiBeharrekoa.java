@@ -34,7 +34,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JPanel panel;
 	private JLayeredPane layeredPane;
 	private JLabel fondoLabel;
-	private Controler controler;
+	private Controler controler=null;
 
 	/**
 	 * Launch the application.
@@ -51,6 +51,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
 		Laberintoa.getNireLaberintoa().addObserver(this);
+		addKeyListener(getControler());
+		setFocusable(true);
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -174,7 +176,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
 					String irudia = null;
-					Gelaxka gelaxka = new Gelaxka(i,j);
+					GelaxkaBista gelaxka = new GelaxkaBista(i,j);
 					
 					switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
 			            case BLOKEBIGUNA:
@@ -202,76 +204,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				}
 			}
 		}
-	}
-	
-	private class Gelaxka extends JLabel implements Observer{
-		int lerroa;
-		int zutabea;
-		
-		public Gelaxka(int pLerroa, int pZutabea) {
-			this.lerroa = pLerroa;
-			this.zutabea = pZutabea;
-			this.setEnabled(true);
-			addComponentListener(new ComponentAdapter() {
-			    @Override
-			    public void componentResized(ComponentEvent e) {
-			        	setSize(getWidth(), getHeight());
-			        	ImageIcon icon = (ImageIcon) getIcon();
-						if (icon != null) {
-							Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
-							setIcon(new ImageIcon(img));
-						}
-			    }
-			});
-			addKeyListener(getControler());
-			setFocusable(true);
-			Laberintoa.getNireLaberintoa().getGelaxka(pLerroa, pZutabea).addObserver(this);
-		}
-		
-		@Override
-	    public void update(Observable o, Object arg) {
-			Eredua.Gelaxka gelaxka = (Eredua.Gelaxka) o;
-			boolean[] egoera = (boolean[]) arg;
-			String irudia;
-	        // Actualiza la gelaxka
-	        if (egoera[5]) {
-	        	if(egoera[1]) {
-	        		irudia = "/Bista/irudiak/whitewithbomb1.png";
-				} else {
-					switch(Laberintoa.getNireLaberintoa().getJokalaria().getNorabidea()) {
-					case GORA:
-						irudia = "/Bista/irudiak/whiteup1.png";
-						break;
-						
-					case BEHERA:
-						irudia = "/Bista/irudiak/whitedown1.png";
-						break;
-					case EZKERRA:
-						irudia = "/Bista/irudiak/whiteleft1.png";
-						break;
-					case ESKUINA:
-						irudia = "/Bista/irudiak/whiteright1.png";
-                        break;
-					}
-					irudia = "/Bista/irudiak/whitedown1.png";
-				}
-	            ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
-		        setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
-	        } else if (egoera[1]) {
-				irudia = "/Bista/irudiak/bomb1.png";
-				ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
-				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
-	        } else if (egoera[0]) {
-	        	irudia = "/Bista/irudiak/miniBlast1.gif";
-	        	ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
-	        	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
-                setIcon(new ImageIcon(img));
-	        }
-	        else if (gelaxka.zerDago()==null) {
-	        	setIcon(null);
-	        }
-
-	    } 
 	}
 }
 
