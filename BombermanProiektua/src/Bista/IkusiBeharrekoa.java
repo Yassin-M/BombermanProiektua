@@ -19,6 +19,7 @@ import java.util.Observer;
 import javax.swing.JLabel;
 import java.awt.Graphics;
 import javax.swing.JLayeredPane;
+import java.awt.Font;
 
 @SuppressWarnings({"deprecation","removal"})
 
@@ -198,6 +199,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					panel.add(gelaxka);
 				}
 			}
+		}
+		if (o instanceof Laberintoa && arg instanceof Boolean) {
+			JLabel lblZorionak = new JLabel("ZORIONAK!!!!!!!!!!!");
+			lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
+			lblZorionak.setBounds(0, 0, 663, 418);
+			layeredPane.add(lblZorionak, new Integer(2));
 		}
 	}
 }

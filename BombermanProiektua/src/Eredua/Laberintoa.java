@@ -82,7 +82,7 @@ public class Laberintoa extends Observable{
 		Jokalaria jokalaria = getJokalaria();
 		if (!pUltrabomba) {
 			if (i==jokalaria.getYposizioa() && j==jokalaria.getXposizioa()) {
-				partidaAmaitu(getJokalaria());
+				partidaAmaitu(getJokalaria(),false);
 			}
 			laberintoa[i][j].setSua(i,j);
 			if (i > 0) {
@@ -121,7 +121,7 @@ public class Laberintoa extends Observable{
 				j.mugituEskuinera();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu(j);
+				partidaAmaitu(j,false);
 			}
 		}
 	}
@@ -134,7 +134,7 @@ public class Laberintoa extends Observable{
 				j.mugituEzkerretara();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() - 1].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu(j);
+				partidaAmaitu(j, false);
 			}
 		}
 	}
@@ -147,7 +147,7 @@ public class Laberintoa extends Observable{
 				j.mugituGora();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 			} else if (laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu(j);
+				partidaAmaitu(j, false);
 			}
 		}
 	}
@@ -160,7 +160,7 @@ public class Laberintoa extends Observable{
 	            j.mugituBehera();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
 	        } else if (laberintoa[j.getYposizioa()+1][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
-				partidaAmaitu(j);
+				partidaAmaitu(j, false);
 			}
         }        
 	}
@@ -177,16 +177,23 @@ public class Laberintoa extends Observable{
 		this.score += pScore;
 	}
 	
-	public void partidaAmaitu(Jokalaria j) {
-		laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
-		j.jokalariaHil();
+	public void partidaAmaitu(Jokalaria j, boolean irabazi) {
+		if (irabazi) {
+			setChanged();
+			notifyObservers(true);
+		} else {
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+			j.jokalariaHil();
+		}
 	}
 	public void kenduBlokeBiguna() {
 		this.blokeBigunKop--;
 		if (this.blokeBigunKop == 0) {
-			partidaAmaitu(getJokalaria());
+			partidaAmaitu(getJokalaria(),true);
 		}
     }
+	
+	
 
 	
  }
