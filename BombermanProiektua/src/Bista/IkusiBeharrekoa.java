@@ -168,7 +168,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (o instanceof Laberintoa) {
+		if (o instanceof Laberintoa && arg instanceof Integer) {
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
 					String irudia = null;
