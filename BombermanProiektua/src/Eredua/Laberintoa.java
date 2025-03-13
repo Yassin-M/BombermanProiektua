@@ -40,10 +40,10 @@ public class Laberintoa extends Observable{
 				}
 				else {
 					Random r = new Random();
-					
 					if (r.nextInt(100) >= 40) {
 						laberintoa[i][j].setBlokeBiguna();
 						blokeBigunKop++;
+					
 					
 					}
 					else if (r.nextInt(100) >= 90) {
@@ -188,7 +188,5 @@ public class Laberintoa extends Observable{
 		}
     }
 
-	public int getBlokeBigunKop() {
-		return this.blokeBigunKop;
-	}
+	
  }
