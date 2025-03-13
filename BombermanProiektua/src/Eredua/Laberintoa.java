@@ -9,6 +9,7 @@ public class Laberintoa extends Observable{
 	private static Laberintoa nireLaberintoa;
 	private Gelaxka[][] laberintoa;
 	private Jokalaria jokalaria;
+	private int blokeBigunKop = 0;
 	private int score = 0;
 	
 	private Laberintoa() {
@@ -39,8 +40,11 @@ public class Laberintoa extends Observable{
 				}
 				else {
 					Random r = new Random();
+					
 					if (r.nextInt(100) >= 40) {
 						laberintoa[i][j].setBlokeBiguna();
+						blokeBigunKop++;
+					
 					}
 					else if (r.nextInt(100) >= 90) {
 						//laberintoa[i][j].setEtsaia();
@@ -176,5 +180,15 @@ public class Laberintoa extends Observable{
 	public void partidaAmaitu(Jokalaria j) {
 		laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 		j.jokalariaHil();
+	}
+	public void kenduBlokeBiguna() {
+		this.blokeBigunKop--;
+		if (this.blokeBigunKop == 0) {
+			partidaAmaitu(getJokalaria());
+		}
+    }
+
+	public int getBlokeBigunKop() {
+		return this.blokeBigunKop;
 	}
  }
