@@ -184,6 +184,8 @@ public class Laberintoa extends Observable{
 		} else {
 			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.jokalariaHil();
+			setChanged();
+			notifyObservers("Amaituta");
 		}
 	}
 	public void kenduBlokeBiguna() {
