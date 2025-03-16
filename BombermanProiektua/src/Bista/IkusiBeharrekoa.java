@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import Eredua.*;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ComponentAdapter;
@@ -29,6 +30,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JLayeredPane layeredPane;
 	private JLabel fondoLabel;
 	private Controler controler=null;
+	private JLabel puntuazioa;
+	private JPanel panel_1;
+	private JPanel panel_2;
 
 	/**
 	 * Launch the application.
@@ -38,11 +42,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	 * Create the frame.
 	 */
 	public IkusiBeharrekoa() {
-		setBounds(100, 100, 450, 300);
-        setTitle("Bomberman");
+		setBounds(100, 100, 800, 600);
+		setTitle("Bomberman");
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
+		getContentPane().add(getJPanel_1(), BorderLayout.NORTH);
 		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
 		Laberintoa.getNireLaberintoa().addObserver(this);
 		addKeyListener(getControler());
@@ -56,7 +61,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			addComponentListener(new ComponentAdapter() {
 			   @Override
 			   public void componentResized(ComponentEvent e) {  
-				   panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
+				   panel.setSize(getWidth(),layeredPane.getHeight());
 				   panel.revalidate();
 				   panel.repaint();
 			   }
@@ -93,23 +98,55 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
         fondoLabel.setOpaque(false);
         return fondoLabel;
 	}
+	
+	private JLabel getPuntuazioa() {
+		if (puntuazioa == null) {
+			puntuazioa = new JLabel("Puntuazioa: 0");
+		}
+		return puntuazioa;
+	}
+	
+	private JPanel getJPanel_1() {
+		if (panel_1==null) {
+			panel_1 = new JPanel();
+			panel_1.setLayout(new GridLayout(1, 1, 0, 0));
+			panel_1.setPreferredSize(new Dimension(getWidth(), getHeight()/20));
+			panel_1.setSize(panel_1.getPreferredSize());
+			JLabel puntuazioa = getPuntuazioa();
+			panel_1.add(puntuazioa);
+			addComponentListener(new ComponentAdapter() {
+                   @Override
+                   public void componentResized(ComponentEvent e) {
+                	   panel_1.setPreferredSize(new Dimension(getWidth(), getHeight()/20));
+                	   panel_1.setSize(panel_1.getPreferredSize());
+                	   puntuazioa.setSize(panel_1.getPreferredSize());
+                       panel_1.revalidate();
+                       panel_1.repaint();
+                   }
+			});
+		}
+		return panel_1;
+	}
 
 	private JLayeredPane getLayeredPane_1() {
 		if (layeredPane == null) {
 			layeredPane = new JLayeredPane();
 			layeredPane.setLayout(null);
+			layeredPane.setPreferredSize(new Dimension(getWidth(),getHeight()*19/20));
+			layeredPane.setSize(layeredPane.getPreferredSize());
+			//layeredPane.setSize(getWidth(), getContentPane().getHeight()*11/12);
 			fondoLabel = Fondoa();
-			fondoLabel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(fondoLabel, new Integer(0));
-
+			
 			panel = getPanel();
-			panel.setBounds(0, 0, getWidth(), getHeight());
-			layeredPane.add(panel, new Integer(1));
+			layeredPane.add(panel, new Integer(2));
 			
 			addComponentListener(new ComponentAdapter() {
 			   @Override
 			   public void componentResized(ComponentEvent e) {
-				   fondoLabel.setSize(getWidth(), getHeight());
+				   layeredPane.setPreferredSize(new Dimension(getWidth(),getHeight()*19/20));
+				   layeredPane.setSize(layeredPane.getPreferredSize());
+				   fondoLabel.setSize(getWidth(), getHeight()*19/20);
 				   fondoLabel.repaint();
 			   }
 			  });
