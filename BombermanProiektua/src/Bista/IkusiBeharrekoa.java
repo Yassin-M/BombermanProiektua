@@ -53,6 +53,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		addKeyListener(getControler());
 		setFocusable(true);
 	}
+	
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -148,6 +149,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				   layeredPane.setSize(layeredPane.getPreferredSize());
 				   fondoLabel.setSize(getWidth(), getHeight()*19/20);
 				   fondoLabel.repaint();
+				   panel.setSize(layeredPane.getPreferredSize());
+				   panel.revalidate();
+				   panel.repaint();
 			   }
 			  });
 			
