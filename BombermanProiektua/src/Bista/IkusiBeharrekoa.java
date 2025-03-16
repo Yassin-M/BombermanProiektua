@@ -209,7 +209,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				layeredPane.add(lblZorionak, new Integer(2));
 			}
 			try {
-				Thread.sleep(500);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

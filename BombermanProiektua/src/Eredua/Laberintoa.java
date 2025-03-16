@@ -44,9 +44,7 @@ public class Laberintoa extends Observable{
 					Random r = new Random();
 					if (r.nextInt(100) >= 40) {
 						laberintoa[i][j].setBlokeBiguna();
-						blokeBigunKop++;
-					
-					
+						blokeBigunKop++;					
 					}
 					else if (r.nextInt(100) >= 90) {
 						//laberintoa[i][j].setEtsaia();
@@ -183,7 +181,7 @@ public class Laberintoa extends Observable{
 		if (irabazi) {
 			setChanged();
 			notifyObservers(true);
-		} else {
+        } else {
 			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.jokalariaHil();
 			setChanged();
@@ -195,9 +193,5 @@ public class Laberintoa extends Observable{
 		if (this.blokeBigunKop == 0) {
 			partidaAmaitu(getJokalaria(),true);
 		}
-    }
-	
-	
-
-	
+    }	
  }

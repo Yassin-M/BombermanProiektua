@@ -60,19 +60,22 @@ public class Gelaxka extends Observable {
 			}
 			if(blokeMota!=null) {
 				if (blokeMota == BlokeMota.BLOKEBIGUNA) {
+					kenduAurrekoa();
 					Laberintoa.getNireLaberintoa().addScore(100);
 					Laberintoa.getNireLaberintoa().kenduBlokeBiguna();
-					
 				}
-				if (blokeMota == BlokeMota.ETSAIA) {
+				else if (blokeMota == BlokeMota.ETSAIA) {
+					kenduAurrekoa();
 					Laberintoa.getNireLaberintoa().addScore(500);
+				}	
+				else {
+					kenduAurrekoa();
 				}
-				kenduAurrekoa();	
 			}
 			this.sua = new Sua(i,j);
 			this.blokeMota = BlokeMota.SUA;
 			setChanged();
-			notifyObservers(lortuEgoera());			
+			notifyObservers(lortuEgoera());
 		}
 	}
 	public void setBlokeBiguna() {
