@@ -12,9 +12,7 @@ public class Laberintoa extends Observable{
 	private int blokeBigunKop = 0;
 	private int score = 0;
 	
-	private Laberintoa() {
-		//laberintoaSortu();
-	}
+	private Laberintoa() {}
 	
 	public static Laberintoa getNireLaberintoa() {
 		if (nireLaberintoa == null) {
@@ -22,6 +20,10 @@ public class Laberintoa extends Observable{
 		}
 		return nireLaberintoa;
 	}
+	
+	public static synchronized void resetInstance() {
+        nireLaberintoa = null;
+    }
 	
 	public void laberintoaSortu() {
 		this.laberintoa = new Gelaxka[11][17];

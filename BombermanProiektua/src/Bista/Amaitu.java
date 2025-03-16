@@ -101,9 +101,11 @@ public class Amaitu extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(btnBtnbai)) {
 				dispose();
-				IkusiBeharrekoa frame = new IkusiBeharrekoa();
-				frame.setVisible(true);
-				Laberintoa.getNireLaberintoa().laberintoaSortu();
+				Laberintoa.resetInstance();
+	            IkusiBeharrekoa frame = new IkusiBeharrekoa();
+	            frame.setVisible(true);
+	            Laberintoa.getNireLaberintoa().laberintoaSortu();
+	            dispose();
 			}
 			if(e.getSource().equals(btnEz)) {
 				System.exit(0);
