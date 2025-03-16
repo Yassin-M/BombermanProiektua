@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Eredua.Laberintoa;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -97,7 +100,10 @@ public class Amaitu extends JFrame {
 	private class Controler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(btnBtnbai)) {
-				
+				dispose();
+				IkusiBeharrekoa frame = new IkusiBeharrekoa();
+				frame.setVisible(true);
+				Laberintoa.getNireLaberintoa().laberintoaSortu();
 			}
 			if(e.getSource().equals(btnEz)) {
 				System.exit(0);

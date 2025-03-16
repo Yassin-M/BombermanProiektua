@@ -208,6 +208,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				lblZorionak.setBounds(0, 0, 663, 418);
 				layeredPane.add(lblZorionak, new Integer(2));
 			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			dispose();
 			Amaitu as = new Amaitu();
 			as.setVisible(true);
 		}
