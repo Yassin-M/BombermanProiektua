@@ -53,10 +53,13 @@ public class Gelaxka extends Observable {
 		notifyObservers(lortuEgoera());
 	}
 	
-	public void setSua(int i, int j) {
+	public boolean setSua(int i, int j) {
+		//jokalaria hil den ala ez bueltatzen du
+		boolean jokalariHil = false;
 		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {
-			if(blokeMota == BlokeMota.JOKALARIA) {
-				Laberintoa.getNireLaberintoa().partidaAmaitu(jokalari, false);
+			if(blokeMota == BlokeMota.JOKALARIA || this.jokalari != null) {
+				jokalariHil = true;
+				this.jokalari = null;
 			}
 			if(blokeMota!=null) {
 				if (blokeMota == BlokeMota.BLOKEBIGUNA) {
@@ -77,6 +80,7 @@ public class Gelaxka extends Observable {
 			setChanged();
 			notifyObservers(lortuEgoera());
 		}
+		return jokalariHil;
 	}
 	public void setBlokeBiguna() {
 		this.blokeBiguna = new BlokeBiguna();

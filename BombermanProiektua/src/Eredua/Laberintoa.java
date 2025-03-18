@@ -79,27 +79,23 @@ public class Laberintoa extends Observable{
 	}
 	
 	public void suaJarri(int i, int j, boolean pUltrabomba) {
-		Jokalaria jokalaria = getJokalaria();
 		if (!pUltrabomba) {
-			if (i==jokalaria.getYposizioa() && j==jokalaria.getXposizioa()) {
-				partidaAmaitu(getJokalaria(),false);
-			}
-			laberintoa[i][j].setSua(i,j);
+			boolean jokalariaHil = false;
+			if (laberintoa[i][j].setSua(i,j) == true) {jokalariaHil = true;};
 			if (i > 0) {
-				
-				laberintoa[i-1][j].setSua(i-1, j);
+				if (laberintoa[i-1][j].setSua(i-1, j) == true) {jokalariaHil = true;};
 			}
 			if (i < 10) {
-				
-				laberintoa[i+1][j].setSua(i+1, j);
+				if (laberintoa[i+1][j].setSua(i+1, j)  == true) {jokalariaHil = true;};
 			}
 			if (j > 0) {
-				
-				laberintoa[i][j-1].setSua(i, j-1);
+				if (laberintoa[i][j-1].setSua(i, j-1) == true) {jokalariaHil = true;};
 			}
 			if (j < 16) {
-				
-				laberintoa[i][j+1].setSua(i, j+1);
+				if (laberintoa[i][j+1].setSua(i, j+1) == true) {jokalariaHil = true;};
+			}
+			if (jokalariaHil) {
+				 partidaAmaitu(this.jokalaria,false);
 			}
 		}
 		else {
@@ -182,7 +178,7 @@ public class Laberintoa extends Observable{
 			setChanged();
 			notifyObservers(true);
         } else {
-			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+			//laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.jokalariaHil();
 			setChanged();
 			notifyObservers(false);
