@@ -15,6 +15,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JLabel;
 import java.awt.Graphics;
@@ -208,15 +210,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				lblZorionak.setBounds(0, 0, 663, 418);
 				layeredPane.add(lblZorionak, new Integer(2));
 			}
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			dispose();
 			Amaitu as = new Amaitu();
 			as.setVisible(true);
 		}
 	}
+	
 }
 

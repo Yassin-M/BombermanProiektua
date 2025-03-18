@@ -2,6 +2,8 @@ package Eredua;
 
 import java.util.Observable;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @SuppressWarnings("deprecation")
 
@@ -11,6 +13,7 @@ public class Laberintoa extends Observable{
 	private Jokalaria jokalaria;
 	private int blokeBigunKop = 0;
 	private int score = 0;
+    private int kont = 2;
 	
 	private Laberintoa() {}
 	
@@ -178,10 +181,9 @@ public class Laberintoa extends Observable{
 			setChanged();
 			notifyObservers(true);
         } else {
-			//laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
+			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.jokalariaHil();
-			setChanged();
-			notifyObservers(false);
+			itxaron();
 		}
 	}
 	public void kenduBlokeBiguna() {
@@ -189,5 +191,21 @@ public class Laberintoa extends Observable{
 		if (this.blokeBigunKop == 0) {
 			partidaAmaitu(getJokalaria(),true);
 		}
-    }	
+    }
+	
+	private void itxaron() {
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                kont--;
+                if (kont == 0) {
+                    timer.cancel();
+                    setChanged();
+        			notifyObservers(false);
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(timerTask, 0, 1000);
+    }
  }

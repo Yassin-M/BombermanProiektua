@@ -154,6 +154,9 @@ public class Gelaxka extends Observable {
         if(this.bomba!=null) {
         	this.blokeMota=BlokeMota.BOMBA;
         }
+        else if (this.sua!=null) {
+        	this.blokeMota=BlokeMota.SUA;
+        }
         else {
         	this.blokeMota=null;
         }
