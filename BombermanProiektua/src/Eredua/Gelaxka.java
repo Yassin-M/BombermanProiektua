@@ -70,7 +70,10 @@ public class Gelaxka extends Observable {
 				else if (blokeMota == BlokeMota.ETSAIA) {
 					kenduAurrekoa();
 					Laberintoa.getNireLaberintoa().addScore(500);
-				}	
+				} else if(blokeMota == BlokeMota.SUA) {
+					this.sua.kendu();
+					kenduAurrekoa();	
+				}
 				else {
 					kenduAurrekoa();
 				}

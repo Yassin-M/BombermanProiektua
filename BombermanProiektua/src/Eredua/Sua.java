@@ -35,4 +35,9 @@ public class Sua extends Observable{
 			timer = null;
 		}
 	}
+
+	public void kendu() {
+		timer.cancel();
+		timer = null;
+	}
 }
