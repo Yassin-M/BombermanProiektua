@@ -5,6 +5,7 @@ import java.util.Observable;
 @SuppressWarnings("deprecation")
 
 public class Gelaxka extends Observable {
+	//atributuak
 	private Sua sua;
 	private Bomba bomba;
 	private BlokeBiguna blokeBiguna;
