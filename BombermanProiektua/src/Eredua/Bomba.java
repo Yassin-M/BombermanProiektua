@@ -1,11 +1,9 @@
 package Eredua;
 
-import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@SuppressWarnings("deprecation")
-public class Bomba extends Observable {
+public class Bomba {
 	private static final int PERIODO = 3;
 	private int kont;
 	private Timer timer = null;
