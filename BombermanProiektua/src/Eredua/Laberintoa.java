@@ -67,7 +67,7 @@ public class Laberintoa extends Observable{
 		return laberintoa[i][j];
 	}
 
-	public void setJokalaria(int i, int j, Jokalaria pJok) {
+	private void setJokalaria(int i, int j, Jokalaria pJok) {
 		laberintoa[i][j].setJokalaria(pJok);
 	}
 	
@@ -176,7 +176,7 @@ public class Laberintoa extends Observable{
 		this.score += pScore;
 	}
 	
-	public void partidaAmaitu(Jokalaria j, boolean irabazi) {
+	private void partidaAmaitu(Jokalaria j, boolean irabazi) {
 		if (irabazi) {
 			itxaron(irabazi);
         } else {
