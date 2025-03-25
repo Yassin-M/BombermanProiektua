@@ -205,10 +205,16 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (o instanceof Laberintoa && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
-				JLabel lblZorionak = new JLabel("ZORIONAK!!!!!!!!!!!");
+				JLabel lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
 				lblZorionak.setBounds(0, 0, 663, 418);
 				layeredPane.add(lblZorionak, new Integer(2));
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			dispose();
 			Amaitu as = new Amaitu();

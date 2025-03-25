@@ -45,7 +45,7 @@ public class Laberintoa extends Observable{
 				}
 				else {
 					Random r = new Random();
-					if (r.nextInt(100) >= 40) {
+					if (r.nextInt(100) >= 98) {
 						laberintoa[i][j].setBlokeBiguna();
 						blokeBigunKop++;					
 					}
@@ -178,12 +178,11 @@ public class Laberintoa extends Observable{
 	
 	public void partidaAmaitu(Jokalaria j, boolean irabazi) {
 		if (irabazi) {
-			setChanged();
-			notifyObservers(true);
+			itxaron(irabazi);
         } else {
 			laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 			j.jokalariaHil();
-			itxaron();
+			itxaron(irabazi);
 		}
 	}
 	public void kenduBlokeBiguna() {
@@ -193,7 +192,7 @@ public class Laberintoa extends Observable{
 		}
     }
 	
-	private void itxaron() {
+	private void itxaron(boolean pIrabazi) {
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -202,7 +201,7 @@ public class Laberintoa extends Observable{
                 if (kont == 0) {
                     timer.cancel();
                     setChanged();
-        			notifyObservers(false);
+        			notifyObservers(pIrabazi);
                 }
             }
         };
