@@ -99,6 +99,8 @@ public class Gelaxka extends Observable {
 				else if (blokeMota == BlokeMota.ETSAIA) {
 					kenduAurrekoa();
 					Laberintoa.getNireLaberintoa().addScore(500);
+					Laberintoa.getNireLaberintoa().kenduEtsaia();
+					
 				} else if(blokeMota == BlokeMota.SUA) {
 					this.sua.kendu();
 					kenduAurrekoa();	
