@@ -104,7 +104,7 @@ public class Amaitu extends JFrame {
 				Laberintoa.resetInstance();
 	            IkusiBeharrekoa frame = new IkusiBeharrekoa();
 	            frame.setVisible(true);
-	            Laberintoa.getNireLaberintoa().laberintoaSortu();
+	            Laberintoa.getNireLaberintoa().laberintoaSortuClassic();
 	            dispose();
 			}
 			if(e.getSource().equals(btnEz)) {

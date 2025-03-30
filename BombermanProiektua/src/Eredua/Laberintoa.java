@@ -28,13 +28,17 @@ public class Laberintoa extends Observable{
         nireLaberintoa = null;
     }
 	
-	public void laberintoaSortu() {
+	public void jokoaAbiarazi() {
+		
+	}
+	
+	public void laberintoaSortuClassic() {
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
-					this.jokalaria = new JokZuria(10,true,0,0);
+					this.jokalaria = new JokZuria(10,true,0,0); //EMEN JOKALARI MOTA IKUSI BEHARKO DUGU
 					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
@@ -57,6 +61,32 @@ public class Laberintoa extends Observable{
 		}
 		setChanged();
 		notifyObservers(1);
+	}
+	
+	public void laberintoaSortuSoft() {
+		this.laberintoa = new Gelaxka[11][17];
+		for (int i=0; i<11; i++) {
+			for (int j=0; j<17; j++) {
+				laberintoa[i][j] = new Gelaxka(i,j);
+				if (i==0 && j==0) {
+					this.jokalaria = new JokZuria(10,true,0,0); //EMEN JOKALARI MOTA IKUSI BEHARKO DUGU
+					laberintoa[i][j].setJokalaria(this.jokalaria);
+				}
+				else if ((i==0 && j==1)||(i==1 && j==0)) {
+					continue;
+				} else { 
+					Random r = new Random();
+					if (r.nextInt(100) >= 40) {
+						laberintoa[i][j].setBlokeBiguna();
+						blokeBigunKop++;
+					} else if (r.nextInt(100) >= 90) {
+						// laberintoa[i][j].setEtsaia();
+					}
+				}
+			}
+		}
+		setChanged();
+		notifyObservers(2);
 	}
 	
 	public BlokeMota zerDago(int i, int j) {
