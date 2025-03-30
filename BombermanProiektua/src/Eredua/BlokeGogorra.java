@@ -1,5 +1,5 @@
 package Eredua;
 
-public class BlokeGogorra {
+public class BlokeGogorra extends Bloke{
 
 }
