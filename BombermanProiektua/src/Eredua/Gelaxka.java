@@ -8,8 +8,7 @@ public class Gelaxka extends Observable {
 	//atributuak
 	private Sua sua;
 	private Bomba bomba;
-	private BlokeBiguna blokeBiguna;
-	private BlokeGogorra blokeGogorra;
+	private Bloke blokea;
 	private Etsaia etsaia;
 	private Jokalaria jokalari;
 	private BlokeMota blokeMota;
@@ -20,8 +19,7 @@ public class Gelaxka extends Observable {
 	public Gelaxka(int pX, int pY) {
 		this.sua = null;
         this.bomba = null;
-        this.blokeBiguna = null;
-        this.blokeGogorra = null;
+        this.blokea = null;
         this.etsaia = null;
         this.jokalari = null;
         this.blokeMota = null;
@@ -32,8 +30,10 @@ public class Gelaxka extends Observable {
 		Integer[] emaitza = new Integer[]{0,0,0,0,0,0,0};
 		if (this.sua!=null) emaitza[0] = 1;
 		if (this.bomba != null) emaitza[1] = 1;
-		if (this.blokeBiguna != null) emaitza[2] = 1;
-		if (this.blokeGogorra != null) emaitza[3] = 1;
+		if (this.blokea != null) {
+			if (blokea instanceof BlokeBiguna) emaitza[2] = 1;
+			else if (blokea instanceof BlokeGogorra) emaitza[3] = 1;
+		}
 		if (this.etsaia!=null) emaitza[4] = 1;
 		if (this.jokalari!=null) emaitza[5] =1;
 		if (emaitza[5]==1) {
@@ -106,7 +106,7 @@ public class Gelaxka extends Observable {
 		return jokalariHil;
 	}
 	public void setBlokeBiguna() {
-		this.blokeBiguna = new BlokeBiguna();
+		this.blokea = new BlokeBiguna();
 		if(blokeMota!=null) {
 			kenduAurrekoa();
 		}
@@ -115,7 +115,7 @@ public class Gelaxka extends Observable {
 		notifyObservers(lortuEgoera());
 	}
 	public void setBlokeGogorra() {
-		this.blokeGogorra = new BlokeGogorra();
+		this.blokea = new BlokeGogorra();
 		if(blokeMota!=null) {
 			kenduAurrekoa();
 		}
@@ -154,11 +154,11 @@ public class Gelaxka extends Observable {
 	                this.blokeMota = null;
 					break;
 	            case BLOKEBIGUNA:
-	            	this.blokeBiguna = null;
+	            	this.blokea = null;
 	                this.blokeMota = null;
 	                break;
 				case BLOKEGOGORRA:
-					this.blokeGogorra = null;
+					this.blokea = null;
 	                this.blokeMota = null;
 					break;
 				case ETSAIA:
