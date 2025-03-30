@@ -73,6 +73,16 @@ public class Gelaxka extends Observable {
 		notifyObservers(lortuEgoera());
 	}
 	
+	public void setEtsaia() {
+        this.etsaia = new Etsaia();
+        if(blokeMota!=null) {
+            kenduAurrekoa();
+        }
+        this.blokeMota = BlokeMota.ETSAIA;
+        setChanged();
+        notifyObservers(lortuEgoera());
+    }
+	
 	public boolean setSua(int i, int j) {
 		//jokalaria hil den ala ez bueltatzen du
 		boolean jokalariHil = false;
