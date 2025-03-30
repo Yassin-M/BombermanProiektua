@@ -14,7 +14,7 @@ public class Main {
 					HasierakoPantaila elegir = new HasierakoPantaila();
 					elegir.setVisible(true);
 					//frame.setVisible(true);
-					//Laberintoa.getNireLaberintoa().laberintoaSortuEmpty();
+					//Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(); lo he movido a hasierako pantaila
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
