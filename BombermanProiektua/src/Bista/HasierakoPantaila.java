@@ -21,7 +21,7 @@ public class HasierakoPantaila extends JFrame {
 	private JButton btnClassic;
 	private JButton btnSoft;
 	private JButton btnEmpty;
-	private Controler controler = null;;
+	private Controler controler = null;
 
 	/**
 	 * Launch the application.
