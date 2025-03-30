@@ -30,7 +30,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JLayeredPane layeredPane;
-	private JLabel fondoLabel;
+	private nireFondoa fondoLabel;
 	private Controler controler=null;
 
 	/**
@@ -60,25 +60,31 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		return panel;
 	}
-	
-	public JLabel Fondoa() {
-        setSize(663, 429 + 38);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
 
-        JLabel fondoLabel = new JLabel() {
-            private static final long serialVersionUID = 2028779831537105750L;
-			private Image fondo = new ImageIcon(getClass().getResource("/Bista/irudiak/stageBack1.png")).getImage();
+	private class nireFondoa extends JLabel {
 
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
+		private Image fondo = null;
         
-        fondoLabel.setBounds(0, 0, getWidth(), getHeight());
-        fondoLabel.setOpaque(false);
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+        }
+        
+		protected void setImage(String mapaMota) {
+			fondo = new ImageIcon(getClass().getResource(mapaMota)).getImage();
+		}
+	}
+	
+	public nireFondoa Fondoa(String mapaMota) {
+		setSize(663, 429 + 38);
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setLocationRelativeTo(null);
+	    nireFondoa fondoLabel = new nireFondoa();
+	    fondoLabel.setBounds(0, 0, getWidth(), getHeight());
+	    fondoLabel.setOpaque(false);
+        fondoLabel.setImage(mapaMota);
+        
         return fondoLabel;
 	}
 
@@ -86,7 +92,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (layeredPane == null) {
 			layeredPane = new JLayeredPane();
 			layeredPane.setLayout(null);
-			fondoLabel = Fondoa();
+			fondoLabel = Fondoa("/Bista/irudiak/stageBack1.png");
 			fondoLabel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(fondoLabel, new Integer(0));
 
@@ -154,6 +160,20 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof Laberintoa && arg instanceof Integer) {
+			Integer mapa = (Integer) arg;
+			switch (mapa) {
+				case 1:
+					fondoLabel.setImage("/Bista/irudiak/stageBack1.png");
+					break;
+				case 2:
+					fondoLabel.setImage("/Bista/irudiak/stageBack3.png");
+					break;
+				case 3:
+					fondoLabel.setImage("/Bista/irudiak/stageBack2.png");
+					break;
+				default:
+					break;
+			}
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
 					String irudia = null;

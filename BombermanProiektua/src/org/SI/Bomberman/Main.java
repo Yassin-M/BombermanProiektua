@@ -12,7 +12,7 @@ public class Main {
 				try {
 					IkusiBeharrekoa frame = new IkusiBeharrekoa();
 					frame.setVisible(true);
-					Laberintoa.getNireLaberintoa().laberintoaSortuClassic();
+					Laberintoa.getNireLaberintoa().laberintoaSortuSoft();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -81,8 +81,9 @@ public class Laberintoa extends Observable{
 					if (r.nextInt(100) >= 40) {
 						laberintoa[i][j].setBlokeBiguna();
 						blokeBigunKop++;
-					} else if (r.nextInt(100) >= 90) {
-						// laberintoa[i][j].setEtsaia();
+					} else if (r.nextInt(100) >= 90 && etsaiKop < 8) {
+						laberintoa[i][j].setEtsaia();
+						etsaiKop++;
 					}
 				}
 			}
