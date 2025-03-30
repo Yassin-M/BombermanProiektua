@@ -153,7 +153,8 @@ public class Laberintoa extends Observable{
 				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 				j.mugituEskuinera();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA || laberintoa[j.getYposizioa()][j.getXposizioa() + 1].zerDago() == BlokeMota.ETSAIA) {
+				
 				partidaAmaitu(j,false);
 			}
 		}
@@ -166,7 +167,7 @@ public class Laberintoa extends Observable{
 				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 				j.mugituEzkerretara();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() - 1].zerDago() == BlokeMota.SUA) {
+			} else if (laberintoa[j.getYposizioa()][j.getXposizioa() - 1].zerDago() == BlokeMota.SUA || laberintoa[j.getYposizioa()][j.getXposizioa() - 1].zerDago() == BlokeMota.ETSAIA) {
 				partidaAmaitu(j, false);
 			}
 		}
@@ -179,7 +180,7 @@ public class Laberintoa extends Observable{
 				laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 				j.mugituGora();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-			} else if (laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == BlokeMota.SUA) {
+			} else if (laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == BlokeMota.SUA 	|| laberintoa[j.getYposizioa()-1][j.getXposizioa()].zerDago() == BlokeMota.ETSAIA) {
 				partidaAmaitu(j, false);
 			}
 		}
@@ -192,7 +193,7 @@ public class Laberintoa extends Observable{
 	            laberintoa[j.getYposizioa()][j.getXposizioa()].kenduJokalaria();
 	            j.mugituBehera();
 	            setJokalaria(j.getYposizioa(), j.getXposizioa(), j);
-	        } else if (laberintoa[j.getYposizioa()+1][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA) {
+	        } else if (laberintoa[j.getYposizioa()+1][j.getXposizioa() + 1].zerDago() == BlokeMota.SUA || laberintoa[j.getYposizioa()+1][j.getXposizioa()].zerDago() == BlokeMota.ETSAIA) {
 				partidaAmaitu(j, false);
 			}
         }        
@@ -221,11 +222,17 @@ public class Laberintoa extends Observable{
 	}
 	public void kenduBlokeBiguna() {
 		this.blokeBigunKop--;
-		if (this.blokeBigunKop == 0) {
-			partidaAmaitu(getJokalaria(),true);
-		}
+		//if (this.blokeBigunKop == 0) {
+		//    partidaAmaitu(getJokalaria(),true);
+		//}
     }
 	
+	public void kenduEtsaia() {
+        this.etsaiKop--;
+        if (this.etsaiKop == 0) {
+            partidaAmaitu(getJokalaria(), true);
+        }
+	}
 	private void itxaron(boolean pIrabazi) {
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
