@@ -83,6 +83,7 @@ public class Laberintoa extends Observable{
 		}
 	}
 	
+	
 	public void suaJarri(int i, int j, boolean pUltrabomba) {
 		if (!pUltrabomba) {
 			boolean jokalariaHil = false;

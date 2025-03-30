@@ -72,7 +72,6 @@ public class Gelaxka extends Observable {
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
-	
 	public void setEtsaia() {
         this.etsaia = new Etsaia();
         if(blokeMota!=null) {
