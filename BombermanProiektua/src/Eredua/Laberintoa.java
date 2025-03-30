@@ -12,6 +12,7 @@ public class Laberintoa extends Observable{
 	private Gelaxka[][] laberintoa;
 	private Jokalaria jokalaria;
 	private int blokeBigunKop = 0;
+	private int etsaiKop = 0;
 	private int score = 0;
     private int kont = 2;
 	
@@ -53,8 +54,9 @@ public class Laberintoa extends Observable{
 						laberintoa[i][j].setBlokeBiguna();
 						blokeBigunKop++;					
 					}
-					else if (r.nextInt(100) >= 90) {
-						//laberintoa[i][j].setEtsaia();
+					else if (r.nextInt(100) >= 90 && etsaiKop < 6) {
+						etsaiKop++;
+						laberintoa[i][j].setEtsaia();
 					}
 				}
 			}
@@ -111,6 +113,7 @@ public class Laberintoa extends Observable{
 		}
 	}
 	
+
 	public void suaJarri(int i, int j, boolean pUltrabomba) {
 		if (!pUltrabomba) {
 			boolean jokalariaHil = false;
