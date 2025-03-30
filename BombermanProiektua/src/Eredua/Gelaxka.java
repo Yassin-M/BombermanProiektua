@@ -28,14 +28,33 @@ public class Gelaxka extends Observable {
         this.x = pX;
         this.y = pY;
 	}
-	private boolean[] lortuEgoera() {
-		boolean[] emaitza = new boolean[6];
-		emaitza[0] = this.sua != null;
-		emaitza[1] = this.bomba != null;
-		emaitza[2] = this.blokeBiguna != null;
-		emaitza[3] = this.blokeGogorra != null;
-		emaitza[4] = this.etsaia != null;
-		emaitza[5] = this.jokalari != null;
+	private Integer[] lortuEgoera() {
+		Integer[] emaitza = new Integer[]{0,0,0,0,0,0,0};
+		if (this.sua!=null) emaitza[0] = 1;
+		if (this.bomba != null) emaitza[1] = 1;
+		if (this.blokeBiguna != null) emaitza[2] = 1;
+		if (this.blokeGogorra != null) emaitza[3] = 1;
+		if (this.etsaia!=null) emaitza[4] = 1;
+		if (this.jokalari!=null) emaitza[5] =1;
+		if (emaitza[5]==1) {
+			Norabidea norabidea = this.jokalari.getNorabidea();
+			switch (norabidea) {
+			case GORA:
+				emaitza[6] = 1;
+				break;
+			case BEHERA:
+				emaitza[6] = 2;
+				break;
+			case EZKERRERA:
+				emaitza[6] = 3;
+				break;
+			case ESKUINERA:
+				emaitza[6] = 4;
+				break;
+			default:
+				break;
+			}
+		}
 		return emaitza;
 	}
 	

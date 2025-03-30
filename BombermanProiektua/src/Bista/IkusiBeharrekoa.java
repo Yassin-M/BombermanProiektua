@@ -49,6 +49,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
 		Laberintoa.getNireLaberintoa().addObserver(this);
 		addKeyListener(getControler());
+		addComponentListener(getControler());
 		setFocusable(true);
 	}
 	private JPanel getPanel() {
@@ -56,15 +57,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			panel = new JPanel();
 			panel.setLayout(new GridLayout(11, 17, 0, 0));
 			panel.setOpaque(false);
-			addComponentListener(new ComponentAdapter() {
-			   @Override
-			   public void componentResized(ComponentEvent e) {  
-				   panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
-				   panel.revalidate();
-				   panel.repaint();
-			   }
-			  });
-			
 		}
 		return panel;
 	}
@@ -84,13 +76,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
                 g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
             }
         };
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                fondoLabel.setSize(getWidth(), getHeight());
-                fondoLabel.repaint();
-            }
-        });
         
         fondoLabel.setBounds(0, 0, getWidth(), getHeight());
         fondoLabel.setOpaque(false);
@@ -108,15 +93,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			panel = getPanel();
 			panel.setBounds(0, 0, getWidth(), getHeight());
 			layeredPane.add(panel, new Integer(1));
-			
-			addComponentListener(new ComponentAdapter() {
-			   @Override
-			   public void componentResized(ComponentEvent e) {
-				   fondoLabel.setSize(getWidth(), getHeight());
-				   fondoLabel.repaint();
-			   }
-			  });
-			
 		}
 		return layeredPane;
 	}
@@ -128,7 +104,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
         return controler;
 	}
 	
-	private class Controler implements KeyListener {
+	private class Controler extends ComponentAdapter implements KeyListener {
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
@@ -138,7 +114,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-
 	        switch (key) {
 	            case KeyEvent.VK_UP:
 	                Laberintoa.getNireLaberintoa().jokalariaMugituGora();
@@ -156,14 +131,22 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	            	Laberintoa.getNireLaberintoa().getJokalaria().bombaJarri();
 	            	break;
 	        }
-
-			
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
+		}
+		@Override
+		public void componentResized(ComponentEvent e) {
+            //panel
+			panel.setSize(getWidth(), getHeight() - (getInsets().top + getInsets().bottom));
+			panel.revalidate();
+			panel.repaint();
+			//fondoa
+			fondoLabel.setSize(getWidth(), getHeight());
+			fondoLabel.repaint();
 		}
 		
 	}
