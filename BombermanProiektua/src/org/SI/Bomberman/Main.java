@@ -2,7 +2,7 @@ package org.SI.Bomberman;
 
 import java.awt.EventQueue;
 import Eredua.*;
-import Bista.IkusiBeharrekoa;
+import Bista.*;
 
 public class Main {
 
@@ -10,9 +10,11 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IkusiBeharrekoa frame = new IkusiBeharrekoa();
-					frame.setVisible(true);
-					Laberintoa.getNireLaberintoa().laberintoaSortuEmpty();
+					//IkusiBeharrekoa frame = new IkusiBeharrekoa();
+					HasierakoPantaila elegir = new HasierakoPantaila();
+					elegir.setVisible(true);
+					//frame.setVisible(true);
+					//Laberintoa.getNireLaberintoa().laberintoaSortuEmpty();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
