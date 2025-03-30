@@ -147,6 +147,7 @@ public class Gelaxka extends Observable {
 		}
 	}
 	
+	
 	public void kenduAurrekoa() {
 		if (this.blokeMota!=null) {
 			switch (this.blokeMota) {
