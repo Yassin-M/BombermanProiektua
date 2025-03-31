@@ -5,10 +5,10 @@ import java.util.TimerTask;
 
 public class Bomba {
 	private static final int PERIODO = 3;
-	private int kont;
-	private Timer timer = null;
-	private int i;
-	private int j;
+	protected int kont;
+	protected Timer timer = null;
+	protected int i;
+	protected int j;
 	
 	public Bomba(int i, int j) {
 			this.i = i;

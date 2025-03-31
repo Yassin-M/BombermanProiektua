@@ -15,8 +15,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.JLabel;
 import java.awt.Graphics;
@@ -33,13 +31,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private nireFondoa fondoLabel;
 	private Controler controler=null;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	public IkusiBeharrekoa() {
 		setBounds(100, 100, 450, 300);
         setTitle("Bomberman");
@@ -63,6 +54,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 
 	private class nireFondoa extends JLabel {
 
+		private static final long serialVersionUID = 6874299854785398384L;
 		private Image fondo = null;
         
         @Override
@@ -178,7 +170,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				for (int j = 0; j < 17; j++) {
 					String irudia = null;
 					GelaxkaBista gelaxka = new GelaxkaBista(i,j);
-					
+					//ALDATU BEHAR - EZIN DA HEMENDIK EREDURA DEITU
 					switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
 			            case BLOKEBIGUNA:
 			            	irudia = "/Bista/irudiak/soft1.png";

@@ -5,48 +5,48 @@ import java.util.*;
 public abstract class Jokalaria {
 	protected int bombaKont;
 	protected boolean bizirik;
-	protected int Xposizioa;
-	protected int Yposizioa;
+	protected int i;
+	protected int j;
 	private Norabidea norabidea;
 	
 	protected Timer timer = null;
 	protected int kont;
 	protected static final int PERIODO = 3;
 	
-	protected Jokalaria (int pBombaKont, boolean pBizirik, int pXposizioa, int pYposizioa) {
+	protected Jokalaria (int pBombaKont, int pJ, int pI) {
 		bombaKont = pBombaKont;
-		bizirik = pBizirik;
-		Xposizioa = pXposizioa;
-		Yposizioa = pYposizioa;
+		bizirik = true;
+		j = pJ;
+		i = pI;
 		norabidea = Norabidea.HASIERA;
 	}
 
 	public void mugituEskuinera() {
-		Xposizioa++;
+		j++;
 		this.norabidea = Norabidea.ESKUINERA;
 	}
 
 	public void mugituEzkerretara() {
-		Xposizioa--;
+		j--;
 		this.norabidea = Norabidea.EZKERRERA;
 	}
 
 	public void mugituGora() {
-		Yposizioa--;
+		i--;
 		this.norabidea = Norabidea.GORA;
 	}
 
 	public void mugituBehera() {
-		Yposizioa++;
+		i++;
 		this.norabidea = Norabidea.BEHERA;
 	}
 	
-	public int getXposizioa() {
-		return this.Xposizioa;
+	public int getJposizioa() {
+		return this.j;
 	}
 	
-	public int getYposizioa() {
-        return this.Yposizioa;
+	public int getIposizioa() {
+        return this.i;
     }
 	
 	public void timerBomba() {
