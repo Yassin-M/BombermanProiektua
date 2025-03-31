@@ -6,4 +6,12 @@ public class UltraBomba extends Bomba{
 		super(i, j);
 	}
 
+	public void updateKont() {
+		super.kont--;
+		if(super.kont==0) {
+			Laberintoa.getNireLaberintoa().suaJarri(super.i, super.j, true);
+			super.timer.cancel();
+			super.timer = null;
+		}
+	}
 }

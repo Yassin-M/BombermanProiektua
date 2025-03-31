@@ -2,12 +2,18 @@ package Eredua;
 
 public class JokZuria extends Jokalaria{
 
-	public JokZuria(int pBombaKont, boolean pBizirik, int pXposizioa, int pYposizioa) {
-		super(pBombaKont, pBizirik, pXposizioa, pYposizioa);
+	public JokZuria() {
+		super(10,0,0);
 	}
 
 	@Override
 	public void bombaJarri() {
-		Laberintoa.getNireLaberintoa().bombaJarri(Yposizioa, Xposizioa, false);
+		if (super.bombaKont>0) {
+			Laberintoa.getNireLaberintoa().bombaJarri(i, j, false);
+			super.bombaKont--;
+			if(super.bombaKont==0) {
+				super.timerBomba();
+			}
+		}	
 	}
 }

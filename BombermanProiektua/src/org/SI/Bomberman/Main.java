@@ -1,7 +1,6 @@
 package org.SI.Bomberman;
 
 import java.awt.EventQueue;
-import Eredua.*;
 import Bista.*;
 
 public class Main {
