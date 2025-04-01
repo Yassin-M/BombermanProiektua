@@ -17,17 +17,19 @@ public class GelaxkaBista extends JLabel implements Observer{
 	private static final long serialVersionUID = 4860883700750938819L;
 	int lerroa;
 	int zutabea;
+	String irudia;
 	
-	public GelaxkaBista(int pLerroa, int pZutabea) {
+	public GelaxkaBista(int pLerroa, int pZutabea, String pIrudia) {
 		this.lerroa = pLerroa;
 		this.zutabea = pZutabea;
+		this.irudia = pIrudia;
 		this.setEnabled(true);
 		addComponentListener(new ComponentAdapter() {
 		    @Override
 		    public void componentResized(ComponentEvent e) {
 		        	setSize(getWidth(), getHeight());
-		        	ImageIcon icon = (ImageIcon) getIcon();
-					if (icon != null) {
+					if (irudia != null) {
+						ImageIcon icon = new ImageIcon(GelaxkaBista.class.getResource(irudia));
 						Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
 						setIcon(new ImageIcon(img));
 					}
@@ -40,7 +42,6 @@ public class GelaxkaBista extends JLabel implements Observer{
     public void update(Observable o, Object arg) {
 		Gelaxka gelaxka = (Gelaxka) o;
 		Integer[] egoera = (Integer[]) arg;
-		String irudia;
         // Actualiza la gelaxka
 		if (egoera[0]==1) {
         	irudia = "/Bista/irudiak/miniBlast1.gif";
@@ -84,6 +85,7 @@ public class GelaxkaBista extends JLabel implements Observer{
         }
         else if (gelaxka.zerDago()==null) {
         	setIcon(null);
+        	irudia=null;
         }
 
     } 
