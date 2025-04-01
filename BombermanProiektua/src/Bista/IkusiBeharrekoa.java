@@ -169,7 +169,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
 					String irudia = null;
-					GelaxkaBista gelaxka = new GelaxkaBista(i,j);
 					//ALDATU BEHAR - EZIN DA HEMENDIK EREDURA DEITU
 					switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
 			            case BLOKEBIGUNA:
@@ -190,6 +189,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 						System.out.println("Errorea: hasieran "+Laberintoa.getNireLaberintoa().zerDago(i,j).toString()+" gelaxka aurkitu da." );
 						break;
 					}
+					GelaxkaBista gelaxka = new GelaxkaBista(i,j,irudia);
 					if(irudia!=null) {
 						gelaxka.setIcon(new ImageIcon(Gelaxka.class.getResource(irudia)));	
 					}
