@@ -3,7 +3,7 @@ package Eredua;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Bomba {
+public abstract class Bomba {
 	private static final int PERIODO = 3;
 	protected int kont;
 	protected Timer timer = null;
@@ -24,12 +24,5 @@ public class Bomba {
 			timer.scheduleAtFixedRate(timerTask, 0, 1000);
 		}
 		
-	public void updateKont() {
-			kont--;
-			if(kont==0) {
-				Laberintoa.getNireLaberintoa().suaJarri(i, j, false);
-				timer.cancel();
-				timer = null;
-			}
-		}
+	public abstract void updateKont();
 }

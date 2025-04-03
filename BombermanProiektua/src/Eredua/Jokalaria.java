@@ -13,11 +13,11 @@ public abstract class Jokalaria {
 	protected int kont;
 	protected static final int PERIODO = 3;
 	
-	protected Jokalaria (int pBombaKont, int pJ, int pI) {
+	protected Jokalaria (int pBombaKont, int pI, int pJ) {
 		bombaKont = pBombaKont;
 		bizirik = true;
-		j = pJ;
 		i = pI;
+		j = pJ;
 		norabidea = Norabidea.HASIERA;
 	}
 

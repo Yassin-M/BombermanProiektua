@@ -39,11 +39,7 @@ public class Laberintoa extends Observable{
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
-					if(pJok.equals("zuria")) {
-						this.jokalaria = new JokZuria();
-					}else {
-						this.jokalaria = new JokBeltza();
-					}
+					this.jokalaria = JokalariFactory.getNireJokalariFactory().sortuJokalaria(pJok);
 					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
@@ -75,11 +71,7 @@ public class Laberintoa extends Observable{
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
-					if(pJok.equals("zuria")) {
-						this.jokalaria = new JokZuria();
-					}else {
-						this.jokalaria = new JokBeltza();
-					}
+					this.jokalaria = JokalariFactory.getNireJokalariFactory().sortuJokalaria(pJok);
 					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
@@ -106,11 +98,7 @@ public class Laberintoa extends Observable{
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
-					if(pJok.equals("zuria")) {
-						this.jokalaria = new JokZuria();
-					}else {
-						this.jokalaria = new JokBeltza();
-					}
+					this.jokalaria = JokalariFactory.getNireJokalariFactory().sortuJokalaria(pJok);
 					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
@@ -147,8 +135,8 @@ public class Laberintoa extends Observable{
 		laberintoa[i][j].setJokalaria(pJok);
 	}
 	
-	public void bombaJarri(int i, int j, boolean pUltrabomba) {
-		laberintoa[i][j].setBomba(i,j,pUltrabomba);
+	public void bombaJarri(int i, int j, int pBombaMota) {
+		laberintoa[i][j].setBomba(i,j,pBombaMota);
 	}
 	
 
