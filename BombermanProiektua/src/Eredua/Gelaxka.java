@@ -87,7 +87,7 @@ public class Gelaxka extends Observable {
 		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {
 			if(blokeMota == BlokeMota.JOKALARIA || this.jokalari != null) {
 				Laberintoa.getNireLaberintoa().partidaAmaitu(this.jokalari,false);
-				this.jokalari = null;
+				//this.jokalari = null;
 			}
 			if(blokeMota!=null) {
 				if (blokeMota == BlokeMota.BLOKEBIGUNA) {
@@ -194,5 +194,14 @@ public class Gelaxka extends Observable {
 	
 	public BlokeMota zerDago() {
 		return blokeMota;
+	}
+	
+	public void amatatuTimer() {
+		if (this.sua != null) {
+			this.sua.kendu();
+		}
+		if (this.bomba != null) {
+			this.bomba.kendu();
+		}
 	}
 }

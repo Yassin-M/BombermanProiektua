@@ -25,4 +25,11 @@ public abstract class Bomba {
 		}
 		
 	public abstract void updateKont();
+	
+	public void kendu() {
+		if (this.timer!=null) {
+	        timer.cancel();
+	        timer = null;
+		}
+    }
 }

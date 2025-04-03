@@ -25,7 +25,7 @@ public class HasierakoPantaila extends JFrame {
 	private JButton btnSoft;
 	private JButton btnEmpty;
 	private Controler controler = null;
-	private JPanel panel_1;
+	private JPanel panelJokalariak;
 	private JRadioButton rdbtnBeltza;
 	private JRadioButton rdbtnZuria;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -41,7 +41,7 @@ public class HasierakoPantaila extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getPanel());
-		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
+		contentPane.add(getPanelJokalariak(), BorderLayout.SOUTH);
 	}
 
 	private JPanel getPanel() {
@@ -105,13 +105,14 @@ public class HasierakoPantaila extends JFrame {
 		}
 		
 	}
-	private JPanel getPanel_1() {
-		if (panel_1 == null) {
-			panel_1 = new JPanel();
-			panel_1.add(getRdbtnBeltza());
-			panel_1.add(getRdbtnZuria());
+	private JPanel getPanelJokalariak() {
+		if (panelJokalariak == null) {
+			panelJokalariak = new JPanel();
+			panelJokalariak.add(getRdbtnZuria());
+			panelJokalariak.add(getRdbtnBeltza());
+			rdbtnZuria.setSelected(true);
 		}
-		return panel_1;
+		return panelJokalariak;
 	}
 	private JRadioButton getRdbtnBeltza() {
 		if (rdbtnBeltza == null) {

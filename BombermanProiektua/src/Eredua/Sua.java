@@ -35,7 +35,9 @@ public class Sua{
 	}
 
 	public void kendu() {
-		timer.cancel();
-		timer = null;
+		if (this.timer!=null) {
+			timer.cancel();
+			timer = null;
+		}
 	}
 }
