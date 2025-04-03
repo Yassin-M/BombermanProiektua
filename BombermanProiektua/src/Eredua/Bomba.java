@@ -26,7 +26,7 @@ public abstract class Bomba {
 		
 	public abstract void updateKont();
 	
-	public void kendu() {
+	public void kenduTimer() {
 		if (this.timer!=null) {
 	        timer.cancel();
 	        timer = null;

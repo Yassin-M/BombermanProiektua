@@ -29,12 +29,14 @@ public class Sua{
 		kont--;
 		if(kont==0) {
 			Laberintoa.getNireLaberintoa().suaKendu(i,j);
-			timer.cancel();
+			if(timer != null) {
+				timer.cancel();
+			}			
 			timer = null;
 		}
 	}
 
-	public void kendu() {
+	public void kenduTimer() {
 		if (this.timer!=null) {
 			timer.cancel();
 			timer = null;

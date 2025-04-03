@@ -73,8 +73,8 @@ public class Gelaxka extends Observable {
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
-	public void setEtsaia() {
-        this.etsaia = new Etsaia();
+	public void setEtsaia(boolean pNorabidea) {
+        this.etsaia = new Etsaia(x,y,pNorabidea);
         if(blokeMota!=null) {
             kenduAurrekoa();
         }
@@ -101,7 +101,7 @@ public class Gelaxka extends Observable {
 					Laberintoa.getNireLaberintoa().kenduEtsaia();
 					
 				} else if(blokeMota == BlokeMota.SUA) {
-					this.sua.kendu();
+					this.sua.kenduTimer();
 					kenduAurrekoa();	
 				}
 				else {
@@ -192,16 +192,34 @@ public class Gelaxka extends Observable {
 		return this.jokalari;
 	}
 	
+	public void etsaiaHasieratu() {
+		if (this.etsaia != null && this.blokeMota == BlokeMota.ETSAIA) {
+			this.etsaia.hasiMugitzen();
+			setChanged();
+			notifyObservers(lortuEgoera());
+		}
+	}
+	
+	public void etsaiaHil() {
+		if (etsaia!=null) {
+			etsaia.ezabatu();
+			this.etsaia=null;
+		}
+	}
+	
 	public BlokeMota zerDago() {
 		return blokeMota;
 	}
 	
 	public void amatatuTimer() {
 		if (this.sua != null) {
-			this.sua.kendu();
+			this.sua.kenduTimer();
 		}
 		if (this.bomba != null) {
-			this.bomba.kendu();
+			this.bomba.kenduTimer();
+		}
+		if (this.etsaia != null) {
+			this.etsaia.kenduTimer();
 		}
 	}
 }
