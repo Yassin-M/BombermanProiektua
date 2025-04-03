@@ -43,7 +43,7 @@ public class Amaitu extends JFrame {
 
 	private JLabel getLblBerriroJolsatuNahi() {
 		if (lblBerriroJolsatuNahi == null) {
-			lblBerriroJolsatuNahi = new JLabel("Berriro jolsatu nahi duzu?");
+			lblBerriroJolsatuNahi = new JLabel("Berriro jolastu nahi duzu?");
 			lblBerriroJolsatuNahi.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return lblBerriroJolsatuNahi;
@@ -84,10 +84,9 @@ public class Amaitu extends JFrame {
 			if(e.getSource().equals(btnBtnbai)) {
 				dispose();
 				Laberintoa.resetInstance();
-	            IkusiBeharrekoa frame = new IkusiBeharrekoa();
-	            frame.setVisible(true);
-	            Laberintoa.getNireLaberintoa().laberintoaSortuClassic();
 	            dispose();
+	            HasierakoPantaila fr = new HasierakoPantaila();
+	            fr.setVisible(true);
 			}
 			if(e.getSource().equals(btnEz)) {
 				System.exit(0);

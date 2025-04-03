@@ -5,12 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import Eredua.Laberintoa;
 
 import java.awt.BorderLayout;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -23,6 +25,10 @@ public class HasierakoPantaila extends JFrame {
 	private JButton btnSoft;
 	private JButton btnEmpty;
 	private Controler controler = null;
+	private JPanel panel_1;
+	private JRadioButton rdbtnBeltza;
+	private JRadioButton rdbtnZuria;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	public HasierakoPantaila() {
         setTitle("Hasiera");
@@ -34,7 +40,8 @@ public class HasierakoPantaila extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.add(getPanel(), BorderLayout.CENTER);
+		contentPane.add(getPanel());
+		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
 	}
 
 	private JPanel getPanel() {
@@ -81,15 +88,43 @@ public class HasierakoPantaila extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			IkusiBeharrekoa frame = new IkusiBeharrekoa();
 			frame.setVisible(true);
+			String j;
+			if(rdbtnZuria.isSelected()) {
+				j = "zuria";
+			}else {
+				j = "beltza";
+			}
 			if(arg0.getSource().equals(btnClassic)) {
-				Laberintoa.getNireLaberintoa().laberintoaSortuClassic();
+				Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
 			}else if(arg0.getSource().equals(btnEmpty)) {
-				Laberintoa.getNireLaberintoa().laberintoaSortuEmpty();
+				Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(j);
 			}else if(arg0.getSource().equals(btnSoft)){
-				Laberintoa.getNireLaberintoa().laberintoaSortuSoft();
+				Laberintoa.getNireLaberintoa().laberintoaSortuSoft(j);
 			}
 			dispose();
 		}
 		
+	}
+	private JPanel getPanel_1() {
+		if (panel_1 == null) {
+			panel_1 = new JPanel();
+			panel_1.add(getRdbtnBeltza());
+			panel_1.add(getRdbtnZuria());
+		}
+		return panel_1;
+	}
+	private JRadioButton getRdbtnBeltza() {
+		if (rdbtnBeltza == null) {
+			rdbtnBeltza = new JRadioButton("Beltza");
+			buttonGroup.add(rdbtnBeltza);
+		}
+		return rdbtnBeltza;
+	}
+	private JRadioButton getRdbtnZuria() {
+		if (rdbtnZuria == null) {
+			rdbtnZuria = new JRadioButton("Zuria");
+			buttonGroup.add(rdbtnZuria);
+		}
+		return rdbtnZuria;
 	}
 }

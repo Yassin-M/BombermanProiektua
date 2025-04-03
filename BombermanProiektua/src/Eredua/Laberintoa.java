@@ -33,13 +33,17 @@ public class Laberintoa extends Observable{
 		
 	}
 	
-	public void laberintoaSortuClassic() {
+	public void laberintoaSortuClassic(String pJok) {
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
-					this.jokalaria = new JokZuria(); //EMEN JOKALARI MOTA IKUSI BEHARKO DUGU
+					if(pJok.equals("zuria")) {
+						this.jokalaria = new JokZuria();
+					}else {
+						this.jokalaria = new JokBeltza();
+					}
 					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
@@ -65,13 +69,17 @@ public class Laberintoa extends Observable{
 		notifyObservers(1);
 	}
 	
-	public void laberintoaSortuSoft() {
+	public void laberintoaSortuSoft(String pJok) {
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
-					this.jokalaria = new JokZuria(); //EMEN JOKALARI MOTA IKUSI BEHARKO DUGU
+					if(pJok.equals("zuria")) {
+						this.jokalaria = new JokZuria();
+					}else {
+						this.jokalaria = new JokBeltza();
+					}
 					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
@@ -92,13 +100,17 @@ public class Laberintoa extends Observable{
 		notifyObservers(2);
 	}
 	
-	public void laberintoaSortuEmpty() {
+	public void laberintoaSortuEmpty(String pJok) {
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
 			for (int j=0; j<17; j++) {
 				laberintoa[i][j] = new Gelaxka(i,j);
 				if (i==0 && j==0) {
-					this.jokalaria = new JokZuria(); //EMEN JOKALARI MOTA IKUSI BEHARKO DUGU
+					if(pJok.equals("zuria")) {
+						this.jokalaria = new JokZuria();
+					}else {
+						this.jokalaria = new JokBeltza();
+					}
 					laberintoa[i][j].setJokalaria(this.jokalaria);
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
