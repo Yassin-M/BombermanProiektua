@@ -16,7 +16,14 @@ public class Laberintoa extends Observable{
 	private int score = 0;
     private int kont = 2;
 	
-	private Laberintoa() {}
+	private Laberintoa() {
+		this.laberintoa = null;
+		this.jokalaria = null;
+		this.blokeBigunKop = 0;
+		this.etsaiKop = 0;
+		this.score = 0;
+		this.kont = 2;
+	}
 	
 	public static Laberintoa getNireLaberintoa() {
 		if (nireLaberintoa == null) {
@@ -60,13 +67,24 @@ public class Laberintoa extends Observable{
 					}
 					else if (r.nextInt(100) >= 90 && etsaiKop < 6) {
 						etsaiKop++;
-						laberintoa[i][j].setEtsaia();
+						laberintoa[i][j].setEtsaia(true);
 					}
 				}
 			}
 		}
+		etsaiakHasieratu();
 		setChanged();
 		notifyObservers(1);
+	}
+	
+	private void etsaiakHasieratu() {
+		for (int i = 0; i < 11; i++) {
+			for (int j = 0; j < 17; j++) {
+				if (laberintoa[i][j].zerDago() == BlokeMota.ETSAIA) {
+					laberintoa[i][j].etsaiaHasieratu();
+				}
+			}
+		}
 	}
 	
 	public void laberintoaSortuSoft(String pJok) {
@@ -90,7 +108,7 @@ public class Laberintoa extends Observable{
 						laberintoa[i][j].setBlokeBiguna();
 						blokeBigunKop++;
 					} else if (r.nextInt(100) >= 90 && etsaiKop < 8) {
-						laberintoa[i][j].setEtsaia();
+						laberintoa[i][j].setEtsaia(true);
 						etsaiKop++;
 					}
 				}
@@ -118,7 +136,7 @@ public class Laberintoa extends Observable{
 				} else {
 					Random r = new Random();
 					if (r.nextInt(100) >= 90 && etsaiKop < 10) {
-						laberintoa[i][j].setEtsaia();
+						laberintoa[i][j].setEtsaia(true);
 						etsaiKop++;
 					}
 				}
@@ -290,4 +308,72 @@ public class Laberintoa extends Observable{
         };
         timer.scheduleAtFixedRate(timerTask, 0, 1000);
     }
+
+	public boolean etsaiaMugituGora(int i, int j, boolean pNorabidea) {
+		boolean zuzena = true;
+		if(i>0) {
+			if (laberintoa[i-1][j].zerDago() == null) {
+				laberintoa[i][j].kenduAurrekoa();
+				laberintoa[i-1][j].setEtsaia(pNorabidea);
+				laberintoa[i-1][j].etsaiaHasieratu();
+			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.SUA ) {
+				laberintoa[i][j].etsaiaHil();
+				kenduEtsaia();
+			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.JOKALARIA) {
+				partidaAmaitu(getJokalaria(), false);
+			} else zuzena = false;
+		} else zuzena = false;
+		return zuzena;
+	}
+
+	public boolean etsaiaMugituBehera(int i, int j, boolean pNorabidea) {
+		boolean zuzena = true;
+		if(i<10) {
+			if (laberintoa[i+1][j].zerDago() == null) {
+				laberintoa[i][j].kenduAurrekoa();
+				laberintoa[i+1][j].setEtsaia(pNorabidea);
+				laberintoa[i+1][j].etsaiaHasieratu();
+			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.SUA ) {
+				laberintoa[i][j].etsaiaHil();
+				kenduEtsaia();
+			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.JOKALARIA) {
+				partidaAmaitu(getJokalaria(), false);
+			} else zuzena = false;
+		} else zuzena = false;
+		return zuzena;
+	}
+
+	public boolean etsaiaMugituEzerretara(int i, int j, boolean pNorabidea) {
+		boolean zuzena = true;
+		if(j>0) {
+			if (laberintoa[i][j-1].zerDago() == null) {
+				laberintoa[i][j].kenduAurrekoa();
+				laberintoa[i][j-1].setEtsaia(pNorabidea);
+				laberintoa[i][j-1].etsaiaHasieratu();
+			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.SUA ) {
+				laberintoa[i][j].etsaiaHil();
+				kenduEtsaia();
+			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.JOKALARIA) {
+				partidaAmaitu(getJokalaria(), false);
+			} else zuzena = false;
+		} else zuzena = false;
+		return zuzena;
+	}
+
+	public boolean etsaiaMugituEskuinera(int i, int j, boolean pNorabidea) {
+		boolean zuzena = true;
+		if(j<16) {
+			if (laberintoa[i][j+1].zerDago() == null) {
+				laberintoa[i][j].kenduAurrekoa();
+				laberintoa[i][j+1].setEtsaia(pNorabidea);
+				laberintoa[i][j+1].etsaiaHasieratu();
+			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.SUA ) {
+				laberintoa[i][j].etsaiaHil();
+				kenduEtsaia();
+			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.JOKALARIA) {
+				partidaAmaitu(getJokalaria(), false);
+			} else zuzena = false;
+		} else zuzena = false;
+		return zuzena;
+	}
  }

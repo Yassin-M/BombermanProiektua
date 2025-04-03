@@ -73,8 +73,8 @@ public class Gelaxka extends Observable {
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
-	public void setEtsaia() {
-        this.etsaia = new Etsaia();
+	public void setEtsaia(boolean pNorabidea) {
+        this.etsaia = new Etsaia(x,y,pNorabidea);
         if(blokeMota!=null) {
             kenduAurrekoa();
         }
@@ -199,6 +199,18 @@ public class Gelaxka extends Observable {
 
 	public Jokalaria getJokalaria() {
 		return this.jokalari;
+	}
+	
+	public void etsaiaHasieratu() {
+		if (this.etsaia != null && this.blokeMota == BlokeMota.ETSAIA) {
+			this.etsaia.hasiMugitzen();
+			setChanged();
+			notifyObservers(lortuEgoera());
+		}
+	}
+	
+	public void etsaiaHil() {
+		this.etsaia=null;
 	}
 	
 	public BlokeMota zerDago() {
