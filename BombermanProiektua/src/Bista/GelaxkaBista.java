@@ -100,7 +100,7 @@ public class GelaxkaBista extends JLabel implements Observer{
     					irudia = "/Bista/irudiak/onFire4.png";
                         break;
     				}
-    				blinkTimer = new Timer(300, e -> {
+    				blinkTimer = new Timer(150, e -> {
     					if (sutanDago) {
     						irudia = "/Bista/irudiak/onFire2.png"; 
     						ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
