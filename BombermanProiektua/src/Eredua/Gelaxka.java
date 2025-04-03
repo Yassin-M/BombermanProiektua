@@ -115,7 +115,7 @@ public class Gelaxka extends Observable {
 		}
 	}
 	public void setBlokeBiguna() {
-		this.blokea = new BlokeBiguna();
+		this.blokea = BlokeFactory.getNireBlokeFactory().sortuBloke(2);
 		if(blokeMota!=null) {
 			kenduAurrekoa();
 		}
@@ -124,7 +124,7 @@ public class Gelaxka extends Observable {
 		notifyObservers(lortuEgoera());
 	}
 	public void setBlokeGogorra() {
-		this.blokea = new BlokeGogorra();
+		this.blokea = BlokeFactory.getNireBlokeFactory().sortuBloke(1);
 		if(blokeMota!=null) {
 			kenduAurrekoa();
 		}
@@ -133,15 +133,10 @@ public class Gelaxka extends Observable {
 		notifyObservers(lortuEgoera());
 	}
 	
-	public void setBomba(int i,int j,boolean pUltrabomba)  {
+	public void setBomba(int i,int j,int pBombaMota)  {
 		if (this.jokalari != null) {
-			if (pUltrabomba) {
-				this.bomba = new UltraBomba(i,j);
-				this.blokeMota = BlokeMota.ULTRABOMBA;
-			} else {
-				this.bomba = new Bomba(i,j);
-				this.blokeMota = BlokeMota.BOMBA;
-			}
+			this.bomba = BombaFactory.getNireBombaFactory().sortuBomba(i, j, pBombaMota);
+			this.blokeMota = BlokeMota.BOMBA;
 			setChanged();
 			notifyObservers(lortuEgoera());
 		}
@@ -159,10 +154,6 @@ public class Gelaxka extends Observable {
 	            	this.bomba = null;
 	                this.blokeMota = null;
 	                break;
-				case ULTRABOMBA:
-					this.bomba = null;
-	                this.blokeMota = null;
-					break;
 	            case BLOKEBIGUNA:
 	            	this.blokea = null;
 	                this.blokeMota = null;
