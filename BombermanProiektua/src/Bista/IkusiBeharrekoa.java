@@ -181,7 +181,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 							irudia = "/Bista/irudiak/pass1.png";
 							break;
 						case JOKALARIA:
-							irudia = "/Bista/irudiak/whitedown1.png";
+							if(Laberintoa.getNireLaberintoa().getJokalaria() instanceof JokZuria) {
+								irudia = "/Bista/irudiak/whitedown1.png";
+							}else {
+								irudia = "/Bista/irudiak/blackdown1.png";
+							}
 							break;
 						case null:
 							break;

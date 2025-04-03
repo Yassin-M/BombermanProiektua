@@ -27,7 +27,7 @@ public class Gelaxka extends Observable {
         this.y = pY;
 	}
 	private Integer[] lortuEgoera() {
-		Integer[] emaitza = new Integer[]{0,0,0,0,0,0,0};
+		Integer[] emaitza = new Integer[]{0,0,0,0,0,0,0,0};
 		if (this.sua!=null) emaitza[0] = 1;
 		if (this.bomba != null) emaitza[1] = 1;
 		if (this.blokea != null) {
@@ -36,6 +36,7 @@ public class Gelaxka extends Observable {
 		}
 		if (this.etsaia!=null) emaitza[4] = 1;
 		if (this.jokalari!=null) emaitza[5] =1;
+		if (this.jokalari instanceof JokBeltza) emaitza[7] =1;
 		if (emaitza[5]==1) {
 			Norabidea norabidea = this.jokalari.getNorabidea();
 			switch (norabidea) {

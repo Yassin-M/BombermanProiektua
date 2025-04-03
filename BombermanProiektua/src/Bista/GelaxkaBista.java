@@ -42,6 +42,7 @@ public class GelaxkaBista extends JLabel implements Observer{
     public void update(Observable o, Object arg) {
 		Gelaxka gelaxka = (Gelaxka) o;
 		Integer[] egoera = (Integer[]) arg;
+		String jokmota = "white";
         // Actualiza la gelaxka
 		if (egoera[0]==1) {
         	irudia = "/Bista/irudiak/miniBlast1.gif";
@@ -49,24 +50,27 @@ public class GelaxkaBista extends JLabel implements Observer{
         	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
             setIcon(new ImageIcon(img));
         } else if (egoera[5]==1) {
+        	if(egoera[7]==1) {
+        		jokmota = "black";
+        	}
         	if(egoera[1]==1) {
-        		irudia = "/Bista/irudiak/whitewithbomb1.png";
+        		irudia = "/Bista/irudiak/"+jokmota+"withbomb1.png";
         	} else {
 				switch(egoera[6]) {
 				case 1:
-					irudia = "/Bista/irudiak/whiteup1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"up1.png";
 					break;
 				case 2:
-					irudia = "/Bista/irudiak/whitedown1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"down1.png";
 					break;
 				case 3:
-					irudia = "/Bista/irudiak/whiteleft1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"left1.png";
 					break;
 				case 4:
-					irudia = "/Bista/irudiak/whiteright1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"right1.png";
                     break;
 				default:
-					irudia = "/Bista/irudiak/whitedown1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"down1.png";
 					break;
 				}
 			}
