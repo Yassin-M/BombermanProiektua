@@ -50,7 +50,7 @@ public class Etsaia {
 				boolean zuzena= false;
 				do {
 					zuzena = mugitu();
-				} while (!zuzena);	
+				} while (!zuzena && aktibo);	
 				if (aktibo) hasiMugitzen();
 			}
 		};
@@ -102,6 +102,7 @@ public class Etsaia {
 	
 	public void ezabatu() {
 		timer = null;
+		aktibo = false;
 	}
 
 }

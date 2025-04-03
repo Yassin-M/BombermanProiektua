@@ -201,7 +201,10 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void etsaiaHil() {
-		this.etsaia=null;
+		if (etsaia!=null) {
+			etsaia.ezabatu();
+			this.etsaia=null;
+		}
 	}
 	
 	public BlokeMota zerDago() {
