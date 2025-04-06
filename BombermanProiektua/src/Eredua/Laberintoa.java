@@ -106,6 +106,7 @@ public class Laberintoa extends Observable{
 				}
 			}
 		}
+		etsaiakHasieratu();
 		setChanged();
 		notifyObservers(2);
 	}
@@ -130,6 +131,7 @@ public class Laberintoa extends Observable{
 				}
 			}
 		}
+		etsaiakHasieratu();
 		setChanged();
 		notifyObservers(3);
 	}
