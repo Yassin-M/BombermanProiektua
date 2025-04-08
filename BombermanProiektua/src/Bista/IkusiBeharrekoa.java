@@ -40,19 +40,24 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JPanel pantailak;
 	private CardLayout cardLayout;
 	private JPanel contentPane;
-	private JPanel panel_3;
+	/*private JPanel panel_3;
 	private JButton btnClassic;
 	private JButton btnSoft;
 	private JButton btnEmpty;
 	private JPanel panelJokalariak;
 	private JRadioButton rdbtnBeltza;
 	private JRadioButton rdbtnZuria;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup = new ButtonGroup();*/
 	private JLabel lblBerriroJolsatuNahi;
 	private JPanel panel_4;
 	private JButton btnBtnbai;
 	private JButton btnEz;
 	private JPanel contentPane_2;
+	
+	private HasierakoPantaila hasierakoPantaila;
+	private String unekoPantaila;
+	private String j = "zuria";
+	
 
 	public IkusiBeharrekoa() {
 		setBounds(100, 100, 450, 300);
@@ -133,26 +138,45 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 
 		@Override
-		public void keyPressed(KeyEvent e) {
-			int key = e.getKeyCode();
-	        switch (key) {
-	            case KeyEvent.VK_UP:
-	                Laberintoa.getNireLaberintoa().jokalariaMugituGora();
-	                break;
-	            case KeyEvent.VK_DOWN:
-	                Laberintoa.getNireLaberintoa().jokalariaMugituBehera();
-	                break;
-	            case KeyEvent.VK_LEFT:
-	                Laberintoa.getNireLaberintoa().jokalariaMugituEzkerretara();
-	                break;
-	            case KeyEvent.VK_RIGHT:
-	                Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
-	                break;
-	            case KeyEvent.VK_SPACE:
-	            	Laberintoa.getNireLaberintoa().getJokalaria().bombaJarri();
-	            	break;
-	        }
-		}
+        public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+            if (unekoPantaila.equals("Hasiera")) {
+                switch (key) {
+                    case KeyEvent.VK_LEFT:
+                        hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
+                        j = "zuria";
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioBlack.png");
+                        j = "beltza";
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
+                        cardLayout.show(pantailak, "Laberintoa");
+                        unekoPantaila = "Laberintoa";
+                        break;
+                }
+                System.out.println("Valor de j: " + j);
+            } else {
+                switch (key) {
+                    case KeyEvent.VK_UP:
+                        Laberintoa.getNireLaberintoa().jokalariaMugituGora();
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        Laberintoa.getNireLaberintoa().jokalariaMugituBehera();
+                        break;
+                    case KeyEvent.VK_LEFT:
+                        Laberintoa.getNireLaberintoa().jokalariaMugituEzkerretara();
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        Laberintoa.getNireLaberintoa().getJokalaria().bombaJarri();
+                        break;
+                }
+            }
+            }
 
 		@Override
 		public void keyReleased(KeyEvent e) {
@@ -172,7 +196,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String j;
+			/*String j;
 			if(rdbtnZuria.isSelected()) {
 				j = "zuria";
 			}else {
@@ -187,7 +211,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			}else if(arg0.getSource().equals(btnSoft)){
 				Laberintoa.getNireLaberintoa().laberintoaSortuSoft(j);
 				cardLayout.show(pantailak, "Laberintoa");
-			}
+			}*/
 			
 			if(arg0.getSource().equals(btnBtnbai)) {
 				Laberintoa.resetInstance();
@@ -278,14 +302,15 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			cardLayout = new CardLayout();
 			pantailak = new JPanel(cardLayout);
 			pantailak.add(getLayeredPane_1(), "Laberintoa");
-			pantailak.add(HasierakoPantaila(), "Hasiera");
+			pantailak.add(getHasierakoPantaila(), "Hasiera");
 			pantailak.add(Amaitu(), "Amaitu");
 			cardLayout.show(pantailak, "Hasiera");
+			this.unekoPantaila = "Hasiera";
 		}
 		return pantailak;
 	}
 	
-	public JPanel HasierakoPantaila() {
+	/*public JPanel HasierakoPantaila() {
         setTitle("Hasiera");
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/mainBomb.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -351,7 +376,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			buttonGroup.add(rdbtnZuria);
 		}
 		return rdbtnZuria;
-	}
+	}*/
 	
 	public JPanel Amaitu() {
 		setTitle("Game Over");
@@ -396,6 +421,34 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		return btnEz;
 	}
+	
+	public HasierakoPantaila getHasierakoPantaila() {
+		if(hasierakoPantaila==null) {
+			hasierakoPantaila = new HasierakoPantaila();
+		}
+		return hasierakoPantaila;
+	}
+	
+	private class HasierakoPantaila extends JPanel { //esto es como lo de nireFondoa para que se reescale la imagne del principio
+        private Image imagen;
+
+        public HasierakoPantaila() {
+            imagen = new ImageIcon(getClass().getResource("/Bista/irudiak/inicioWhite.png")).getImage();
+            setTitle("Bomberman");
+            setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
+        }
+
+        public void irudiaAldatu(String p) {
+            imagen = new ImageIcon(getClass().getResource(p)).getImage();
+            repaint();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
 	
 }
 
