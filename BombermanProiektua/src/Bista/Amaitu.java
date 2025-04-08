@@ -82,10 +82,9 @@ public class Amaitu extends JFrame {
 	private class Controler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(btnBtnbai)) {
-				dispose();
 				Laberintoa.resetInstance();
-	            dispose();
-	            HasierakoPantaila fr = new HasierakoPantaila();
+				dispose();
+	            IkusiBeharrekoa fr = new IkusiBeharrekoa();
 	            fr.setVisible(true);
 			}
 			if(e.getSource().equals(btnEz)) {
