@@ -290,7 +290,6 @@ public class Laberintoa extends Observable{
 	
 	public void kenduEtsaia() {
         this.etsaiKop--;
-        System.out.println(etsaiKop);
         if (this.etsaiKop == 0) {
             partidaAmaitu(true);
         }
@@ -330,7 +329,7 @@ public class Laberintoa extends Observable{
 				laberintoa[i-1][j].etsaiaHasieratu();
 			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.SUA ) {
 				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
+				//kenduEtsaia();
 			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i-1][j].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();
@@ -349,7 +348,7 @@ public class Laberintoa extends Observable{
 				laberintoa[i+1][j].etsaiaHasieratu();
 			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.SUA ) {
 				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
+				//kenduEtsaia();
 			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i+1][j].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();
@@ -368,7 +367,7 @@ public class Laberintoa extends Observable{
 				laberintoa[i][j-1].etsaiaHasieratu();
 			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.SUA ) {
 				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
+				//kenduEtsaia();
 			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i][j-1].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();
@@ -387,7 +386,7 @@ public class Laberintoa extends Observable{
 				laberintoa[i][j+1].etsaiaHasieratu();
 			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.SUA ) {
 				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
+				//kenduEtsaia();
 			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i][j+1].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();

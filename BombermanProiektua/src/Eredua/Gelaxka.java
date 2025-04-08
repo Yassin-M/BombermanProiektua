@@ -41,6 +41,9 @@ public class Gelaxka extends Observable {
 			gehituElementua(pJok);
 			Laberintoa.getNireLaberintoa().addScore(100);
 		} 
+		else if (lortuEgoera()[sua] == 1){
+			gehituElementua(pJok);
+		}
 		else {
 			this.elementua = pJok;
 		}
