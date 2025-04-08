@@ -3,7 +3,7 @@ package Eredua;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Sua{
+public class Sua implements GelaxkaElementua {
 	
 	private static final int PERIODO = 2;
 	private int kont;
@@ -41,5 +41,9 @@ public class Sua{
 			timer.cancel();
 			timer = null;
 		}
+	}
+
+	public Integer[] lortuEgoera() {
+		return new Integer[]{1,0,0,0,0,0,0,0};
 	}
 }

@@ -16,4 +16,25 @@ public class JokZuria extends Jokalaria{
 			}
 		}	
 	}
+	
+	public Integer[] lortuEgoera() {
+		Integer [] emaitza = new Integer[]{0,0,0,0,0,1,0,0};
+		switch (norabidea) {
+		case GORA:
+			emaitza[6] = 1;
+			break;
+		case BEHERA:
+			emaitza[6] = 2;
+			break;
+		case EZKERRERA:
+			emaitza[6] = 3;
+			break;
+		case ESKUINERA:
+			emaitza[6] = 4;
+			break;
+		default:
+			break;
+		}
+		return emaitza;
+	}
 }

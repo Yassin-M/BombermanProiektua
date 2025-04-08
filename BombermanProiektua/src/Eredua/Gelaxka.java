@@ -1,62 +1,31 @@
 package Eredua;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 @SuppressWarnings("deprecation")
 
 public class Gelaxka extends Observable {
-	//atributuak
-	private Sua sua;
-	private Bomba bomba;
-	private Bloke blokea;
-	private Etsaia etsaia;
-	private Jokalaria jokalari;
-	private BlokeMota blokeMota;
+	//elementuak identifikatzeko
+	private static final int sua = 0, bomba = 1, blokeBiguna = 2, blokeGogorra = 3, etsaia = 4, jokalaria = 5;
+	
 	private int x; 
 	private int y;
 	
+	private GelaxkaElementua elementua;
+	
 	
 	public Gelaxka(int pX, int pY) {
-		this.sua = null;
-        this.bomba = null;
-        this.blokea = null;
-        this.etsaia = null;
-        this.jokalari = null;
-        this.blokeMota = null;
         this.x = pX;
         this.y = pY;
 	}
 	private Integer[] lortuEgoera() {
-		Integer[] emaitza = new Integer[]{0,0,0,0,0,0,0,0};
-		if (this.sua!=null) emaitza[0] = 1;
-		if (this.bomba != null) emaitza[1] = 1;
-		if (this.blokea != null) {
-			if (blokea instanceof BlokeBiguna) emaitza[2] = 1;
-			else if (blokea instanceof BlokeGogorra) emaitza[3] = 1;
+		if (this.elementua == null) {
+			return new Integer[]{0,0,0,0,0,0,0,0};
 		}
-		if (this.etsaia!=null) emaitza[4] = 1;
-		if (this.jokalari!=null) emaitza[5] =1;
-		if (this.jokalari instanceof JokBeltza) emaitza[7] =1;
-		if (emaitza[5]==1) {
-			Norabidea norabidea = this.jokalari.getNorabidea();
-			switch (norabidea) {
-			case GORA:
-				emaitza[6] = 1;
-				break;
-			case BEHERA:
-				emaitza[6] = 2;
-				break;
-			case EZKERRERA:
-				emaitza[6] = 3;
-				break;
-			case ESKUINERA:
-				emaitza[6] = 4;
-				break;
-			default:
-				break;
-			}
+		else {
+			return this.elementua.lortuEgoera();
 		}
-		return emaitza;
 	}
 	
 	public int getX() {
@@ -68,75 +37,81 @@ public class Gelaxka extends Observable {
     }
 	
 	public void setJokalaria(Jokalaria pJok) {
-		this.jokalari = pJok;
-		this.blokeMota = BlokeMota.JOKALARIA;
+		if (lortuEgoera()[etsaia] == 1) {
+			gehituElementua(pJok);
+			Laberintoa.getNireLaberintoa().addScore(100);
+		} 
+		else {
+			this.elementua = pJok;
+		}
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
 	public void setEtsaia(boolean pNorabidea) {
-        this.etsaia = new Etsaia(x,y,pNorabidea);
-        if(blokeMota!=null) {
-            kenduAurrekoa();
-        }
-        this.blokeMota = BlokeMota.ETSAIA;
-        setChanged();
+		if (lortuEgoera()[jokalaria] == 1) {
+			gehituElementua(new Etsaia(x,y,pNorabidea));
+			Laberintoa.getNireLaberintoa().addScore(100);
+		} 
+		else {
+			this.elementua = new Etsaia(x,y,pNorabidea);
+		}
+		setChanged();
         notifyObservers(lortuEgoera());
     }
 	
 	public void setSua(int i, int j) {
-		if (this.blokeMota != BlokeMota.BLOKEGOGORRA) {
-			if(blokeMota == BlokeMota.JOKALARIA || this.jokalari != null) {
-				Laberintoa.getNireLaberintoa().partidaAmaitu(this.jokalari,false);
-				//this.jokalari = null;
-			}
-			if(blokeMota!=null) {
-				if (blokeMota == BlokeMota.BLOKEBIGUNA) {
-					kenduAurrekoa();
+		if (lortuEgoera()[blokeGogorra] == 0) {
+			if(elementua!=null) {
+				if (lortuEgoera()[jokalaria] == 1) {
+					gehituElementua(new Sua(i,j));
+					Laberintoa.getNireLaberintoa().partidaAmaitu(false);
+				}
+				else if (lortuEgoera()[blokeBiguna] == 1) {
+					this.elementua = new Sua(i,j);
 					Laberintoa.getNireLaberintoa().addScore(100);
 					Laberintoa.getNireLaberintoa().kenduBlokeBiguna();
 				}
-				else if (blokeMota == BlokeMota.ETSAIA) {
-					kenduAurrekoa();
+				else if (lortuEgoera()[etsaia] == 1) {
+					gehituElementua(new Sua(i,j));
 					Laberintoa.getNireLaberintoa().addScore(500);
 					Laberintoa.getNireLaberintoa().kenduEtsaia();
-					
-				} else if(blokeMota == BlokeMota.SUA) {
-					this.sua.kenduTimer();
-					kenduAurrekoa();	
+					((ElementuTalde)this.elementua).getEtsaia().ezabatu();;
+				} 
+				else if(lortuEgoera()[sua] == 1) {
+					if (this.elementua instanceof Sua) {
+						((Sua) this.elementua).kenduTimer();
+					}
+					else {
+						((ElementuTalde) this.elementua).kenduTimer();
+					}
+					this.elementua = new Sua(i,j);
 				}
 				else {
-					kenduAurrekoa();
+					this.elementua = new Sua(i,j);
 				}
 			}
-			this.sua = new Sua(i,j);
-			this.blokeMota = BlokeMota.SUA;
+			else {
+				this.elementua = new Sua(i,j);
+			}
 			setChanged();
 			notifyObservers(lortuEgoera());
 		}
 	}
 	public void setBlokeBiguna() {
-		this.blokea = BlokeFactory.getNireBlokeFactory().sortuBloke(2);
-		if(blokeMota!=null) {
-			kenduAurrekoa();
-		}
-		this.blokeMota = BlokeMota.BLOKEBIGUNA;
+		this.elementua = BlokeFactory.getNireBlokeFactory().sortuBloke(2);
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
 	public void setBlokeGogorra() {
-		this.blokea = BlokeFactory.getNireBlokeFactory().sortuBloke(1);
-		if(blokeMota!=null) {
-			kenduAurrekoa();
-		}
-		this.blokeMota = BlokeMota.BLOKEGOGORRA;
+		this.elementua = BlokeFactory.getNireBlokeFactory().sortuBloke(1);
+
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
 	
 	public void setBomba(int i,int j,int pBombaMota)  {
-		if (this.jokalari != null) {
-			this.bomba = BombaFactory.getNireBombaFactory().sortuBomba(i, j, pBombaMota);
-			this.blokeMota = BlokeMota.BOMBA;
+		if (lortuEgoera()[jokalaria] == 1) {
+			gehituElementua(BombaFactory.getNireBombaFactory().sortuBomba(i, j, pBombaMota));
 			setChanged();
 			notifyObservers(lortuEgoera());
 		}
@@ -144,82 +119,90 @@ public class Gelaxka extends Observable {
 	
 	
 	public void kenduAurrekoa() {
-		if (this.blokeMota!=null) {
-			switch (this.blokeMota) {
-				case SUA:
-	                this.sua = null;
-	                this.blokeMota = null;
-	                break;
-	            case BOMBA:
-	            	this.bomba = null;
-	                this.blokeMota = null;
-	                break;
-	            case BLOKEBIGUNA:
-	            	this.blokea = null;
-	                this.blokeMota = null;
-	                break;
-				case BLOKEGOGORRA:
-					this.blokea = null;
-	                this.blokeMota = null;
-					break;
-				case ETSAIA:
-					this.etsaia = null;
-	                this.blokeMota = null;
-					break;
-				default:
-					break;
-			}
-		}
+		this.elementua = null;
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
+	
 	public void kenduJokalaria() {
-		this.jokalari = null;
-        if(this.bomba!=null) {
-        	this.blokeMota=BlokeMota.BOMBA;
+        if(lortuEgoera()[bomba]==1) {
+        	this.elementua=((ElementuTalde)this.elementua).getBomba();
         }
-        else if (this.sua!=null) {
-        	this.blokeMota=BlokeMota.SUA;
+        else if (lortuEgoera()[sua]==1) {
+        	this.elementua=((ElementuTalde)this.elementua).getSua();
         }
         else {
-        	this.blokeMota=null;
+        	this.elementua=null;
         }
         setChanged();
         notifyObservers(lortuEgoera());
 	}
-
-	public Jokalaria getJokalaria() {
-		return this.jokalari;
-	}
 	
 	public void etsaiaHasieratu() {
-		if (this.etsaia != null && this.blokeMota == BlokeMota.ETSAIA) {
-			this.etsaia.hasiMugitzen();
+		if (lortuEgoera()[etsaia]==1) {
+			((Etsaia)this.elementua).hasiMugitzen();
 			setChanged();
 			notifyObservers(lortuEgoera());
 		}
 	}
 	
 	public void etsaiaHil() {
-		if (etsaia!=null) {
-			etsaia.ezabatu();
-			this.etsaia=null;
+		if (lortuEgoera()[etsaia]==1) {
+			this.elementua = null;
+			if (this.elementua instanceof Etsaia) {
+				((Etsaia)this.elementua).ezabatu();
+			}
+			else if (this.elementua instanceof ElementuTalde) {
+				((ElementuTalde)this.elementua).kenduTimer();
+			}
+			setChanged();
+			notifyObservers(lortuEgoera());
 		}
 	}
 	
 	public BlokeMota zerDago() {
-		return blokeMota;
+		Integer[] egoera = lortuEgoera();
+		if (egoera[blokeBiguna] == 1) {
+			return BlokeMota.BLOKEBIGUNA;
+		} else if (egoera[blokeGogorra] == 1) {
+			return BlokeMota.BLOKEGOGORRA;
+		} else if (egoera[sua] == 1) {
+			return BlokeMota.SUA;
+		} else if (egoera[bomba] == 1) {
+			return BlokeMota.BOMBA;
+		} else if (egoera[etsaia] == 1) {
+			return BlokeMota.ETSAIA;
+		} else if (egoera[jokalaria] == 1) {
+			return BlokeMota.JOKALARIA;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public void amatatuTimer() {
-		if (this.sua != null) {
-			this.sua.kenduTimer();
+		if (elementua instanceof ElementuTalde) {
+			((ElementuTalde)this.elementua).kenduTimer();
 		}
-		if (this.bomba != null) {
-			this.bomba.kenduTimer();
+		else if (lortuEgoera()[sua] == 1) { 
+			((Sua)this.elementua).kenduTimer();
 		}
-		if (this.etsaia != null) {
-			this.etsaia.kenduTimer();
+		else if (lortuEgoera()[bomba] == 1) {
+			((Bomba)this.elementua).kenduTimer();
+		}
+		else if (lortuEgoera()[etsaia] == 1) {
+			((Etsaia)this.elementua).kenduTimer();
+		}
+	}
+	
+	private void gehituElementua(GelaxkaElementua pElementua) {
+		if (this.elementua == null) {
+			this.elementua = pElementua;
+		} else {
+			ArrayList<GelaxkaElementua> elementuak = new ArrayList<GelaxkaElementua>();
+			elementuak.add(this.elementua);
+			elementuak.add(pElementua);
+			this.elementua = new ElementuTalde(elementuak);
 		}
 	}
 }

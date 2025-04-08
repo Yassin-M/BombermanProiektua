@@ -2,12 +2,12 @@ package Eredua;
 
 import java.util.*;
 
-public abstract class Jokalaria {
+public abstract class Jokalaria implements GelaxkaElementua {
 	protected int bombaKont;
 	protected boolean bizirik;
 	protected int i;
 	protected int j;
-	private Norabidea norabidea;
+	protected Norabidea norabidea;
 	
 	protected Timer timer = null;
 	protected int kont;

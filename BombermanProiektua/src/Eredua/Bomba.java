@@ -3,7 +3,7 @@ package Eredua;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class Bomba {
+public abstract class Bomba implements GelaxkaElementua {
 	private static final int PERIODO = 3;
 	protected int kont;
 	protected Timer timer = null;
@@ -32,4 +32,8 @@ public abstract class Bomba {
 	        timer = null;
 		}
     }
+	
+	public Integer[] lortuEgoera() {
+		return new Integer[]{0,1,0,0,0,0,0,0};
+	}
 }

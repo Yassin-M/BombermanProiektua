@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Etsaia {
+public class Etsaia implements GelaxkaElementua {
 	private int[] aukerak; // 0 = gora, 1 = behera, 2 = ezkerrera, 3 = eskuma
 	private int i;
 	private int j;
@@ -46,7 +46,9 @@ public class Etsaia {
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
-				timer.cancel();	
+				if (timer != null) {
+					timer.cancel();
+				}
 				boolean zuzena= false;
 				do {
 					zuzena = mugitu();
@@ -108,8 +110,12 @@ public class Etsaia {
     }
 	
 	public void ezabatu() {
-		timer = null;
+		kenduTimer();
 		aktibo = false;
+	}
+	
+	public Integer[] lortuEgoera() {
+		return new Integer[]{0,0,0,0,1,0,0,0};
 	}
 
 }

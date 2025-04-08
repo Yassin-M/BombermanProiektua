@@ -207,7 +207,7 @@ public class Laberintoa extends Observable{
 				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
 				jok.mugituEskuinera();
 	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-				partidaAmaitu(jok,false);
+				partidaAmaitu(false);
 			}
 		}
 	}
@@ -223,7 +223,7 @@ public class Laberintoa extends Observable{
 				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
 				jok.mugituEzkerretara();
 	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-				partidaAmaitu(jok, false);
+				partidaAmaitu(false);
 			}
 		}
 	}
@@ -239,7 +239,7 @@ public class Laberintoa extends Observable{
 				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
 				jok.mugituGora();
 	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-				partidaAmaitu(jok, false);
+				partidaAmaitu(false);
 			}
 		}
 	}
@@ -255,7 +255,7 @@ public class Laberintoa extends Observable{
 	        	laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
 	            jok.mugituBehera();
 	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-	        	partidaAmaitu(jok, false);
+	        	partidaAmaitu(false);
 			}
         }        
 	}
@@ -272,26 +272,27 @@ public class Laberintoa extends Observable{
 		this.score += pScore;
 	}
 	
-	public void partidaAmaitu(Jokalaria j, boolean irabazi) {
+	public void partidaAmaitu(boolean irabazi) {
 		timerrakAmatatu();
 		if (irabazi) {
 			itxaron(irabazi);
         } else {
-			j.jokalariaHil();
+			jokalaria.jokalariaHil();
 			itxaron(irabazi);
 		}
 	}
 	public void kenduBlokeBiguna() {
 		this.blokeBigunKop--;
 		if (this.blokeBigunKop == 0 && this.etsaiKop == 0) {
-		    partidaAmaitu(getJokalaria(),true);
+		    partidaAmaitu(true);
 		}
     }
 	
 	public void kenduEtsaia() {
         this.etsaiKop--;
+        System.out.println(etsaiKop);
         if (this.etsaiKop == 0) {
-            partidaAmaitu(getJokalaria(), true);
+            partidaAmaitu(true);
         }
 	}
 	private void itxaron(boolean pIrabazi) {
@@ -331,7 +332,9 @@ public class Laberintoa extends Observable{
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.JOKALARIA) {
-				partidaAmaitu(getJokalaria(), false);
+				laberintoa[i-1][j].setEtsaia(pNorabidea);
+				laberintoa[i][j].kenduAurrekoa();
+				partidaAmaitu(false);
 			} else zuzena = false;
 		} else zuzena = false;
 		return zuzena;
@@ -348,7 +351,9 @@ public class Laberintoa extends Observable{
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.JOKALARIA) {
-				partidaAmaitu(getJokalaria(), false);
+				laberintoa[i+1][j].setEtsaia(pNorabidea);
+				laberintoa[i][j].kenduAurrekoa();
+				partidaAmaitu(false);
 			} else zuzena = false;
 		} else zuzena = false;
 		return zuzena;
@@ -365,7 +370,9 @@ public class Laberintoa extends Observable{
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.JOKALARIA) {
-				partidaAmaitu(getJokalaria(), false);
+				laberintoa[i][j-1].setEtsaia(pNorabidea);
+				laberintoa[i][j].kenduAurrekoa();
+				partidaAmaitu(false);
 			} else zuzena = false;
 		} else zuzena = false;
 		return zuzena;
@@ -382,7 +389,9 @@ public class Laberintoa extends Observable{
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.JOKALARIA) {
-				partidaAmaitu(getJokalaria(), false);
+				laberintoa[i][j+1].setEtsaia(pNorabidea);
+				laberintoa[i][j].kenduAurrekoa();
+				partidaAmaitu(false);
 			} else zuzena = false;
 		} else zuzena = false;
 		return zuzena;
