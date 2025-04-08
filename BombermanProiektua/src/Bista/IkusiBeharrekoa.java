@@ -6,8 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
 import Eredua.*;
 
 import java.awt.BorderLayout;
@@ -48,6 +48,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JRadioButton rdbtnBeltza;
 	private JRadioButton rdbtnZuria;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JLabel lblBerriroJolsatuNahi;
+	private JPanel panel_4;
+	private JButton btnBtnbai;
+	private JButton btnEz;
+	private JPanel contentPane_2;
 
 	public IkusiBeharrekoa() {
 		setBounds(100, 100, 450, 300);
@@ -175,12 +180,26 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			}
 			if(arg0.getSource().equals(btnClassic)) {
 				Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
+				cardLayout.show(pantailak, "Laberintoa");
 			}else if(arg0.getSource().equals(btnEmpty)) {
 				Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(j);
+				cardLayout.show(pantailak, "Laberintoa");
 			}else if(arg0.getSource().equals(btnSoft)){
 				Laberintoa.getNireLaberintoa().laberintoaSortuSoft(j);
+				cardLayout.show(pantailak, "Laberintoa");
 			}
-			cardLayout.show(pantailak, "Laberintoa");
+			
+			if(arg0.getSource().equals(btnBtnbai)) {
+				Laberintoa.resetInstance();
+				Laberintoa.getNireLaberintoa().addObserver(IkusiBeharrekoa.this);
+				panel.removeAll();
+				panel.revalidate();
+				panel.repaint();
+				cardLayout.show(pantailak, "Hasiera");
+			}
+			if(arg0.getSource().equals(btnEz)) {
+				System.exit(0);
+			}
 		}
 	}
 
@@ -250,9 +269,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					e.printStackTrace();
 				}
 			}
-			dispose();
-			Amaitu as = new Amaitu();
-			as.setVisible(true);
+			cardLayout.show(pantailak, "Amaitu");
 		}
 	}
 	
@@ -262,6 +279,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			pantailak = new JPanel(cardLayout);
 			pantailak.add(getLayeredPane_1(), "Laberintoa");
 			pantailak.add(HasierakoPantaila(), "Hasiera");
+			pantailak.add(Amaitu(), "Amaitu");
 			cardLayout.show(pantailak, "Hasiera");
 		}
 		return pantailak;
@@ -334,5 +352,50 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		return rdbtnZuria;
 	}
+	
+	public JPanel Amaitu() {
+		setTitle("Game Over");
+		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/onFire4.png")).getImage());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane_2 = new JPanel();
+		contentPane_2.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane_2.setLayout(new BorderLayout(0, 0));
+		contentPane_2.add(getLblBerriroJolsatuNahi(), BorderLayout.NORTH);
+		contentPane_2.add(getPanel_4(), BorderLayout.CENTER);
+		return contentPane_2;
+	}
+
+	private JLabel getLblBerriroJolsatuNahi() {
+		if (lblBerriroJolsatuNahi == null) {
+			lblBerriroJolsatuNahi = new JLabel("Berriro jolastu nahi duzu?");
+			lblBerriroJolsatuNahi.setHorizontalAlignment(SwingConstants.CENTER);
+		}
+		return lblBerriroJolsatuNahi;
+	}
+	private JPanel getPanel_4() {
+		if (panel_4 == null) {
+			panel_4 = new JPanel();
+			panel_4.setLayout(new GridLayout(0, 1, 0, 0));
+			panel_4.add(getBtnBtnbai());
+			panel_4.add(getBtnEz());
+		}
+		return panel_4;
+	}
+	private JButton getBtnBtnbai() {
+		if (btnBtnbai == null) {
+			btnBtnbai = new JButton("Bai");
+			btnBtnbai.addActionListener(getControler());
+		}
+		return btnBtnbai;
+	}
+	private JButton getBtnEz() {
+		if (btnEz == null) {
+			btnEz = new JButton("Ez");
+			btnEz.addActionListener(getControler());
+		}
+		return btnEz;
+	}
+	
 }
 
