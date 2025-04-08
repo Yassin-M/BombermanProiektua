@@ -30,18 +30,17 @@ public class HasierakoPantaila extends JFrame {
 	private JRadioButton rdbtnZuria;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-	public HasierakoPantaila() {
+	public JPanel HasierakoPantaila() {
         setTitle("Hasiera");
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/mainBomb.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getPanel());
 		contentPane.add(getPanelJokalariak(), BorderLayout.SOUTH);
+		return contentPane;
 	}
 
 	private JPanel getPanel() {

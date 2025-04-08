@@ -1,14 +1,20 @@
 package Bista;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
 
 import Eredua.*;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
@@ -20,6 +26,7 @@ import javax.swing.JLabel;
 import java.awt.Graphics;
 import javax.swing.JLayeredPane;
 import java.awt.Font;
+import java.awt.CardLayout;
 
 @SuppressWarnings({"deprecation","removal"})
 
@@ -30,6 +37,17 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JLayeredPane layeredPane;
 	private nireFondoa fondoLabel;
 	private Controler controler=null;
+	private JPanel pantailak;
+	private CardLayout cardLayout;
+	private JPanel contentPane;
+	private JPanel panel_3;
+	private JButton btnClassic;
+	private JButton btnSoft;
+	private JButton btnEmpty;
+	private JPanel panelJokalariak;
+	private JRadioButton rdbtnBeltza;
+	private JRadioButton rdbtnZuria;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	public IkusiBeharrekoa() {
 		setBounds(100, 100, 450, 300);
@@ -37,7 +55,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		getContentPane().add(getLayeredPane_1(), BorderLayout.CENTER);
+		setContentPane(getPantailak());
 		Laberintoa.getNireLaberintoa().addObserver(this);
 		addKeyListener(getControler());
 		addComponentListener(getControler());
@@ -102,7 +120,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
         return controler;
 	}
 	
-	private class Controler extends ComponentAdapter implements KeyListener {
+	private class Controler extends ComponentAdapter implements KeyListener, ActionListener {
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
@@ -147,6 +165,23 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			fondoLabel.repaint();
 		}
 		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String j;
+			if(rdbtnZuria.isSelected()) {
+				j = "zuria";
+			}else {
+				j = "beltza";
+			}
+			if(arg0.getSource().equals(btnClassic)) {
+				Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
+			}else if(arg0.getSource().equals(btnEmpty)) {
+				Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(j);
+			}else if(arg0.getSource().equals(btnSoft)){
+				Laberintoa.getNireLaberintoa().laberintoaSortuSoft(j);
+			}
+			cardLayout.show(pantailak, "Laberintoa");
+		}
 	}
 
 	@Override
@@ -221,5 +256,83 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 	}
 	
+	private JPanel getPantailak() {
+		if (pantailak == null) {
+			cardLayout = new CardLayout();
+			pantailak = new JPanel(cardLayout);
+			pantailak.add(getLayeredPane_1(), "Laberintoa");
+			pantailak.add(HasierakoPantaila(), "Hasiera");
+			cardLayout.show(pantailak, "Hasiera");
+		}
+		return pantailak;
+	}
+	
+	public JPanel HasierakoPantaila() {
+        setTitle("Hasiera");
+		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/mainBomb.png")).getImage());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.add(getPanel_3(), BorderLayout.CENTER);
+		contentPane.add(getPanelJokalariak(), BorderLayout.SOUTH);
+		return contentPane;
+	}
+
+	private JPanel getPanel_3() {
+		if (panel_3 == null) {
+			panel_3 = new JPanel();
+			panel_3.add(getBtnClassic());
+			panel_3.add(getBtnSoft());
+			panel_3.add(getBtnEmpty());
+		}
+		return panel_3;
+	}
+	private JButton getBtnClassic() {
+		if (btnClassic == null) {
+			btnClassic = new JButton("Classic");
+			btnClassic.addActionListener(getControler());
+		}
+		return btnClassic;
+	}
+	private JButton getBtnSoft() {
+		if (btnSoft == null) {
+			btnSoft = new JButton("Soft");
+			btnSoft.addActionListener(getControler());
+		}
+		return btnSoft;
+	}
+	private JButton getBtnEmpty() {
+		if (btnEmpty == null) {
+			btnEmpty = new JButton("Empty");
+			btnEmpty.addActionListener(getControler());
+		}
+		return btnEmpty;
+	}
+
+	private JPanel getPanelJokalariak() {
+		if (panelJokalariak == null) {
+			panelJokalariak = new JPanel();
+			panelJokalariak.add(getRdbtnZuria());
+			panelJokalariak.add(getRdbtnBeltza());
+			rdbtnZuria.setSelected(true);
+		}
+		return panelJokalariak;
+	}
+	private JRadioButton getRdbtnBeltza() {
+		if (rdbtnBeltza == null) {
+			rdbtnBeltza = new JRadioButton("Beltza");
+			buttonGroup.add(rdbtnBeltza);
+		}
+		return rdbtnBeltza;
+	}
+	private JRadioButton getRdbtnZuria() {
+		if (rdbtnZuria == null) {
+			rdbtnZuria = new JRadioButton("Zuria");
+			buttonGroup.add(rdbtnZuria);
+		}
+		return rdbtnZuria;
+	}
 }
 

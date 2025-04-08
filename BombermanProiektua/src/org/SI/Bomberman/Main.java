@@ -10,7 +10,7 @@ public class Main {
 			public void run() {
 				try {
 					//IkusiBeharrekoa frame = new IkusiBeharrekoa();
-					HasierakoPantaila elegir = new HasierakoPantaila();
+					IkusiBeharrekoa elegir = new IkusiBeharrekoa();
 					elegir.setVisible(true);
 					//frame.setVisible(true);
 					//Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(); lo he movido a hasierako pantaila
