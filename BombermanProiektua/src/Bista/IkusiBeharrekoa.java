@@ -54,9 +54,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	
 	private HasierakoPantaila hasierakoPantaila;
 	private String unekoPantaila;
-	private String j = "zuria";
+	private String j = "white";
 	private String mapa;
-	private String unekoMapa;
+	private String unekoMapa = "Classic";
 	
 
 	public IkusiBeharrekoa() {
