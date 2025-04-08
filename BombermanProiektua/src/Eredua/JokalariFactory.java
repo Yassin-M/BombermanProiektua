@@ -15,10 +15,10 @@ public class JokalariFactory {
 	public Jokalaria sortuJokalaria(String pMota) {
 		Jokalaria jokalaria = null;
 		switch (pMota) {
-		case "zuria":
+		case "white":
 			jokalaria = new JokZuria(10, 0, 0);
 			break;
-		case "beltza":
+		case "black":
 			jokalaria = new JokBeltza(1, 0, 0);
 			break;
 		default:

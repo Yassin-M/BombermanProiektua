@@ -55,6 +55,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private HasierakoPantaila hasierakoPantaila;
 	private String unekoPantaila;
 	private String j = "zuria";
+	private String mapa;
+	private String unekoMapa;
 	
 
 	public IkusiBeharrekoa() {
@@ -142,20 +144,64 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
                 switch (key) {
                     case KeyEvent.VK_LEFT:
                         hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
-                        j = "zuria";
+                        j = "white";
                         break;
                     case KeyEvent.VK_RIGHT:
                         hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioBlack.png");
-                        j = "beltza";
+                        j = "black";
                         break;
                     case KeyEvent.VK_SPACE:
-                        Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
-                        cardLayout.show(pantailak, "Laberintoa");
-                        unekoPantaila = "Laberintoa";
-                        break;
+                    	unekoPantaila = "Mapa";
+                    	unekoMapa = "Classic";
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Classic.png");
+                    	break;
                 }
                 System.out.println("Valor de j: " + j);
-            } else {
+            } else if(unekoPantaila.equals("Mapa") ) {
+                	switch (key) {
+                	case KeyEvent.VK_LEFT:
+                    	if(unekoMapa.equals("Classic")) {
+                        hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Classic.png");
+                        unekoMapa = "Classic";
+                    	}else if(unekoMapa.equals("Soft")) {
+                    		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Classic.png");
+                    		unekoMapa = "Classic";
+                    	}else if(unekoMapa.equals("Empty")) {
+                    		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Soft.png");
+                    		unekoMapa = "Soft";
+                    	}
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                    	if(unekoMapa.equals("Classic")) {
+                            hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Soft.png");
+                            unekoMapa = "Soft";
+                        	}else if(unekoMapa.equals("Soft")) {
+                        		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Empty.png");
+                        		unekoMapa = "Empty";
+                        	}else if(unekoMapa.equals("Empty")) {
+                        		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Empty.png");
+                        		unekoMapa = "Empty";
+                        	}
+                        break;
+					case KeyEvent.VK_SPACE:
+						switch(unekoMapa) {
+						case "Classic":
+							Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
+							break;
+						case "Soft":
+							Laberintoa.getNireLaberintoa().laberintoaSortuSoft(j);
+							break;
+						case "Empty":
+							Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(j);
+							break;
+						}
+                        cardLayout.show(pantailak, "Laberintoa");
+                        unekoPantaila = "Laberintoa";
+						break;
+                	}
+            	
+            }
+            else {
                 switch (key) {
                     case KeyEvent.VK_UP:
                         Laberintoa.getNireLaberintoa().jokalariaMugituGora();
@@ -292,6 +338,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				}
 			}
 			cardLayout.show(pantailak, "Amaitu");
+			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
+			unekoPantaila = "Hasiera";
 		}
 	}
 	
