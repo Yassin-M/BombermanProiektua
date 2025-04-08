@@ -58,9 +58,10 @@ public class GelaxkaBista extends JLabel implements Observer{
         		jokmota = "black";
         	}
         	if(egoera[1]==1) {
+        		System.out.println("Bomba irudia: "+jokmota);
         		irudia = "/Bista/irudiak/"+jokmota+"withbomb1.png";
         	}
-        	if (egoera[0]==1) {
+        	else if (egoera[0]==1) {
 				if (blinkTimer != null && blinkTimer.isRunning()) {
 	                blinkTimer.stop();
 	            }
