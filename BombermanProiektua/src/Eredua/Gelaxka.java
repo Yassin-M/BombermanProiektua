@@ -212,5 +212,7 @@ public class Gelaxka extends Observable {
 			elementuak.add(pElementua);
 			this.elementua = new ElementuTalde(elementuak);
 		}
+		setChanged();
+		notifyObservers(lortuEgoera());
 	}
 }
