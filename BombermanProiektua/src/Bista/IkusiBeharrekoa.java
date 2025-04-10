@@ -47,6 +47,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private String unekoPantaila;
 	private String j = "white";
 	private String unekoMapa = "Classic";
+	private boolean bombaJarrita = false;
 	
 
 	public IkusiBeharrekoa() {
@@ -178,10 +179,10 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(1, j);
 							break;
 						case "Soft":
-							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(2, j);
+							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(3, j);
 							break;
 						case "Empty":
-							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(3, j);
+							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(2, j);
 							break;
 						}
                         cardLayout.show(pantailak, "Laberintoa");
@@ -193,19 +194,26 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
             else {
                 switch (key) {
                     case KeyEvent.VK_UP:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituGora();
                         break;
                     case KeyEvent.VK_DOWN:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituBehera();
                         break;
                     case KeyEvent.VK_LEFT:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEzkerretara();
                         break;
                     case KeyEvent.VK_RIGHT:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEskuinera();
                         break;
                     case KeyEvent.VK_SPACE:
-                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria().bombaJarri();
+                    	if (!bombaJarrita) {
+                    		bombaJarrita = true;
+                        	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria().bombaJarri();
+                    	}
                         break;
                 }
             }
