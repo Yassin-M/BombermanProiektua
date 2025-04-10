@@ -141,34 +141,13 @@ public abstract class Laberintoa {
 	}
 	
 
-	public void suaJarri(int i, int j, boolean pUltrabomba){
-		laberintoa[i][j].setSua(i,j);
-		if (!pUltrabomba) {
-			if (i > 0) {
-				laberintoa[i-1][j].setSua(i-1, j);
-			}
-			if (i < 10) {
-				laberintoa[i+1][j].setSua(i+1, j);
-			}
-			if (j > 0) {
-				laberintoa[i][j-1].setSua(i, j-1);
-			}
-			if (j < 16) {
-				laberintoa[i][j+1].setSua(i, j+1);
-			}
+	public boolean suaJarri(int i, int j){
+		boolean zuzena = false;
+		if (laberintoa[i][j].zerDago() != BlokeMota.BLOKEGOGORRA) {
+			zuzena = true;
+			laberintoa[i][j].setSua(i,j);
 		}
-		else {
-			if (this.zerDago(i+1,j) != BlokeMota.BLOKEGOGORRA && this.zerDago(i-1,j) != BlokeMota.BLOKEGOGORRA) {
-				for (int y = 0; y < 11; y++) {
-					laberintoa[y][j].setSua(y, j);
-				}
-			}
-			if (this.zerDago(i,j+1) != BlokeMota.BLOKEGOGORRA && this.zerDago(i,j-1) != BlokeMota.BLOKEGOGORRA) {
-				for (int x = 0; x < 17; x++) {
-					laberintoa[i][x].setSua(i, x);
-				}
-			}
-		}
+		return zuzena;
 	}
 	
 	public void suaKendu(int i, int j) {
