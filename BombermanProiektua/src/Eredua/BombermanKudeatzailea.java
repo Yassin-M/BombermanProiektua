@@ -7,7 +7,7 @@ import java.util.TimerTask;
 public class BombermanKudeatzailea extends Observable{
 	private static BombermanKudeatzailea nireBombermanKudeatzaile;
 	private Laberintoa lab;
-	private int kont;
+	private int kont = 2;
 	
 	private BombermanKudeatzailea() {
 		lab = null;
