@@ -57,6 +57,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private String j = "white";
 	private String mapa;
 	private String unekoMapa = "Classic";
+	private boolean bombaJarrita = false;
 	
 
 	public IkusiBeharrekoa() {
@@ -204,19 +205,26 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
             else {
                 switch (key) {
                     case KeyEvent.VK_UP:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituGora();
                         break;
                     case KeyEvent.VK_DOWN:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituBehera();
                         break;
                     case KeyEvent.VK_LEFT:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEzkerretara();
                         break;
                     case KeyEvent.VK_RIGHT:
+                    	bombaJarrita = false;
                     	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEskuinera();
                         break;
                     case KeyEvent.VK_SPACE:
-                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria().bombaJarri();
+                    	if (!bombaJarrita) {
+                    		bombaJarrita = true;
+                        	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria().bombaJarri();
+                    	}
                         break;
                 }
             }
