@@ -66,7 +66,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setContentPane(getPantailak());
-		Laberintoa.getNireLaberintoa().addObserver(this);
+		BombermanKudeatzailea.getNireKudeatzaile().addObserver(this);
 		addKeyListener(getControler());
 		addComponentListener(getControler());
 		setFocusable(true);
@@ -186,13 +186,13 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					case KeyEvent.VK_SPACE:
 						switch(unekoMapa) {
 						case "Classic":
-							Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
+							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(1, j);
 							break;
 						case "Soft":
-							Laberintoa.getNireLaberintoa().laberintoaSortuSoft(j);
+							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(2, j);
 							break;
 						case "Empty":
-							Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(j);
+							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(3, j);
 							break;
 						}
                         cardLayout.show(pantailak, "Laberintoa");
@@ -204,19 +204,19 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
             else {
                 switch (key) {
                     case KeyEvent.VK_UP:
-                        Laberintoa.getNireLaberintoa().jokalariaMugituGora();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituGora();
                         break;
                     case KeyEvent.VK_DOWN:
-                        Laberintoa.getNireLaberintoa().jokalariaMugituBehera();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituBehera();
                         break;
                     case KeyEvent.VK_LEFT:
-                        Laberintoa.getNireLaberintoa().jokalariaMugituEzkerretara();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEzkerretara();
                         break;
                     case KeyEvent.VK_RIGHT:
-                        Laberintoa.getNireLaberintoa().jokalariaMugituEskuinera();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEskuinera();
                         break;
                     case KeyEvent.VK_SPACE:
-                        Laberintoa.getNireLaberintoa().getJokalaria().bombaJarri();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria().bombaJarri();
                         break;
                 }
             }
@@ -258,8 +258,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			}*/
 			
 			if(arg0.getSource().equals(btnBtnbai)) {
-				Laberintoa.resetInstance();
-				Laberintoa.getNireLaberintoa().addObserver(IkusiBeharrekoa.this);
+				BombermanKudeatzailea.getNireKudeatzaile().laberintoaErreseteatu();
+				BombermanKudeatzailea.getNireKudeatzaile().addObserver(IkusiBeharrekoa.this);
 				panel.removeAll();
 				panel.revalidate();
 				panel.repaint();
@@ -273,7 +273,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (o instanceof Laberintoa && arg instanceof Integer) {
+		if (o instanceof BombermanKudeatzailea && arg instanceof Integer) {
 			Integer mapa = (Integer) arg;
 			switch (mapa) {
 				case 1:
@@ -292,7 +292,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				for (int j = 0; j < 17; j++) {
 					String irudia = null;
 					//ALDATU BEHAR - EZIN DA HEMENDIK EREDURA DEITU
-					switch (Laberintoa.getNireLaberintoa().zerDago(i,j)) {
+					switch (BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().zerDago(i,j)) {
 			            case BLOKEBIGUNA:
 			            	irudia = "/Bista/irudiak/soft1.png";
 							break;
@@ -303,7 +303,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 							irudia = "/Bista/irudiak/pass1.png";
 							break;
 						case JOKALARIA:
-							if(Laberintoa.getNireLaberintoa().getJokalaria() instanceof JokZuria) {
+							if(BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria() instanceof JokZuria) {
 								irudia = "/Bista/irudiak/whitedown1.png";
 							}else {
 								irudia = "/Bista/irudiak/blackdown1.png";
@@ -312,7 +312,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 						case null:
 							break;
 					default:
-						System.out.println("Errorea: hasieran "+Laberintoa.getNireLaberintoa().zerDago(i,j).toString()+" gelaxka aurkitu da." );
+						System.out.println("Errorea: hasieran "+BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().zerDago(i,j).toString()+" gelaxka aurkitu da." );
 						break;
 					}
 					GelaxkaBista gelaxka = new GelaxkaBista(i,j,irudia);
@@ -323,7 +323,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				}
 			}
 		}
-		if (o instanceof Laberintoa && arg instanceof Boolean) {
+		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
 				JLabel lblZorionak = new JLabel("ZORIONAK!");

@@ -28,7 +28,7 @@ public class Sua implements GelaxkaElementua {
 	public void updateKont() {
 		kont--;
 		if(kont==0) {
-			Laberintoa.getNireLaberintoa().suaKendu(i,j);
+			BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().suaKendu(i,j);
 			if(timer != null) {
 				timer.cancel();
 			}			

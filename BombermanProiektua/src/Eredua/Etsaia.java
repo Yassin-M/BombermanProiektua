@@ -71,25 +71,25 @@ public class Etsaia implements GelaxkaElementua {
 		boolean zuzena = true;
 		switch(aukerak[aukera]) {
 			case 0: 
-				zuzena=Laberintoa.getNireLaberintoa().etsaiaMugituGora(i,j,norabidea);
+				zuzena=BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituGora(i,j,norabidea);
 				if (!zuzena) {
 					kenduAukera(0);
 				} else aktibo = false;
 				break;
 			case 1:
-				zuzena = Laberintoa.getNireLaberintoa().etsaiaMugituBehera(i, j,norabidea);
+				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituBehera(i, j,norabidea);
 				if (!zuzena) {
 					kenduAukera(1);
 				} else aktibo = false;
 				break;
 			case 2:
-				zuzena = Laberintoa.getNireLaberintoa().etsaiaMugituEzerretara(i, j, true);
+				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEzerretara(i, j, true);
 				if (!zuzena) {
 					kenduAukera(2);
 				} else aktibo = false;
 				break;
 			case 3:
-				zuzena = Laberintoa.getNireLaberintoa().etsaiaMugituEskuinera(i, j, false);
+				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEskuinera(i, j, false);
 				if (!zuzena) {
 					kenduAukera(3);
 				} else aktibo = false;

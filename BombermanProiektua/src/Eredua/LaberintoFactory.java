@@ -16,13 +16,16 @@ public class LaberintoFactory {
         Laberintoa laberintoa = null;
         switch (mota) {
         case 1:
-            laberintoa = new LaberintoaClassic(jokalariMota);
+            laberintoa = new LaberintoClassic();
+            laberintoa.laberintoaSortuClassic(jokalariMota);
             break;
         case 2:
-            laberintoa = new LaberintoaSoft(jokalariMota);
+            laberintoa = new LaberintoSoft();
+            laberintoa.laberintoaSortuSoft(jokalariMota);
             break;
         case 3:
-            laberintoa = new LaberintoaEmpty(jokalariMota);
+            laberintoa = new LaberintoEmpty();
+            laberintoa.laberintoaSortuEmpty(jokalariMota);
             break;
         default:
             break;

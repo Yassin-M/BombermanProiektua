@@ -10,7 +10,7 @@ public class BombaNormala extends Bomba {
 	public void updateKont() {
 		super.kont--;
 		if(super.kont==0) {
-			Laberintoa.getNireLaberintoa().suaJarri(super.i, super.j, false);
+			BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().suaJarri(super.i, super.j, false);
 			if(super.timer != null) {
 				super.timer.cancel();
 			}

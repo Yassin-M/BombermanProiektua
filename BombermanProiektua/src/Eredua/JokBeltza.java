@@ -9,7 +9,7 @@ public class JokBeltza extends Jokalaria {
 	@Override
 	public void bombaJarri() {
 		if (super.bombaKont>0) {
-			Laberintoa.getNireLaberintoa().bombaJarri(i, j, 2);
+			BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().bombaJarri(i, j, 2);
 			super.bombaKont--;
 			if(super.bombaKont==0) {
 				super.timerBomba();

@@ -1,14 +1,13 @@
 package Eredua;
 
-import java.util.Observable;
+
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 @SuppressWarnings("deprecation")
 
-public class Laberintoa extends Observable{
-	private static Laberintoa nireLaberintoa;
+public abstract class Laberintoa {
 	private Gelaxka[][] laberintoa;
 	private Jokalaria jokalaria;
 	private int blokeBigunKop = 0;
@@ -16,7 +15,7 @@ public class Laberintoa extends Observable{
 	private int score = 0;
     private int kont = 2;
 	
-	private Laberintoa() {
+	protected Laberintoa() {
 		this.laberintoa = null;
 		this.jokalaria = null;
 		this.blokeBigunKop = 0;
@@ -25,21 +24,9 @@ public class Laberintoa extends Observable{
 		this.kont = 2;
 	}
 	
-	public static Laberintoa getNireLaberintoa() {
-		if (nireLaberintoa == null) {
-			nireLaberintoa = new Laberintoa();
-		}
-		return nireLaberintoa;
-	}
-	
-	public static synchronized void resetInstance() {
-        nireLaberintoa = null;
-    }
-	
 	public void jokoaAbiarazi() {
 		
 	}
-	
 	public void laberintoaSortuClassic(String pJok) {
 		this.laberintoa = new Gelaxka[11][17];
 		for (int i=0; i<11; i++) {
@@ -69,8 +56,6 @@ public class Laberintoa extends Observable{
 			}
 		}
 		etsaiakHasieratu();
-		setChanged();
-		notifyObservers(1);
 	}
 	
 	private void etsaiakHasieratu() {
@@ -107,8 +92,6 @@ public class Laberintoa extends Observable{
 			}
 		}
 		etsaiakHasieratu();
-		setChanged();
-		notifyObservers(2);
 	}
 	
 	public void laberintoaSortuEmpty(String pJok) {
@@ -132,8 +115,6 @@ public class Laberintoa extends Observable{
 			}
 		}
 		etsaiakHasieratu();
-		setChanged();
-		notifyObservers(3);
 	}
 	
 	public BlokeMota zerDago(int i, int j) {
@@ -275,10 +256,10 @@ public class Laberintoa extends Observable{
 	public void partidaAmaitu(boolean irabazi) {
 		timerrakAmatatu();
 		if (irabazi) {
-			itxaron(irabazi);
+			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
         } else {
 			jokalaria.jokalariaHil();
-			itxaron(irabazi);
+			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
 		}
 	}
 	public void kenduBlokeBiguna() {
@@ -294,21 +275,6 @@ public class Laberintoa extends Observable{
             partidaAmaitu(true);
         }
 	}
-	private void itxaron(boolean pIrabazi) {
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                kont--;
-                if (kont == 0) {
-                    timer.cancel();
-                    setChanged();
-        			notifyObservers(pIrabazi);
-                }
-            }
-        };
-        timer.scheduleAtFixedRate(timerTask, 0, 1000);
-    }
 	
 	private void timerrakAmatatu() {
 		for (int i = 0; i < 11; i++) {

@@ -10,7 +10,7 @@ public class UltraBomba extends Bomba{
 	public void updateKont() {
 		super.kont--;
 		if(super.kont==0) {
-			Laberintoa.getNireLaberintoa().suaJarri(super.i, super.j, true);
+			BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().suaJarri(super.i, super.j, true);
 			if(super.timer != null) {
 				super.timer.cancel();
 			}			

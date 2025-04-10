@@ -39,7 +39,7 @@ public class Gelaxka extends Observable {
 	public void setJokalaria(Jokalaria pJok) {
 		if (lortuEgoera()[etsaia] == 1) {
 			gehituElementua(pJok);
-			Laberintoa.getNireLaberintoa().addScore(100);
+			BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 		} 
 		else if (lortuEgoera()[sua] == 1){
 			gehituElementua(pJok);
@@ -56,7 +56,7 @@ public class Gelaxka extends Observable {
 			zuzena = true;
 			if (lortuEgoera()[jokalaria] == 1) {
 				gehituElementua(new Etsaia(x,y,pNorabidea));
-				Laberintoa.getNireLaberintoa().addScore(100);
+				BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 			} 
 			else {
 				this.elementua = new Etsaia(x,y,pNorabidea);
@@ -72,17 +72,17 @@ public class Gelaxka extends Observable {
 			if(elementua!=null) {
 				if (lortuEgoera()[jokalaria] == 1) {
 					gehituElementua(new Sua(i,j));
-					Laberintoa.getNireLaberintoa().partidaAmaitu(false);
+					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().partidaAmaitu(false);
 				}
 				else if (lortuEgoera()[blokeBiguna] == 1) {
 					this.elementua = new Sua(i,j);
-					Laberintoa.getNireLaberintoa().addScore(100);
-					Laberintoa.getNireLaberintoa().kenduBlokeBiguna();
+					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
+					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().kenduBlokeBiguna();
 				}
 				else if (lortuEgoera()[etsaia] == 1) {
 					gehituElementua(new Sua(i,j));
-					Laberintoa.getNireLaberintoa().addScore(500);
-					Laberintoa.getNireLaberintoa().kenduEtsaia();
+					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(500);
+					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().kenduEtsaia();
 					((ElementuTalde)this.elementua).getEtsaia().ezabatu();;
 				} 
 				else if(lortuEgoera()[sua] == 1) {

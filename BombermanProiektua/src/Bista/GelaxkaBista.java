@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
+import Eredua.BombermanKudeatzailea;
 import Eredua.Gelaxka;
 import Eredua.Laberintoa;
 
@@ -39,7 +40,7 @@ public class GelaxkaBista extends JLabel implements Observer{
 					}
 		    }
 		});
-		Laberintoa.getNireLaberintoa().getGelaxka(pLerroa, pZutabea).addObserver(this);
+		BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getGelaxka(pLerroa, pZutabea).addObserver(this);
 	}
 	
 	@Override
