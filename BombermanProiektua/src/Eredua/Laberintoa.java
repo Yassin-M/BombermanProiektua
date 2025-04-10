@@ -322,12 +322,15 @@ public class Laberintoa extends Observable{
 
 	public boolean etsaiaMugituGora(int i, int j, boolean pNorabidea) {
 		boolean zuzena = true;
+		Random rand = new Random();
 		if(i>0) {
 			if (laberintoa[i-1][j].zerDago() == null) {
-				laberintoa[i][j].kenduAurrekoa();
-				laberintoa[i-1][j].setEtsaia(pNorabidea);
-				laberintoa[i-1][j].etsaiaHasieratu();
-			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.SUA ) {
+				zuzena = laberintoa[i-1][j].setEtsaia(pNorabidea);
+				if (zuzena) {
+					laberintoa[i][j].kenduAurrekoa();
+					laberintoa[i-1][j].etsaiaHasieratu();
+				}
+			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
 				//kenduEtsaia();
 			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.JOKALARIA) {
@@ -341,12 +344,15 @@ public class Laberintoa extends Observable{
 
 	public boolean etsaiaMugituBehera(int i, int j, boolean pNorabidea) {
 		boolean zuzena = true;
+		Random rand = new Random();
 		if(i<10) {
 			if (laberintoa[i+1][j].zerDago() == null) {
-				laberintoa[i][j].kenduAurrekoa();
-				laberintoa[i+1][j].setEtsaia(pNorabidea);
-				laberintoa[i+1][j].etsaiaHasieratu();
-			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.SUA ) {
+				zuzena = laberintoa[i+1][j].setEtsaia(pNorabidea);
+				if (zuzena) {
+					laberintoa[i][j].kenduAurrekoa();
+					laberintoa[i+1][j].etsaiaHasieratu();
+				}
+			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
 				//kenduEtsaia();
 			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.JOKALARIA) {
@@ -360,12 +366,15 @@ public class Laberintoa extends Observable{
 
 	public boolean etsaiaMugituEzerretara(int i, int j, boolean pNorabidea) {
 		boolean zuzena = true;
+		Random rand = new Random();
 		if(j>0) {
 			if (laberintoa[i][j-1].zerDago() == null) {
-				laberintoa[i][j].kenduAurrekoa();
-				laberintoa[i][j-1].setEtsaia(pNorabidea);
-				laberintoa[i][j-1].etsaiaHasieratu();
-			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.SUA ) {
+				zuzena = laberintoa[i][j-1].setEtsaia(pNorabidea);
+				if (zuzena) {
+					laberintoa[i][j].kenduAurrekoa();
+					laberintoa[i][j-1].etsaiaHasieratu();	
+				}
+			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
 				//kenduEtsaia();
 			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.JOKALARIA) {
@@ -379,12 +388,15 @@ public class Laberintoa extends Observable{
 
 	public boolean etsaiaMugituEskuinera(int i, int j, boolean pNorabidea) {
 		boolean zuzena = true;
+		Random rand = new Random();
 		if(j<16) {
 			if (laberintoa[i][j+1].zerDago() == null) {
-				laberintoa[i][j].kenduAurrekoa();
-				laberintoa[i][j+1].setEtsaia(pNorabidea);
-				laberintoa[i][j+1].etsaiaHasieratu();
-			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.SUA ) {
+				zuzena = laberintoa[i][j+1].setEtsaia(pNorabidea);	
+				if (zuzena) {
+					laberintoa[i][j].kenduAurrekoa();
+					laberintoa[i][j+1].etsaiaHasieratu();	
+				}
+			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
 				//kenduEtsaia();
 			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.JOKALARIA) {

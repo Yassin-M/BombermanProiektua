@@ -50,16 +50,21 @@ public class Gelaxka extends Observable {
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
-	public void setEtsaia(boolean pNorabidea) {
-		if (lortuEgoera()[jokalaria] == 1) {
-			gehituElementua(new Etsaia(x,y,pNorabidea));
-			Laberintoa.getNireLaberintoa().addScore(100);
-		} 
-		else {
-			this.elementua = new Etsaia(x,y,pNorabidea);
+	public boolean setEtsaia(boolean pNorabidea) {
+		boolean zuzena = false;
+		if (lortuEgoera()[etsaia] == 0) {
+			zuzena = true;
+			if (lortuEgoera()[jokalaria] == 1) {
+				gehituElementua(new Etsaia(x,y,pNorabidea));
+				Laberintoa.getNireLaberintoa().addScore(100);
+			} 
+			else {
+				this.elementua = new Etsaia(x,y,pNorabidea);
+			}
+			setChanged();
+	        notifyObservers(lortuEgoera());
 		}
-		setChanged();
-        notifyObservers(lortuEgoera());
+		return zuzena;
     }
 	
 	public void setSua(int i, int j) {
