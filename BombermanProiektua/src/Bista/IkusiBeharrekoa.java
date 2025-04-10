@@ -37,15 +37,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private Controler controler=null;
 	private JPanel pantailak;
 	private CardLayout cardLayout;
-	//private JPanel contentPane;
-	/*private JPanel panel_3;
-	private JButton btnClassic;
-	private JButton btnSoft;
-	private JButton btnEmpty;
-	private JPanel panelJokalariak;
-	private JRadioButton rdbtnBeltza;
-	private JRadioButton rdbtnZuria;
-	private final ButtonGroup buttonGroup = new ButtonGroup();*/
 	private JLabel lblBerriroJolsatuNahi;
 	private JPanel panel_4;
 	private JButton btnBtnbai;
@@ -55,7 +46,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private HasierakoPantaila hasierakoPantaila;
 	private String unekoPantaila;
 	private String j = "white";
-	private String mapa;
 	private String unekoMapa = "Classic";
 	
 
@@ -156,7 +146,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
                     	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Classic.png");
                     	break;
                 }
-                System.out.println("Valor de j: " + j);
             } else if(unekoPantaila.equals("Mapa") ) {
                 	switch (key) {
                 	case KeyEvent.VK_LEFT:
@@ -240,23 +229,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			/*String j;
-			if(rdbtnZuria.isSelected()) {
-				j = "zuria";
-			}else {
-				j = "beltza";
-			}
-			if(arg0.getSource().equals(btnClassic)) {
-				Laberintoa.getNireLaberintoa().laberintoaSortuClassic(j);
-				cardLayout.show(pantailak, "Laberintoa");
-			}else if(arg0.getSource().equals(btnEmpty)) {
-				Laberintoa.getNireLaberintoa().laberintoaSortuEmpty(j);
-				cardLayout.show(pantailak, "Laberintoa");
-			}else if(arg0.getSource().equals(btnSoft)){
-				Laberintoa.getNireLaberintoa().laberintoaSortuSoft(j);
-				cardLayout.show(pantailak, "Laberintoa");
-			}*/
-			
 			if(arg0.getSource().equals(btnBtnbai)) {
 				BombermanKudeatzailea.getNireKudeatzaile().laberintoaErreseteatu();
 				BombermanKudeatzailea.getNireKudeatzaile().addObserver(IkusiBeharrekoa.this);
@@ -264,6 +236,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				panel.revalidate();
 				panel.repaint();
 				cardLayout.show(pantailak, "Hasiera");
+            	j = "white";
 			}
 			if(arg0.getSource().equals(btnEz)) {
 				System.exit(0);
@@ -291,7 +264,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
 					String irudia = null;
-					//ALDATU BEHAR - EZIN DA HEMENDIK EREDURA DEITU
 					switch (BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().zerDago(i,j)) {
 			            case BLOKEBIGUNA:
 			            	irudia = "/Bista/irudiak/soft1.png";
@@ -355,74 +327,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		return pantailak;
 	}
-	
-	/*public JPanel HasierakoPantaila() {
-        setTitle("Hasiera");
-		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/mainBomb.png")).getImage());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.add(getPanel_3(), BorderLayout.CENTER);
-		contentPane.add(getPanelJokalariak(), BorderLayout.SOUTH);
-		return contentPane;
-	}
-
-	private JPanel getPanel_3() {
-		if (panel_3 == null) {
-			panel_3 = new JPanel();
-			panel_3.add(getBtnClassic());
-			panel_3.add(getBtnSoft());
-			panel_3.add(getBtnEmpty());
-		}
-		return panel_3;
-	}
-	private JButton getBtnClassic() {
-		if (btnClassic == null) {
-			btnClassic = new JButton("Classic");
-			btnClassic.addActionListener(getControler());
-		}
-		return btnClassic;
-	}
-	private JButton getBtnSoft() {
-		if (btnSoft == null) {
-			btnSoft = new JButton("Soft");
-			btnSoft.addActionListener(getControler());
-		}
-		return btnSoft;
-	}
-	private JButton getBtnEmpty() {
-		if (btnEmpty == null) {
-			btnEmpty = new JButton("Empty");
-			btnEmpty.addActionListener(getControler());
-		}
-		return btnEmpty;
-	}
-
-	private JPanel getPanelJokalariak() {
-		if (panelJokalariak == null) {
-			panelJokalariak = new JPanel();
-			panelJokalariak.add(getRdbtnZuria());
-			panelJokalariak.add(getRdbtnBeltza());
-			rdbtnZuria.setSelected(true);
-		}
-		return panelJokalariak;
-	}
-	private JRadioButton getRdbtnBeltza() {
-		if (rdbtnBeltza == null) {
-			rdbtnBeltza = new JRadioButton("Beltza");
-			buttonGroup.add(rdbtnBeltza);
-		}
-		return rdbtnBeltza;
-	}
-	private JRadioButton getRdbtnZuria() {
-		if (rdbtnZuria == null) {
-			rdbtnZuria = new JRadioButton("Zuria");
-			buttonGroup.add(rdbtnZuria);
-		}
-		return rdbtnZuria;
-	}*/
 	
 	public JPanel Amaitu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

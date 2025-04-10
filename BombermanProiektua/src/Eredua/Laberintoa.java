@@ -2,10 +2,6 @@ package Eredua;
 
 
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-
-@SuppressWarnings("deprecation")
 
 public abstract class Laberintoa {
 	private Gelaxka[][] laberintoa;
@@ -13,7 +9,6 @@ public abstract class Laberintoa {
 	private int blokeBigunKop = 0;
 	private int etsaiKop = 0;
 	private int score = 0;
-    private int kont = 2;
 	
 	protected Laberintoa() {
 		this.laberintoa = null;
@@ -21,7 +16,6 @@ public abstract class Laberintoa {
 		this.blokeBigunKop = 0;
 		this.etsaiKop = 0;
 		this.score = 0;
-		this.kont = 2;
 	}
 	
 	public void jokoaAbiarazi() {
