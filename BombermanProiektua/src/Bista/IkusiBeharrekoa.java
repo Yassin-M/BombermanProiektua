@@ -406,6 +406,4 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         }
     }
-	
 }
-
