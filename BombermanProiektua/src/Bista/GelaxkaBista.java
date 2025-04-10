@@ -57,10 +57,7 @@ public class GelaxkaBista extends JLabel implements Observer{
         	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
             setIcon(new ImageIcon(img));
         } else if (egoera[5]==1) {
-        	if(egoera[1]==1 && egoera[0]==0) {
-        		irudia = "/Bista/irudiak/"+jokmota+"withbomb1.png";
-        	}
-        	else if (egoera[0]==1) {
+        	if (egoera[0]==1) {
 				if (blinkTimer != null && blinkTimer.isRunning()) {
 	                blinkTimer.stop();
 	            }
@@ -127,7 +124,11 @@ public class GelaxkaBista extends JLabel implements Observer{
 	            blinkTimer.start();
 				ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));					
-			} else {
+			} 
+        	else if(egoera[1]==1) {
+        		irudia = "/Bista/irudiak/"+jokmota+"withbomb1.png";
+        	}
+        	else {
 				switch(egoera[6]) {
 				case 1:
 					irudia = "/Bista/irudiak/"+jokmota+"up1.png";

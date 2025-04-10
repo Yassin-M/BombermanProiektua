@@ -8,14 +8,17 @@ public class PortaeraUltraBomba implements BombaPortaera {
 		l.suaJarri(i, j);
 		if (l.zerDago(i+1,j) != BlokeMota.BLOKEGOGORRA && l.zerDago(i-1,j) != BlokeMota.BLOKEGOGORRA) {
 			for (int y = 0; y < 11; y++) {
-				l.suaJarri(y, j);
+				if (y != i) {
+					l.suaJarri(y, j);
+				}
 			}
 		}
 		if (l.zerDago(i,j+1) != BlokeMota.BLOKEGOGORRA && l.zerDago(i,j-1) != BlokeMota.BLOKEGOGORRA) {
 			for (int x = 0; x < 17; x++) {
-				l.suaJarri(i, x);
+				if (x != j) {
+					l.suaJarri(i, x);
+				}
 			}
 		}
 	}
-
 }
