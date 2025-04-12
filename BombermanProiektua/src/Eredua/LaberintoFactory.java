@@ -17,19 +17,17 @@ public class LaberintoFactory {
         switch (mota) {
         case 1:
             laberintoa = new LaberintoClassic();
-            laberintoa.laberintoaSortuClassic(jokalariMota);
             break;
         case 2:
             laberintoa = new LaberintoSoft();
-            laberintoa.laberintoaSortuSoft(jokalariMota);
             break;
         case 3:
             laberintoa = new LaberintoEmpty();
-            laberintoa.laberintoaSortuEmpty(jokalariMota);
             break;
         default:
             break;
         }
+        laberintoa.laberintoaSortu(jokalariMota);
         return laberintoa;
     }
 		

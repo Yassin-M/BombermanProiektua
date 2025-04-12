@@ -52,7 +52,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	
 
 	public IkusiBeharrekoa() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 666, 450);
         setTitle("Bomberman");
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,7 +89,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	}
 	
 	public nireFondoa Fondoa(String mapaMota) {
-		setSize(663, 429 + 38);
+		setSize(getWidth(), getHeight());
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setLocationRelativeTo(null);
 	    nireFondoa fondoLabel = new nireFondoa();
@@ -310,7 +310,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			if (irabazi) {
 				lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
-				lblZorionak.setBounds(0, 0, 663, 418);
+				lblZorionak.setBounds(0, 0, getWidth(), getHeight());
 				layeredPane.add(lblZorionak, new Integer(2));
 				try {
 					Thread.sleep(3000);
@@ -340,7 +340,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	
 	public JPanel Amaitu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, getWidth(), getHeight());
 		contentPane_2 = new JPanel();
 		contentPane_2.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane_2.setLayout(new BorderLayout(0, 0));

@@ -4,10 +4,10 @@ package Eredua;
 import java.util.Random;
 
 public abstract class Laberintoa {
-	private Gelaxka[][] laberintoa;
-	private Jokalaria jokalaria;
-	private int blokeBigunKop = 0;
-	private int etsaiKop = 0;
+	protected Gelaxka[][] laberintoa;
+	protected Jokalaria jokalaria;
+	protected int blokeBigunKop = 0;
+	protected int etsaiKop = 0;
 	private int score = 0;
 	
 	protected Laberintoa() {
@@ -18,41 +18,9 @@ public abstract class Laberintoa {
 		this.score = 0;
 	}
 	
-	public void jokoaAbiarazi() {
-		
-	}
-	public void laberintoaSortuClassic(String pJok) {
-		this.laberintoa = new Gelaxka[11][17];
-		for (int i=0; i<11; i++) {
-			for (int j=0; j<17; j++) {
-				laberintoa[i][j] = new Gelaxka(i,j);
-				if (i==0 && j==0) {
-					this.jokalaria = JokalariFactory.getNireJokalariFactory().sortuJokalaria(pJok);
-					laberintoa[i][j].setJokalaria(this.jokalaria);
-				}
-				else if ((i==0 && j==1)||(i==1 && j==0)) {
-					continue;
-				}
-				else if (i%2 != 0 && j%2 != 0) {
-					laberintoa[i][j].setBlokeGogorra();
-				}
-				else {
-					Random r = new Random();
-					if (r.nextInt(100) >= 40) {
-						laberintoa[i][j].setBlokeBiguna();
-						blokeBigunKop++;					
-					}
-					else if (r.nextInt(100) >= 90 && etsaiKop < 6) {
-						etsaiKop++;
-						laberintoa[i][j].setEtsaia(true);
-					}
-				}
-			}
-		}
-		etsaiakHasieratu();
-	}
+	public abstract void laberintoaSortu(String pJok);
 	
-	private void etsaiakHasieratu() {
+	protected void etsaiakHasieratu() {
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				if (laberintoa[i][j].zerDago() == BlokeMota.ETSAIA) {
@@ -60,55 +28,6 @@ public abstract class Laberintoa {
 				}
 			}
 		}
-	}
-	
-	public void laberintoaSortuSoft(String pJok) {
-		this.laberintoa = new Gelaxka[11][17];
-		for (int i=0; i<11; i++) {
-			for (int j=0; j<17; j++) {
-				laberintoa[i][j] = new Gelaxka(i,j);
-				if (i==0 && j==0) {
-					this.jokalaria = JokalariFactory.getNireJokalariFactory().sortuJokalaria(pJok);
-					laberintoa[i][j].setJokalaria(this.jokalaria);
-				}
-				else if ((i==0 && j==1)||(i==1 && j==0)) {
-					continue;
-				} else { 
-					Random r = new Random();
-					if (r.nextInt(100) >= 40) {
-						laberintoa[i][j].setBlokeBiguna();
-						blokeBigunKop++;
-					} else if (r.nextInt(100) >= 90 && etsaiKop < 8) {
-						laberintoa[i][j].setEtsaia(true);
-						etsaiKop++;
-					}
-				}
-			}
-		}
-		etsaiakHasieratu();
-	}
-	
-	public void laberintoaSortuEmpty(String pJok) {
-		this.laberintoa = new Gelaxka[11][17];
-		for (int i=0; i<11; i++) {
-			for (int j=0; j<17; j++) {
-				laberintoa[i][j] = new Gelaxka(i,j);
-				if (i==0 && j==0) {
-					this.jokalaria = JokalariFactory.getNireJokalariFactory().sortuJokalaria(pJok);
-					laberintoa[i][j].setJokalaria(this.jokalaria);
-				}
-				else if ((i==0 && j==1)||(i==1 && j==0)) {
-					continue;
-				} else {
-					Random r = new Random();
-					if (r.nextInt(100) >= 90 && etsaiKop < 10) {
-						laberintoa[i][j].setEtsaia(true);
-						etsaiKop++;
-					}
-				}
-			}
-		}
-		etsaiakHasieratu();
 	}
 	
 	public BlokeMota zerDago(int i, int j) {
