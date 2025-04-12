@@ -271,7 +271,7 @@ public abstract class Laberintoa {
 				}
 			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
-				//kenduEtsaia();
+				kenduEtsaia();
 			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i-1][j].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();
@@ -293,7 +293,7 @@ public abstract class Laberintoa {
 				}
 			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
-				//kenduEtsaia();
+				kenduEtsaia();
 			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i+1][j].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();
@@ -315,7 +315,7 @@ public abstract class Laberintoa {
 				}
 			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
-				//kenduEtsaia();
+				kenduEtsaia();
 			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i][j-1].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();
@@ -337,7 +337,7 @@ public abstract class Laberintoa {
 				}
 			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
 				laberintoa[i][j].etsaiaHil();
-				//kenduEtsaia();
+				kenduEtsaia();
 			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.JOKALARIA) {
 				laberintoa[i][j+1].setEtsaia(pNorabidea);
 				laberintoa[i][j].kenduAurrekoa();
