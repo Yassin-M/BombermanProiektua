@@ -227,7 +227,7 @@ public abstract class Laberintoa {
 	}
 	
 	public void partidaAmaitu(boolean irabazi) {
-		timerrakAmatatu();
+		//timerrakAmatatu(irabazi);
 		if (irabazi) {
 			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
         } else {
@@ -249,11 +249,11 @@ public abstract class Laberintoa {
         }
 	}
 	
-	private void timerrakAmatatu() {
+	public void timerrakAmatatu(boolean pIrabazi) {
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				if (laberintoa[i][j].zerDago() == BlokeMota.SUA || laberintoa[i][j].zerDago() == BlokeMota.BOMBA || laberintoa[i][j].zerDago() == BlokeMota.ETSAIA) {
-					laberintoa[i][j].amatatuTimer();
+					laberintoa[i][j].amatatuTimer(pIrabazi);
 				}
 			}
 		}

@@ -92,7 +92,12 @@ public class GelaxkaBista extends JLabel implements Observer{
 				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));					
 			}
         	else if (egoera[4]==1) {
-        		if (blinkTimer != null && blinkTimer.isRunning()) {
+        		irudia = "/Bista/irudiak/rip.png";
+        		ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
+                setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
+        		
+        		//SI QUEREMOS QUE PARPADEE
+        		/*if (blinkTimer != null && blinkTimer.isRunning()) {
 	                blinkTimer.stop();
 	            }
 				switch (egoera[7]){
@@ -123,8 +128,9 @@ public class GelaxkaBista extends JLabel implements Observer{
 	            });
 	            blinkTimer.start();
 				ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
-				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));					
-			} 
+				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));		
+				*/			
+				}
         	else if(egoera[1]==1) {
         		irudia = "/Bista/irudiak/"+jokmota+"withbomb1.png";
         	}

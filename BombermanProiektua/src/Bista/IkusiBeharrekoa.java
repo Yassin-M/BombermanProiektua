@@ -42,6 +42,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JButton btnBtnbai;
 	private JButton btnEz;
 	private JPanel contentPane_2;
+	private JLabel lblZorionak;
 	
 	private HasierakoPantaila hasierakoPantaila;
 	private String unekoPantaila;
@@ -187,6 +188,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 						}
                         cardLayout.show(pantailak, "Laberintoa");
                         unekoPantaila = "Laberintoa";
+                        if (lblZorionak != null) layeredPane.remove(lblZorionak);
 						break;
                 	}
             	
@@ -306,7 +308,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
-				JLabel lblZorionak = new JLabel("ZORIONAK!");
+				lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
 				lblZorionak.setBounds(0, 0, 663, 418);
 				layeredPane.add(lblZorionak, new Integer(2));

@@ -49,6 +49,7 @@ public class BombermanKudeatzailea extends Observable{
                 kont--;
                 if (kont == 0) {
                     timer.cancel();
+                    lab.timerrakAmatatu(pIrabazi);
                     setChanged();
         			notifyObservers(pIrabazi);
                 }
