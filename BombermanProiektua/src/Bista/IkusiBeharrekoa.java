@@ -263,10 +263,10 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					fondoLabel.setImage("/Bista/irudiak/stageBack1.png");
 					break;
 				case 2:
-					fondoLabel.setImage("/Bista/irudiak/stageBack3.png");
+					fondoLabel.setImage("/Bista/irudiak/stageBack2.png");
 					break;
 				case 3:
-					fondoLabel.setImage("/Bista/irudiak/stageBack2.png");
+					fondoLabel.setImage("/Bista/irudiak/stageBack3.png");
 					break;
 				default:
 					break;
