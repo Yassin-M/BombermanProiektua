@@ -180,10 +180,10 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(1, j);
 							break;
 						case "Soft":
-							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(3, j);
+							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(2, j);
 							break;
 						case "Empty":
-							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(2, j);
+							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(3, j);
 							break;
 						}
                         cardLayout.show(pantailak, "Laberintoa");
