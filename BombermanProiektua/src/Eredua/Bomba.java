@@ -26,11 +26,11 @@ public abstract class Bomba implements GelaxkaElementua {
 			timer.scheduleAtFixedRate(timerTask, 0, 1000);
 	}
 	
-	protected BombaPortaera getBombaPortaera() {
+	private BombaPortaera getBombaPortaera() {
 		return this.bombaPortaera;
 	}
 	
-	public void updateKont() {
+	private void updateKont() {
 		kont--;
 		if(kont==0) {
 			getBombaPortaera().eztanda(i,j);
