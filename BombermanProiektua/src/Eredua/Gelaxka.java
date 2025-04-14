@@ -210,6 +210,8 @@ public class Gelaxka extends Observable {
 			this.elementua = null;
 
 		}
+ 		setChanged();
+ 		notifyObservers(lortuEgoera());
 	}
 	
 	private void gehituElementua(GelaxkaElementua pElementua) {
