@@ -22,7 +22,7 @@ public class LaberintoEmpty extends Laberintoa {
 				} else {
 					Random r = new Random();
 					if (r.nextInt(100) >= 90 && etsaiKop < 10) {
-						laberintoa[i][j].setEtsaia(true);
+						laberintoa[i][j].setEtsaia(true,0);
 						etsaiKop++;
 					}
 				}

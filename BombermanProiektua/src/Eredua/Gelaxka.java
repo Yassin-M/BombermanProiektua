@@ -21,7 +21,7 @@ public class Gelaxka extends Observable {
 	}
 	private Integer[] lortuEgoera() {
 		if (this.elementua == null) {
-			return new Integer[]{0,0,0,0,0,0,0,0};
+			return new Integer[]{0,0,0,0,0,0,0,0,0};
 		}
 		else {
 			return this.elementua.lortuEgoera();
@@ -50,16 +50,17 @@ public class Gelaxka extends Observable {
 		setChanged();
 		notifyObservers(lortuEgoera());
 	}
-	public boolean setEtsaia(boolean pNorabidea) {
+	public boolean setEtsaia(boolean pNorabidea, int mota) {
+		Etsaia etsai = EtsaiaFactory.getNireEtsaiaFactory().sortuEtsaia(x, y, pNorabidea, mota);
 		boolean zuzena = false;
 		if (lortuEgoera()[etsaia] == 0) {
 			zuzena = true;
 			if (lortuEgoera()[jokalaria] == 1) {
-				gehituElementua(new Etsaia(x,y,pNorabidea));
+				gehituElementua(etsai);
 				BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 			} 
 			else {
-				this.elementua = new Etsaia(x,y,pNorabidea);
+				this.elementua = etsai;
 			}
 			setChanged();
 	        notifyObservers(lortuEgoera());

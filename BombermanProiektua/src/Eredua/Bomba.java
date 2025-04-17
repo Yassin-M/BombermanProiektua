@@ -30,7 +30,7 @@ public abstract class Bomba implements GelaxkaElementua {
 		return this.bombaPortaera;
 	}
 	
-	public void updateKont() {
+	private void updateKont() {
 		kont--;
 		if(kont==0) {
 			getBombaPortaera().eztanda(i,j);
@@ -50,6 +50,6 @@ public abstract class Bomba implements GelaxkaElementua {
     }
 	
 	public Integer[] lortuEgoera() {
-		return new Integer[]{0,1,0,0,0,0,0,0};
+		return new Integer[]{0,1,0,0,0,0,0,0,0};
 	}
 }

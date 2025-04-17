@@ -25,7 +25,7 @@ public class LaberintoSoft extends Laberintoa {
 						laberintoa[i][j].setBlokeBiguna();
 						blokeBigunKop++;
 					} else if (r.nextInt(100) >= 90 && etsaiKop < 8) {
-						laberintoa[i][j].setEtsaia(true);
+						laberintoa[i][j].setEtsaia(true,0);
 						etsaiKop++;
 					}
 				}

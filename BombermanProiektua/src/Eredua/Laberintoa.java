@@ -8,6 +8,7 @@ public abstract class Laberintoa {
 	protected Jokalaria jokalaria;
 	protected int blokeBigunKop = 0;
 	protected int etsaiKop = 0;
+	protected int etsai2Kop = 0;
 	private int score = 0;
 	
 	protected Laberintoa() {
@@ -15,6 +16,8 @@ public abstract class Laberintoa {
 		this.jokalaria = null;
 		this.blokeBigunKop = 0;
 		this.etsaiKop = 0;
+		
+		
 		this.score = 0;
 	}
 	
@@ -178,12 +181,12 @@ public abstract class Laberintoa {
 		}
 	}
 
-	public boolean etsaiaMugituGora(int i, int j, boolean pNorabidea) {
+	public boolean etsaiaMugituGora(int i, int j, boolean pNorabidea, int mota) {
 		boolean zuzena = true;
 		Random rand = new Random();
 		if(i>0) {
 			if (laberintoa[i-1][j].zerDago() == null) {
-				zuzena = laberintoa[i-1][j].setEtsaia(pNorabidea);
+				zuzena = laberintoa[i-1][j].setEtsaia(pNorabidea, mota);
 				if (zuzena) {
 					laberintoa[i][j].kenduAurrekoa();
 					laberintoa[i-1][j].etsaiaHasieratu();
@@ -192,7 +195,7 @@ public abstract class Laberintoa {
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i-1][j].setEtsaia(pNorabidea);
+				laberintoa[i-1][j].setEtsaia(pNorabidea, mota);
 				laberintoa[i][j].kenduAurrekoa();
 				partidaAmaitu(false);
 			} else zuzena = false;
@@ -200,12 +203,12 @@ public abstract class Laberintoa {
 		return zuzena;
 	}
 
-	public boolean etsaiaMugituBehera(int i, int j, boolean pNorabidea) {
+	public boolean etsaiaMugituBehera(int i, int j, boolean pNorabidea, int mota) {
 		boolean zuzena = true;
 		Random rand = new Random();
 		if(i<10) {
 			if (laberintoa[i+1][j].zerDago() == null) {
-				zuzena = laberintoa[i+1][j].setEtsaia(pNorabidea);
+				zuzena = laberintoa[i+1][j].setEtsaia(pNorabidea,mota);
 				if (zuzena) {
 					laberintoa[i][j].kenduAurrekoa();
 					laberintoa[i+1][j].etsaiaHasieratu();
@@ -214,7 +217,7 @@ public abstract class Laberintoa {
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i+1][j].setEtsaia(pNorabidea);
+				laberintoa[i+1][j].setEtsaia(pNorabidea,mota);
 				laberintoa[i][j].kenduAurrekoa();
 				partidaAmaitu(false);
 			} else zuzena = false;
@@ -222,12 +225,12 @@ public abstract class Laberintoa {
 		return zuzena;
 	}
 
-	public boolean etsaiaMugituEzerretara(int i, int j, boolean pNorabidea) {
+	public boolean etsaiaMugituEzerretara(int i, int j, boolean pNorabidea, int mota) {
 		boolean zuzena = true;
 		Random rand = new Random();
 		if(j>0) {
 			if (laberintoa[i][j-1].zerDago() == null) {
-				zuzena = laberintoa[i][j-1].setEtsaia(pNorabidea);
+				zuzena = laberintoa[i][j-1].setEtsaia(pNorabidea,mota);
 				if (zuzena) {
 					laberintoa[i][j].kenduAurrekoa();
 					laberintoa[i][j-1].etsaiaHasieratu();	
@@ -236,7 +239,7 @@ public abstract class Laberintoa {
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i][j-1].setEtsaia(pNorabidea);
+				laberintoa[i][j-1].setEtsaia(pNorabidea,mota);
 				laberintoa[i][j].kenduAurrekoa();
 				partidaAmaitu(false);
 			} else zuzena = false;
@@ -244,12 +247,12 @@ public abstract class Laberintoa {
 		return zuzena;
 	}
 
-	public boolean etsaiaMugituEskuinera(int i, int j, boolean pNorabidea) {
+	public boolean etsaiaMugituEskuinera(int i, int j, boolean pNorabidea, int mota) {
 		boolean zuzena = true;
 		Random rand = new Random();
 		if(j<16) {
 			if (laberintoa[i][j+1].zerDago() == null) {
-				zuzena = laberintoa[i][j+1].setEtsaia(pNorabidea);	
+				zuzena = laberintoa[i][j+1].setEtsaia(pNorabidea, mota);	
 				if (zuzena) {
 					laberintoa[i][j].kenduAurrekoa();
 					laberintoa[i][j+1].etsaiaHasieratu();	
@@ -258,7 +261,7 @@ public abstract class Laberintoa {
 				laberintoa[i][j].etsaiaHil();
 				kenduEtsaia();
 			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i][j+1].setEtsaia(pNorabidea);
+				laberintoa[i][j+1].setEtsaia(pNorabidea, mota);
 				laberintoa[i][j].kenduAurrekoa();
 				partidaAmaitu(false);
 			} else zuzena = false;

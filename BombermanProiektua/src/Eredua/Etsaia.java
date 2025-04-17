@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Etsaia implements GelaxkaElementua {
+public abstract class Etsaia implements GelaxkaElementua {
 	private int[] aukerak; // 0 = gora, 1 = behera, 2 = ezkerrera, 3 = eskuma
 	private int i;
 	private int j;
@@ -12,7 +12,7 @@ public class Etsaia implements GelaxkaElementua {
 	private Timer timer = null;
 	private boolean aktibo;
 	
-	public Etsaia(int pI, int pJ, boolean pNorabidea) {
+	protected Etsaia(int pI, int pJ, boolean pNorabidea) {
 		this.i = pI;
 		this.j = pJ;
 		this.aukerak = new int[]{0,1,2,3};
@@ -28,6 +28,8 @@ public class Etsaia implements GelaxkaElementua {
 		this.aukerak = null;
 		this.aukerak = egoera;
 	}
+	
+	protected abstract int getMota();
 	
 	private void kenduAukera(int aukera) {
 		int luzera = aukerak.length-1;
@@ -69,27 +71,28 @@ public class Etsaia implements GelaxkaElementua {
 		Random rand = new Random();
 		int aukera = rand.nextInt(aukerak.length);
 		boolean zuzena = true;
+		int mota = getMota();
 		switch(aukerak[aukera]) {
 			case 0: 
-				zuzena=BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituGora(i,j,norabidea);
+				zuzena=BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituGora(i,j,norabidea,mota);
 				if (!zuzena) {
 					kenduAukera(0);
 				} else aktibo = false;
 				break;
 			case 1:
-				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituBehera(i, j,norabidea);
+				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituBehera(i, j,norabidea,mota);
 				if (!zuzena) {
 					kenduAukera(1);
 				} else aktibo = false;
 				break;
 			case 2:
-				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEzerretara(i, j, true);
+				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEzerretara(i, j, true,mota);
 				if (!zuzena) {
 					kenduAukera(2);
 				} else aktibo = false;
 				break;
 			case 3:
-				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEskuinera(i, j, false);
+				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEskuinera(i, j, false,mota);
 				if (!zuzena) {
 					kenduAukera(3);
 				} else aktibo = false;
@@ -114,8 +117,6 @@ public class Etsaia implements GelaxkaElementua {
 		aktibo = false;
 	}
 	
-	public Integer[] lortuEgoera() {
-		return new Integer[]{0,0,0,0,1,0,0,0};
-	}
+	
 
 }
