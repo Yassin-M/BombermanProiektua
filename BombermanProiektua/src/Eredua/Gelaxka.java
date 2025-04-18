@@ -54,7 +54,7 @@ public class Gelaxka extends Observable {
 		boolean zuzena = false;
 		if (lortuEgoera()[etsaia] == 0) {
 			zuzena = true;
-			if (lortuEgoera()[jokalaria] == 1) {
+			if (lortuEgoera()[jokalaria] != 0) {
 				gehituElementua(new Etsaia(x,y,pNorabidea));
 				BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 			} 
@@ -71,7 +71,7 @@ public class Gelaxka extends Observable {
 		BlastFactory BF = BlastFactory.getNireBF();
 		if (lortuEgoera()[blokeGogorra] == 0) {
 			if(elementua!=null) {
-				if (lortuEgoera()[jokalaria] == 1) {
+				if (lortuEgoera()[jokalaria] != 0) {
 					gehituElementua(BF.sortuBlast(i,j,pMota));
 					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().partidaAmaitu(false);
 				}
@@ -119,7 +119,7 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void setBomba(int i,int j,int pBombaMota)  {
-		if (lortuEgoera()[jokalaria] == 1) {
+		if (lortuEgoera()[jokalaria] != 0) {
 			gehituElementua(BombaFactory.getNireBombaFactory().sortuBomba(i, j, pBombaMota));
 			setChanged();
 			notifyObservers(lortuEgoera());
@@ -134,7 +134,7 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void kenduJokalaria() {
-        if(lortuEgoera()[bomba]==1) {
+        if(lortuEgoera()[bomba]!=0) {
         	this.elementua=((ElementuTalde)this.elementua).getBomba();
         }
         else if (lortuEgoera()[sua]!=0) {
@@ -177,11 +177,11 @@ public class Gelaxka extends Observable {
 			return BlokeMota.BLOKEGOGORRA;
 		} else if (egoera[sua] != 0) {
 			return BlokeMota.SUA;
-		} else if (egoera[bomba] == 1) {
+		} else if (egoera[bomba] != 0) {
 			return BlokeMota.BOMBA;
 		} else if (egoera[etsaia] == 1) {
 			return BlokeMota.ETSAIA;
-		} else if (egoera[jokalaria] == 1) {
+		} else if (egoera[jokalaria] != 0) {
 			return BlokeMota.JOKALARIA;
 		}
 		else {
@@ -201,7 +201,7 @@ public class Gelaxka extends Observable {
 			this.elementua = null;
 			
 		}
-		else if (lortuEgoera()[bomba] == 1) {
+		else if (lortuEgoera()[bomba] != 0) {
 			((Bomba)this.elementua).kenduTimer();
 			this.elementua = null;
 

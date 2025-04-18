@@ -59,8 +59,8 @@ public class GelaxkaBista extends JLabel implements Observer{
         	ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
         	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
             setIcon(new ImageIcon(img));
-        } else if (egoera[5]==1) {
-        	if (egoera[0]==1) {
+        } else if (egoera[5]!=0) {
+        	if (egoera[0]!=0) {
 				if (blinkTimer != null && blinkTimer.isRunning()) {
 	                blinkTimer.stop();
 	            }
@@ -71,6 +71,9 @@ public class GelaxkaBista extends JLabel implements Observer{
 				case 1:
 					irudia = "/Bista/irudiak/onFire4.png";
                     break;
+                default: 
+                	irudia = "/Bista/irudiak/onFire2.png";
+                	break;
 				}
 				blinkTimer = new Timer(150, e -> {
 					if (sutanDago) {
@@ -81,6 +84,9 @@ public class GelaxkaBista extends JLabel implements Observer{
 						case 1:
 							irudia = "/Bista/irudiak/onFire4.png";
 		                    break;
+		                default: 
+							irudia = "/Bista/irudiak/onFire2.png";
+							break;
 						}						
 						ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 		                setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
@@ -134,7 +140,7 @@ public class GelaxkaBista extends JLabel implements Observer{
 				setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));		
 				*/			
 				}
-        	else if(egoera[1]==1) {
+        	else if(egoera[1]!=0) {
         		irudia = "/Bista/irudiak/"+jokmota+"withbomb1.png";
         	}
         	else {
@@ -159,9 +165,9 @@ public class GelaxkaBista extends JLabel implements Observer{
         	
             ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 	        setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
-        } else if (egoera[1]==1) {
+        } else if (egoera[1]!=0) {
         	irudia = "/Bista/irudiak/bomb1.png";
-			if (egoera[7] == 2) irudia = "/Bista/irudiak/bluebomb.png";
+			if (egoera[1]==2) irudia = "/Bista/irudiak/bluebomb1.png";
 			ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 			setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
         } 
