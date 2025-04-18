@@ -309,6 +309,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
+				Audio.getNireAudio().playSound("../BombermanProiektua/BombermanProiektua/src/Audioa/ejudas-priest-painkiller-official-lyric-video_tJKPe9Ua.wav");
 				lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
 				lblZorionak.setBounds(0, 0, getWidth(), getHeight());
@@ -320,7 +321,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					e.printStackTrace();
 				}
 			}
-			Audio.getNireAudio().playSound("/Audioa/el-primo-me-muero-101soundboards.wav");
+			else {
+				Audio.getNireAudio().playSound("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
+			}
 			cardLayout.show(pantailak, "Amaitu");
 			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
 			unekoPantaila = "Hasiera";
