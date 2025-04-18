@@ -197,19 +197,19 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
                 switch (key) {
                     case KeyEvent.VK_UP:
                     	bombaJarrita = false;
-                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituGora();
+                        BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugitu(jok -> jok.mugituGora(), jok -> jok.getIposizioa() > 0, -1, 0);
                         break;
                     case KeyEvent.VK_DOWN:
                     	bombaJarrita = false;
-                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituBehera();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugitu(jok -> jok.mugituBehera(), jok -> jok.getIposizioa() < 10, 1, 0);
                         break;
                     case KeyEvent.VK_LEFT:
                     	bombaJarrita = false;
-                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEzkerretara();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugitu(jok -> jok.mugituEzkerretara(), jok -> jok.getJposizioa() > 0, 0, -1);
                         break;
                     case KeyEvent.VK_RIGHT:
                     	bombaJarrita = false;
-                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugituEskuinera();
+                    	BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().jokalariaMugitu(jok -> jok.mugituEskuinera(), jok -> jok.getJposizioa() < 16, 0, 1);
                         break;
                     case KeyEvent.VK_SPACE:
                     	if (!bombaJarrita) {

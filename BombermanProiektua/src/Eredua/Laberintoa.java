@@ -2,6 +2,8 @@ package Eredua;
 
 
 import java.util.Random;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public abstract class Laberintoa {
 	protected Gelaxka[][] laberintoa;
@@ -68,69 +70,22 @@ public abstract class Laberintoa {
 				laberintoa[i][j].kenduAurrekoa();
 		}
 	}
-	
-	public void jokalariaMugituEskuinera() {
+
+	public void jokalariaMugitu(Consumer<Jokalaria> mugimendua, Predicate<Jokalaria> baldintza, int pI, int pJ) {
 		Jokalaria jok = getJokalaria();
-		if(jok.bizirik && jok.getJposizioa() < 16) {
-			if (laberintoa[jok.getIposizioa()][jok.getJposizioa() + 1].zerDago() == null) {
-				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-				jok.mugituEskuinera();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-			} else if (laberintoa[jok.getIposizioa()][jok.getJposizioa() + 1].zerDago() == BlokeMota.SUA || laberintoa[jok.getIposizioa()][jok.getJposizioa() + 1].zerDago() == BlokeMota.ETSAIA) {
-				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-				jok.mugituEskuinera();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-				partidaAmaitu(false);
+		int i = jok.getIposizioa();
+		int j = jok.getJposizioa();
+		if(jok.bizirik && baldintza.test(jok)) {
+			BlokeMota zerDago = laberintoa[i+pI][j+pJ].zerDago();
+			if (zerDago == null || zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA) {
+				laberintoa[i][j].kenduJokalaria();
+				mugimendua.accept(jok);
+				setJokalaria(i+pI, j+pJ, jok);
+	            if (zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA) {
+					partidaAmaitu(false);
+				}
 			}
 		}
-	}
-	
-	public void jokalariaMugituEzkerretara() {
-		Jokalaria jok = getJokalaria();
-		if(jok.bizirik && jok.getJposizioa() > 0) {
-			if (laberintoa[jok.getIposizioa()][jok.getJposizioa()-1].zerDago() == null) {
-				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-				jok.mugituEzkerretara();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-			} else if (laberintoa[jok.getIposizioa()][jok.getJposizioa() - 1].zerDago() == BlokeMota.SUA || laberintoa[jok.getIposizioa()][jok.getJposizioa() - 1].zerDago() == BlokeMota.ETSAIA) {
-				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-				jok.mugituEzkerretara();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-				partidaAmaitu(false);
-			}
-		}
-	}
-	
-	public void jokalariaMugituGora() {
-		Jokalaria jok = getJokalaria();
-		if(jok.bizirik && jok.getIposizioa() > 0) {
-			if (laberintoa[jok.getIposizioa()-1][jok.getJposizioa()].zerDago() == null) {
-				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-				jok.mugituGora();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-			} else if (laberintoa[jok.getIposizioa()-1][jok.getJposizioa()].zerDago() == BlokeMota.SUA 	|| laberintoa[jok.getIposizioa()-1][jok.getJposizioa()].zerDago() == BlokeMota.ETSAIA) {
-				laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-				jok.mugituGora();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-				partidaAmaitu(false);
-			}
-		}
-	}
-	
-	public void jokalariaMugituBehera() {
-        Jokalaria jok = getJokalaria();
-        if(jok.bizirik && jok.getIposizioa() < 10) {
-	        if (laberintoa[jok.getIposizioa()+1][jok.getJposizioa()].zerDago() == null) {
-	            laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-	            jok.mugituBehera();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-	        } else if (laberintoa[jok.getIposizioa()+1][jok.getJposizioa() + 1].zerDago() == BlokeMota.SUA || laberintoa[jok.getIposizioa()+1][jok.getJposizioa()].zerDago() == BlokeMota.ETSAIA) {
-	        	laberintoa[jok.getIposizioa()][jok.getJposizioa()].kenduJokalaria();
-	            jok.mugituBehera();
-	            setJokalaria(jok.getIposizioa(), jok.getJposizioa(), jok);
-	        	partidaAmaitu(false);
-			}
-        }        
 	}
 	
 	public Jokalaria getJokalaria() {
