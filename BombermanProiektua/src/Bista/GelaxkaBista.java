@@ -49,10 +49,13 @@ public class GelaxkaBista extends JLabel implements Observer{
 		String jokmota = "white";
 		if(egoera[7]==1) {
     		jokmota = "black";
+    	} else if (egoera[7]==2) {
+    		jokmota = "blue";
     	}
         // Actualiza la gelaxka
-		if (egoera[0]==1 && egoera[5]==0) {
+		if ((egoera[0]==1 || egoera[0] == 2) && egoera[5]==0) {
         	irudia = "/Bista/irudiak/miniBlast1.gif";
+        	if (egoera[0] == 2) irudia = "/Bista/irudiak/blueblast.gif";
         	ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
         	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
             setIcon(new ImageIcon(img));
@@ -157,7 +160,8 @@ public class GelaxkaBista extends JLabel implements Observer{
             ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 	        setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
         } else if (egoera[1]==1) {
-			irudia = "/Bista/irudiak/bomb1.png";
+        	irudia = "/Bista/irudiak/bomb1.png";
+			if (egoera[7] == 2) irudia = "/Bista/irudiak/bluebomb.png";
 			ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 			setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
         } 

@@ -21,6 +21,9 @@ public class JokalariFactory {
 		case "black":
 			jokalaria = new JokBeltza(1, 0, 0);
 			break;
+		case "blue":
+			jokalaria = new JokUrdina(3, 0, 0);
+			break;
 		default:
 			break;
 		}

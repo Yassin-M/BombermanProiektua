@@ -21,6 +21,8 @@ public class BombaFactory {
 		case 2:
 			bomba = new UltraBomba(i, j);
 			break;
+		case 3: 
+			bomba = new BombaSakratua(i,j);
 		default:
 			break;
 		}
