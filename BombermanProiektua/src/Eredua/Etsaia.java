@@ -71,25 +71,41 @@ public class Etsaia implements GelaxkaElementua {
 		boolean zuzena = true;
 		switch(aukerak[aukera]) {
 			case 0: 
-				zuzena=BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituGora(i,j,norabidea);
+				if (i>0) {
+					zuzena=BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i-1,j,norabidea);
+				} else {
+					zuzena=false;
+				}
 				if (!zuzena) {
 					kenduAukera(0);
 				} else aktibo = false;
 				break;
 			case 1:
-				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituBehera(i, j,norabidea);
+				if (i<10) {
+					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i+1,j,norabidea);
+				} else {
+					zuzena=false;
+				}
 				if (!zuzena) {
 					kenduAukera(1);
 				} else aktibo = false;
 				break;
 			case 2:
-				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEzerretara(i, j, true);
+				if (j>0) {
+					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i,j-1, true);
+				} else {
+					zuzena=false;
+				}
 				if (!zuzena) {
 					kenduAukera(2);
 				} else aktibo = false;
 				break;
 			case 3:
-				zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugituEskuinera(i, j, false);
+				if (j<16) {
+					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i,j+1, false);
+				} else {
+					zuzena=false;
+				}
 				if (!zuzena) {
 					kenduAukera(3);
 				} else aktibo = false;

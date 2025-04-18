@@ -83,6 +83,9 @@ public abstract class Laberintoa {
 				setJokalaria(i+pI, j+pJ, jok);
 	            if (zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA) {
 					partidaAmaitu(false);
+					if (zerDago == BlokeMota.ETSAIA) {
+						laberintoa[i+pI][j+pJ].amatatuTimer();
+					}
 				}
 			}
 		}
@@ -101,7 +104,6 @@ public abstract class Laberintoa {
 	}
 	
 	public void partidaAmaitu(boolean irabazi) {
-		//timerrakAmatatu(irabazi);
 		if (irabazi) {
 			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
         } else {
@@ -130,91 +132,23 @@ public abstract class Laberintoa {
 			}
 		}
 	}
-
-	public boolean etsaiaMugituGora(int i, int j, boolean pNorabidea) {
+	
+	public boolean etsaiaMugitu(int i, int j, int iBerria, int jBerria, boolean pNorabidea) {
 		boolean zuzena = true;
 		Random rand = new Random();
-		if(i>0) {
-			if (laberintoa[i-1][j].zerDago() == null) {
-				zuzena = laberintoa[i-1][j].setEtsaia(pNorabidea);
-				if (zuzena) {
-					laberintoa[i][j].kenduAurrekoa();
-					laberintoa[i-1][j].etsaiaHasieratu();
-				}
-			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
-				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
-			} else if (laberintoa[i-1][j].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i-1][j].setEtsaia(pNorabidea);
+		if (laberintoa[iBerria][jBerria].zerDago() == null) {
+			zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea);	
+			if (zuzena) {
 				laberintoa[i][j].kenduAurrekoa();
-				partidaAmaitu(false);
-			} else zuzena = false;
-		} else zuzena = false;
-		return zuzena;
-	}
-
-	public boolean etsaiaMugituBehera(int i, int j, boolean pNorabidea) {
-		boolean zuzena = true;
-		Random rand = new Random();
-		if(i<10) {
-			if (laberintoa[i+1][j].zerDago() == null) {
-				zuzena = laberintoa[i+1][j].setEtsaia(pNorabidea);
-				if (zuzena) {
-					laberintoa[i][j].kenduAurrekoa();
-					laberintoa[i+1][j].etsaiaHasieratu();
-				}
-			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
-				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
-			} else if (laberintoa[i+1][j].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i+1][j].setEtsaia(pNorabidea);
-				laberintoa[i][j].kenduAurrekoa();
-				partidaAmaitu(false);
-			} else zuzena = false;
-		} else zuzena = false;
-		return zuzena;
-	}
-
-	public boolean etsaiaMugituEzerretara(int i, int j, boolean pNorabidea) {
-		boolean zuzena = true;
-		Random rand = new Random();
-		if(j>0) {
-			if (laberintoa[i][j-1].zerDago() == null) {
-				zuzena = laberintoa[i][j-1].setEtsaia(pNorabidea);
-				if (zuzena) {
-					laberintoa[i][j].kenduAurrekoa();
-					laberintoa[i][j-1].etsaiaHasieratu();	
-				}
-			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
-				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
-			} else if (laberintoa[i][j-1].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i][j-1].setEtsaia(pNorabidea);
-				laberintoa[i][j].kenduAurrekoa();
-				partidaAmaitu(false);
-			} else zuzena = false;
-		} else zuzena = false;
-		return zuzena;
-	}
-
-	public boolean etsaiaMugituEskuinera(int i, int j, boolean pNorabidea) {
-		boolean zuzena = true;
-		Random rand = new Random();
-		if(j<16) {
-			if (laberintoa[i][j+1].zerDago() == null) {
-				zuzena = laberintoa[i][j+1].setEtsaia(pNorabidea);	
-				if (zuzena) {
-					laberintoa[i][j].kenduAurrekoa();
-					laberintoa[i][j+1].etsaiaHasieratu();	
-				}
-			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
-				laberintoa[i][j].etsaiaHil();
-				kenduEtsaia();
-			} else if (laberintoa[i][j+1].zerDago() == BlokeMota.JOKALARIA) {
-				laberintoa[i][j+1].setEtsaia(pNorabidea);
-				laberintoa[i][j].kenduAurrekoa();
-				partidaAmaitu(false);
-			} else zuzena = false;
+				laberintoa[iBerria][jBerria].etsaiaHasieratu();	
+			}
+		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
+			laberintoa[i][j].etsaiaHil();
+			kenduEtsaia();
+		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.JOKALARIA) {
+			laberintoa[iBerria][jBerria].setEtsaia(pNorabidea);
+			laberintoa[i][j].kenduAurrekoa();
+			partidaAmaitu(false);
 		} else zuzena = false;
 		return zuzena;
 	}
