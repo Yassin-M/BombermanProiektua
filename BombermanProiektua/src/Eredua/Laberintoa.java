@@ -56,11 +56,11 @@ public abstract class Laberintoa {
 	}
 	
 
-	public boolean suaJarri(int i, int j){
+	public boolean suaJarri(int i, int j, int pMota){
 		boolean zuzena = false;
 		if (laberintoa[i][j].zerDago() != BlokeMota.BLOKEGOGORRA) {
 			zuzena = true;
-			laberintoa[i][j].setSua(i,j);
+			laberintoa[i][j].setSua(i,j,pMota);
 		}
 		return zuzena;
 	}

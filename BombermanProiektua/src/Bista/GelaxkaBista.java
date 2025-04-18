@@ -53,9 +53,9 @@ public class GelaxkaBista extends JLabel implements Observer{
     		jokmota = "blue";
     	}
         // Actualiza la gelaxka
-		if ((egoera[0]==1 || egoera[0] == 2) && egoera[5]==0) {
+		if (egoera[0]!=0 && egoera[5]==0) {
         	irudia = "/Bista/irudiak/miniBlast1.gif";
-        	if (egoera[0] == 2) irudia = "/Bista/irudiak/blueblast.gif";
+        	if (egoera[0] == 3) irudia = "/Bista/irudiak/blueblast.gif";
         	ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
         	Image img = icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT);
             setIcon(new ImageIcon(img));
