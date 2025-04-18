@@ -1,6 +1,7 @@
 package Eredua;
 
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -23,13 +24,7 @@ public abstract class Laberintoa {
 	public abstract void laberintoaSortu(String pJok);
 	
 	protected void etsaiakHasieratu() {
-		for (int i = 0; i < 11; i++) {
-			for (int j = 0; j < 17; j++) {
-				if (laberintoa[i][j].zerDago() == BlokeMota.ETSAIA) {
-					laberintoa[i][j].etsaiaHasieratu();
-				}
-			}
-		}
+	    Arrays.stream(laberintoa).flatMap(Arrays::stream).filter(gelaxka -> gelaxka.zerDago() == BlokeMota.ETSAIA).forEach(Gelaxka::etsaiaHasieratu);
 	}
 	
 	public BlokeMota zerDago(int i, int j) {
@@ -126,11 +121,7 @@ public abstract class Laberintoa {
 	}
 	
 	public void timerrakAmatatu(boolean pIrabazi) {
-		for (int i = 0; i < 11; i++) {
-			for (int j = 0; j < 17; j++) {
-				laberintoa[i][j].amatatuTimer();
-			}
-		}
+		Arrays.stream(laberintoa).flatMap(Arrays::stream).forEach(Gelaxka::amatatuTimer);
 	}
 	
 	public boolean etsaiaMugitu(int i, int j, int iBerria, int jBerria, boolean pNorabidea) {
