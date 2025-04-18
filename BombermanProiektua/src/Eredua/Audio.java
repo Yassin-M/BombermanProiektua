@@ -11,23 +11,24 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audio {
 	private static Audio nireAudio = null;
+	private static Clip clip;
 	
-	private Audio() {
-		
+	private Audio() throws LineUnavailableException {
+		clip = AudioSystem.getClip();
 	}
 	
-	public static Audio getNireAudio() {
+	public static Audio getNireAudio() throws LineUnavailableException {
 		if(nireAudio == null) {
 			nireAudio = new Audio();
 		}
 		return nireAudio;
 	}
 	
-	 public static void playSound(String filepath) {
+	 public static void playSoinua(String filepath) {
         new Thread(() -> {
             try {
                 AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(filepath));
-                Clip clip = AudioSystem.getClip();
+                clip = AudioSystem.getClip();
                 clip.open(audioIn);
                 clip.start();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -35,5 +36,11 @@ public class Audio {
             }
         }).start();
     }
+	 
+	 public void soinuaGelditu() {
+		if (clip.isRunning()) {
+			clip.stop();
+		}
+	 }
     
 }

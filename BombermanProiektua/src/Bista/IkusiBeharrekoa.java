@@ -1,5 +1,6 @@
 package Bista;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -248,6 +249,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				panel.repaint();
 				cardLayout.show(pantailak, "Hasiera");
             	j = "white";
+            	try {
+					Audio.getNireAudio().soinuaGelditu();
+				} catch (LineUnavailableException e) {
+					e.printStackTrace();
+				}
 			}
 			if(arg0.getSource().equals(btnEz)) {
 				System.exit(0);
@@ -309,7 +315,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
-				Audio.getNireAudio().playSound("../BombermanProiektua/BombermanProiektua/src/Audioa/ejudas-priest-painkiller-official-lyric-video_tJKPe9Ua.wav");
+				try {
+					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/judas-priest-painkiller-official-lyric-video_tJKPe9Ua.wav");
+				} catch (LineUnavailableException e) {
+					e.printStackTrace();
+				}
 				lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
 				lblZorionak.setBounds(0, 0, getWidth(), getHeight());
@@ -322,7 +332,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				}
 			}
 			else {
-				Audio.getNireAudio().playSound("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
+				try {
+					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
+				} catch (LineUnavailableException e) {
+					e.printStackTrace();
+				}
 			}
 			cardLayout.show(pantailak, "Amaitu");
 			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
