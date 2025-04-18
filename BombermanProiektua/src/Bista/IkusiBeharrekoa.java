@@ -320,6 +320,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					e.printStackTrace();
 				}
 			}
+			Audio.getNireAudio().playSound("/Audioa/el-primo-me-muero-101soundboards.wav");
 			cardLayout.show(pantailak, "Amaitu");
 			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
 			unekoPantaila = "Hasiera";
