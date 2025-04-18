@@ -41,7 +41,7 @@ public class Gelaxka extends Observable {
 			gehituElementua(pJok);
 			BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 		} 
-		else if (lortuEgoera()[sua] == 1){
+		else if (lortuEgoera()[sua] != 0){
 			gehituElementua(pJok);
 		}
 		else {
@@ -67,39 +67,40 @@ public class Gelaxka extends Observable {
 		return zuzena;
     }
 	
-	public void setSua(int i, int j) {
+	public void setSua(int i, int j, int pMota) {
+		BlastFactory BF = BlastFactory.getNireBF();
 		if (lortuEgoera()[blokeGogorra] == 0) {
 			if(elementua!=null) {
 				if (lortuEgoera()[jokalaria] == 1) {
-					gehituElementua(new Sua(i,j));
+					gehituElementua(BF.sortuBlast(i,j,pMota));
 					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().partidaAmaitu(false);
 				}
 				else if (lortuEgoera()[blokeBiguna] == 1) {
-					this.elementua = new Sua(i,j);
+					this.elementua = BF.sortuBlast(i,j,pMota);
 					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().kenduBlokeBiguna();
 				}
 				else if (lortuEgoera()[etsaia] == 1) {
-					gehituElementua(new Sua(i,j));
+					gehituElementua(BF.sortuBlast(i,j,pMota));
 					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(500);
 					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().kenduEtsaia();
 					((ElementuTalde)this.elementua).getEtsaia().ezabatu();;
 				} 
-				else if(lortuEgoera()[sua] == 1) {
-					if (this.elementua instanceof Sua) {
-						((Sua) this.elementua).kenduTimer();
+				else if(lortuEgoera()[sua] != 0) {
+					if (this.elementua instanceof Blast) {
+						((Blast) this.elementua).kenduTimer();
 					}
 					else {
 						((ElementuTalde) this.elementua).kenduTimer();
 					}
-					this.elementua = new Sua(i,j);
+					this.elementua = BF.sortuBlast(i,j,pMota);
 				}
 				else {
-					this.elementua = new Sua(i,j);
+					this.elementua = BF.sortuBlast(i,j,pMota);
 				}
 			}
 			else {
-				this.elementua = new Sua(i,j);
+				this.elementua = BF.sortuBlast(i,j,pMota);
 			}
 			setChanged();
 			notifyObservers(lortuEgoera());
@@ -136,7 +137,7 @@ public class Gelaxka extends Observable {
         if(lortuEgoera()[bomba]==1) {
         	this.elementua=((ElementuTalde)this.elementua).getBomba();
         }
-        else if (lortuEgoera()[sua]==1) {
+        else if (lortuEgoera()[sua]!=0) {
         	this.elementua=((ElementuTalde)this.elementua).getSua();
         }
         else {
@@ -174,7 +175,7 @@ public class Gelaxka extends Observable {
 			return BlokeMota.BLOKEBIGUNA;
 		} else if (egoera[blokeGogorra] == 1) {
 			return BlokeMota.BLOKEGOGORRA;
-		} else if (egoera[sua] == 1) {
+		} else if (egoera[sua] != 0) {
 			return BlokeMota.SUA;
 		} else if (egoera[bomba] == 1) {
 			return BlokeMota.BOMBA;
@@ -195,8 +196,8 @@ public class Gelaxka extends Observable {
 				this.elementua = null;
 			}
 		}
-		else if (lortuEgoera()[sua] == 1) { 
-			((Sua)this.elementua).kenduTimer();
+		else if (lortuEgoera()[sua] != 0) { 
+			((Blast)this.elementua).kenduTimer();
 			this.elementua = null;
 			
 		}

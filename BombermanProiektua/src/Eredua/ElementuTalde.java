@@ -28,10 +28,10 @@ public class ElementuTalde implements GelaxkaElementua {
 		return null;
 	}
 	
-	public Sua getSua() {
+	public Blast getSua() {
 		for (GelaxkaElementua elementua : elementuak) {
-			if (elementua instanceof Sua) {
-				return (Sua) elementua;
+			if (elementua instanceof Blast) {
+				return (Blast) elementua;
 			}
 		}
 		return null;
@@ -48,8 +48,8 @@ public class ElementuTalde implements GelaxkaElementua {
 	
 	public void kenduTimer() {
 		for (GelaxkaElementua elementua : elementuak) {
-			if (elementua instanceof Sua) {
-				((Sua) elementua).kenduTimer();
+			if (elementua instanceof Blast) {
+				((Blast) elementua).kenduTimer();
 			}
 			else if (elementua instanceof Bomba) {
 				((Bomba) elementua).kenduTimer();
