@@ -52,7 +52,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private boolean bombaJarrita = false;
 	
 
-	public IkusiBeharrekoa() throws LineUnavailableException {
+	public IkusiBeharrekoa() {
 		setBounds(100, 100, 666, 450);
         setTitle("Bomberman");
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
@@ -63,8 +63,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		addKeyListener(getControler());
 		addComponentListener(getControler());
 		setFocusable(true);
-		Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
-		Audio.getNireAudio().setBolumena(1.0f);
+		try {
+			Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
+			Audio.getNireAudio().setBolumena(1.0f);
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -191,7 +195,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 							break;
 						}
 						try {
-							Audio.getNireAudio().setBolumena(0.5f);
+							Audio.getNireAudio().setBolumena(0.75f);
 						} catch (LineUnavailableException e1) {
 							e1.printStackTrace();
 						}
@@ -254,6 +258,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				panel.removeAll();
 				panel.revalidate();
 				panel.repaint();
+				try {
+					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
+					Audio.getNireAudio().setBolumena(1.0f);
+				} catch (LineUnavailableException e) {
+					e.printStackTrace();
+				}
 				cardLayout.show(pantailak, "Hasiera");
             	j = "white";
             	try {
@@ -322,13 +332,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
-				try {
-					Audio.getNireAudio().soinuaGelditu();
-					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Canción de victoria de Brawl Stars (2020).wav");
-				} catch (LineUnavailableException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
 				lblZorionak.setBounds(0, 0, getWidth(), getHeight());
@@ -336,15 +339,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				try {
 					Thread.sleep(3000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			else {
-				try {
-					Audio.getNireAudio().soinuaGelditu();
-					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
-				} catch (LineUnavailableException e) {
 					e.printStackTrace();
 				}
 			}
@@ -354,7 +348,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 	}
 	
-	private JPanel getPantailak() {
+	private JPanel getPantailak(){
 		if (pantailak == null) {
 			cardLayout = new CardLayout();
 			pantailak = new JPanel(cardLayout);

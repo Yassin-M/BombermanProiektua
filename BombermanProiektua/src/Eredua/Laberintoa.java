@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import javax.sound.sampled.LineUnavailableException;
+
 public abstract class Laberintoa {
 	protected Gelaxka[][] laberintoa;
 	protected Jokalaria jokalaria;
@@ -99,8 +101,21 @@ public abstract class Laberintoa {
 	
 	public void partidaAmaitu(boolean irabazi) {
 		if (irabazi) {
+			try {
+				Audio.getNireAudio().soinuaGelditu();
+				Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Canción de victoria de Brawl Stars (2020).wav");
+			} catch (LineUnavailableException e) {
+				e.printStackTrace();
+			}
 			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
         } else {
+        
+        	try {
+				Audio.getNireAudio().soinuaGelditu();
+				Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
+			} catch (LineUnavailableException e) {
+				e.printStackTrace();
+			}
 			jokalaria.jokalariaHil();
 			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
 		}
