@@ -6,12 +6,14 @@ import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audio {
 	private static Audio nireAudio = null;
 	private static Clip clip;
+	private static FloatControl bol;
 	
 	private Audio() throws LineUnavailableException {
 		clip = AudioSystem.getClip();
@@ -31,6 +33,7 @@ public class Audio {
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
                 clip.start();
+                bol = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
@@ -42,5 +45,12 @@ public class Audio {
 			clip.stop();
 		}
 	 }
-    
+	 public void setBolumena(float bolumena) {
+	        if (bol != null) {
+	            float min = bol.getMinimum();
+	            float max = bol.getMaximum();
+	            float dB = (max - min) * bolumena + min;
+	            bol.setValue(dB);
+	        }
+	    }
 }
