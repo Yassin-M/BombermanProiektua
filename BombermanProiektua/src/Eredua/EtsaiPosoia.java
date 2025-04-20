@@ -9,7 +9,7 @@ public class EtsaiPosoia extends Etsaia {
 	}
 	
 	@Override
-	protected int getMota() {
+	public int getMota() {
 		return 1;
 	}
 	public Integer[] lortuEgoera() {
