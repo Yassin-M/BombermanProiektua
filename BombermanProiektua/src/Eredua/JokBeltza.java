@@ -18,7 +18,7 @@ public class JokBeltza extends Jokalaria {
 	}
 	
 	public Integer[] lortuEgoera() {
-		Integer [] emaitza = new Integer[]{0,0,0,0,0,1,0,1};
+		Integer [] emaitza = new Integer[]{0,0,0,0,0,1,0,1,0};
 		switch (norabidea) {
 		case GORA:
 			emaitza[6] = 1;

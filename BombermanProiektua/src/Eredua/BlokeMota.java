@@ -6,5 +6,6 @@ public enum BlokeMota {
 	BLOKEBIGUNA,
 	BLOKEGOGORRA,
 	ETSAIA,
-	JOKALARIA
+	JOKALARIA,
+	POSOIA
 }

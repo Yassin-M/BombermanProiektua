@@ -20,7 +20,7 @@ public class BlastFactory {
 			b = new Sua(i, j);
 			break;
 		case 2:
-			//b = new Posoia(i, j);
+			b = new Posoia(i, j);
 			break;
 		case 3: 
 			b = new ZuloBeltza(i, j);

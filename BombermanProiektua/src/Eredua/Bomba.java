@@ -49,5 +49,7 @@ public abstract class Bomba implements GelaxkaElementua {
 		}
     }
 	
+
 	public abstract Integer[] lortuEgoera();
+	
 }

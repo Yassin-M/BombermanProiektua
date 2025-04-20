@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Etsaia implements GelaxkaElementua {
+public abstract class Etsaia implements GelaxkaElementua {
 	private int[] aukerak; // 0 = gora, 1 = behera, 2 = ezkerrera, 3 = eskuma
 	private int i;
 	private int j;
@@ -12,7 +12,7 @@ public class Etsaia implements GelaxkaElementua {
 	private Timer timer = null;
 	private boolean aktibo;
 	
-	public Etsaia(int pI, int pJ, boolean pNorabidea) {
+	protected Etsaia(int pI, int pJ, boolean pNorabidea) {
 		this.i = pI;
 		this.j = pJ;
 		this.aukerak = new int[]{0,1,2,3};
@@ -28,6 +28,8 @@ public class Etsaia implements GelaxkaElementua {
 		this.aukerak = null;
 		this.aukerak = egoera;
 	}
+	
+	protected abstract int getMota();
 	
 	private void kenduAukera(int aukera) {
 		int luzera = aukerak.length-1;
@@ -69,10 +71,11 @@ public class Etsaia implements GelaxkaElementua {
 		Random rand = new Random();
 		int aukera = rand.nextInt(aukerak.length);
 		boolean zuzena = true;
+		int mota = getMota();
 		switch(aukerak[aukera]) {
 			case 0: 
 				if (i>0) {
-					zuzena=BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i-1,j,norabidea);
+					zuzena=BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i-1,j,norabidea,mota);
 				} else {
 					zuzena=false;
 				}
@@ -82,7 +85,7 @@ public class Etsaia implements GelaxkaElementua {
 				break;
 			case 1:
 				if (i<10) {
-					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i+1,j,norabidea);
+					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i+1,j,norabidea,mota);
 				} else {
 					zuzena=false;
 				}
@@ -92,7 +95,7 @@ public class Etsaia implements GelaxkaElementua {
 				break;
 			case 2:
 				if (j>0) {
-					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i,j-1, true);
+					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i,j-1, true,mota);
 				} else {
 					zuzena=false;
 				}
@@ -102,7 +105,7 @@ public class Etsaia implements GelaxkaElementua {
 				break;
 			case 3:
 				if (j<16) {
-					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i,j+1, false);
+					zuzena = BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().etsaiaMugitu(i,j,i,j+1, false,mota);
 				} else {
 					zuzena=false;
 				}
@@ -130,8 +133,6 @@ public class Etsaia implements GelaxkaElementua {
 		aktibo = false;
 	}
 	
-	public Integer[] lortuEgoera() {
-		return new Integer[]{0,0,0,0,1,0,0,0};
-	}
+	
 
 }

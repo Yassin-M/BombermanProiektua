@@ -5,16 +5,17 @@ import java.util.TimerTask;
 
 public abstract class Blast implements GelaxkaElementua {
 	
-	private static final int PERIODO = 2;
 	private int kont;
 	private Timer timer = null;
 	private int i;
 	private int j;
 	
+	
+	
 	protected Blast(int i, int j) {
 		this.i = i;
 		this.j = j;
-		kont = PERIODO;
+		this.kont = getPeriodo();
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
@@ -24,6 +25,8 @@ public abstract class Blast implements GelaxkaElementua {
 		timer = new Timer();
 		timer.scheduleAtFixedRate(timerTask, 0, 1000);
 	}
+	
+	public abstract int getPeriodo();
 	
 	public void updateKont() {
 		kont--;

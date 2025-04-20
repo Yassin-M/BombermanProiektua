@@ -31,7 +31,11 @@ public class LaberintoClassic extends Laberintoa {
 					}
 					else if (r.nextInt(100) >= 90 && etsaiKop < 6) {
 						etsaiKop++;
-						laberintoa[i][j].setEtsaia(true);
+						laberintoa[i][j].setEtsaia(true,0);
+					}
+					else if (r.nextInt(100) >= 70 && etsaiKop < 6) {
+						etsaiKop++;
+						laberintoa[i][j].setEtsaia(true,1);
 					}
 				}
 			}

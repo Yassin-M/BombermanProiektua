@@ -1,3 +1,4 @@
+
 package Eredua;
 
 
@@ -37,6 +38,10 @@ public abstract class Laberintoa {
 		}
 	}
 	
+	public Etsaia getEtsaia(int i, int j) {
+		return (Etsaia) laberintoa[i][j].getElementua();
+	}
+	
 	public Gelaxka getGelaxka(int i, int j) {
 		return laberintoa[i][j];
 	}
@@ -59,6 +64,12 @@ public abstract class Laberintoa {
 		return zuzena;
 	}
 	
+	public void posoiaJarri(int i,int j, boolean pZuzena) {
+		if(pZuzena) {
+		laberintoa[i][j].setPosoia(i,j,2);
+		}
+	}
+	
 	public void suaKendu(int i, int j) {
 		if(i>=0 && i<=10 && j>=0 && j<=16) {
 				laberintoa[i][j].kenduAurrekoa();
@@ -71,11 +82,12 @@ public abstract class Laberintoa {
 		int j = jok.getJposizioa();
 		if(jok.bizirik && baldintza.test(jok)) {
 			BlokeMota zerDago = laberintoa[i+pI][j+pJ].zerDago();
-			if (zerDago == null || zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA) {
+			System.out.println("Zer dago: " + zerDago);
+			if (zerDago == null || zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA || zerDago == BlokeMota.POSOIA) {
 				laberintoa[i][j].kenduJokalaria();
 				mugimendua.accept(jok);
 				setJokalaria(i+pI, j+pJ, jok);
-	            if (zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA) {
+	            if (zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA || zerDago == BlokeMota.POSOIA) {
 					partidaAmaitu(false);
 					if (zerDago == BlokeMota.ETSAIA) {
 						laberintoa[i+pI][j+pJ].amatatuTimer();
@@ -123,23 +135,26 @@ public abstract class Laberintoa {
 		Arrays.stream(laberintoa).flatMap(Arrays::stream).forEach(Gelaxka::amatatuTimer);
 	}
 	
-	public boolean etsaiaMugitu(int i, int j, int iBerria, int jBerria, boolean pNorabidea) {
+	public boolean etsaiaMugitu(int i, int j, int iBerria, int jBerria, boolean pNorabidea,int mota) {
 		boolean zuzena = true;
 		Random rand = new Random();
 		if (laberintoa[iBerria][jBerria].zerDago() == null) {
-			zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea);	
+			zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);	
 			if (zuzena) {
 				laberintoa[i][j].kenduAurrekoa();
 				laberintoa[iBerria][jBerria].etsaiaHasieratu();	
 			}
-		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80) {
+		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80){
 			laberintoa[i][j].etsaiaHil();
 			kenduEtsaia();
 		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.JOKALARIA) {
-			laberintoa[iBerria][jBerria].setEtsaia(pNorabidea);
+			laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);
 			laberintoa[i][j].kenduAurrekoa();
 			partidaAmaitu(false);
 		} else zuzena = false;
+		if(mota==1) {
+			posoiaJarri(i,j,zuzena);
+		}
 		return zuzena;
 	}
  }
