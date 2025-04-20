@@ -41,6 +41,7 @@ public class BombermanKudeatzailea extends Observable{
 		}
 	}
 	
+	
 	public void itxaron(boolean pIrabazi) {
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {

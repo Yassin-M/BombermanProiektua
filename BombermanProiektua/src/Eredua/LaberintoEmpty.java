@@ -7,6 +7,7 @@ public class LaberintoEmpty extends Laberintoa {
 		super();
 	}
 
+	
 	@Override
 	public void laberintoaSortu(String pJok) {
 		this.laberintoa = new Gelaxka[11][17];

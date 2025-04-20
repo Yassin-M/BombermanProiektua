@@ -13,6 +13,7 @@ public class EtsaiaFactory {
 		return nireEtsaiaFactory;
 	}
 	
+	
 	public Etsaia sortuEtsaia(int x, int y, boolean pNorabidea, int pMota) {
 		Etsaia etsaia = null;
 		switch (pMota) {

@@ -14,7 +14,6 @@ public class Gelaxka extends Observable {
 	
 	private GelaxkaElementua elementua;
 	
-	
 	public Gelaxka(int pX, int pY) {
         this.x = pX;
         this.y = pY;

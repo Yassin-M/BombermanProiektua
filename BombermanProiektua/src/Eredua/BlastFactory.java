@@ -13,6 +13,7 @@ public class BlastFactory {
 		return nireBF;
 	}
 	
+	
 	public Blast sortuBlast(int i, int j, int pMota) {
 		Blast b = null;
 		switch (pMota) {

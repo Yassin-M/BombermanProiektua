@@ -22,6 +22,7 @@ public abstract class Laberintoa {
 		this.score = 0;
 	}
 	
+	
 	public abstract void laberintoaSortu(String pJok);
 	
 	protected void etsaiakHasieratu() {

@@ -44,6 +44,7 @@ public abstract class Etsaia implements GelaxkaElementua {
 		aukerak = lag;
 	}
 	
+	
 	public void hasiMugitzen() {	
 		TimerTask timerTask = new TimerTask() {
 			@Override

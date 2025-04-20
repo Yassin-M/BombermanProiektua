@@ -14,5 +14,6 @@ public class EtsaiPosoia extends Etsaia {
 	public Integer[] lortuEgoera() {
 		return new Integer[]{0,0,0,0,1,0,0,0,1};
 	}
+	
 
 }

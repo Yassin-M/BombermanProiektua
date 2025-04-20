@@ -12,6 +12,7 @@ public abstract class Blast implements GelaxkaElementua {
 	
 	
 	
+	
 	protected Blast(int i, int j) {
 		this.i = i;
 		this.j = j;
