@@ -182,7 +182,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
                         	}
                         break;
 					case KeyEvent.VK_SPACE:
-						//j = "blue";
+						j = "blue";
 						switch(unekoMapa) {
 						case "Classic":
 							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(1, j);

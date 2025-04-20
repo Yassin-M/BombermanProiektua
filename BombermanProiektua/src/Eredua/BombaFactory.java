@@ -23,8 +23,10 @@ public class BombaFactory {
 			break;
 		case 3: 
 			bomba = new BombaSakratua(i,j);
+			break;
 		case 4: 
 			bomba = new MegaBomba(i,j);
+			break;
 		default:
 			break;
 		}
