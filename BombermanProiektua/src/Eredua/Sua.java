@@ -6,6 +6,9 @@ public class Sua extends Blast{
 		super(i, j);
 	}
 
+	public int getPeriodo() {
+		return 2;
+	}
 	@Override
 	public Integer[] lortuEgoera() {
 		return new Integer[]{1,0,0,0,0,0,0,0};
