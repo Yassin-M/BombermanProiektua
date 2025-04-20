@@ -52,7 +52,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private boolean bombaJarrita = false;
 	
 
-	public IkusiBeharrekoa() {
+	public IkusiBeharrekoa() throws LineUnavailableException {
 		setBounds(100, 100, 666, 450);
         setTitle("Bomberman");
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
@@ -63,6 +63,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		addKeyListener(getControler());
 		addComponentListener(getControler());
 		setFocusable(true);
+		Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/judas-priest-painkiller-official-lyric-video_tJKPe9Ua.wav");
+		Audio.getNireAudio().setBolumena(1.0f);
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -187,6 +189,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 						case "Empty":
 							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(3, j);
 							break;
+						}
+						try {
+							Audio.getNireAudio().setBolumena(0.5f);
+						} catch (LineUnavailableException e1) {
+							e1.printStackTrace();
 						}
                         cardLayout.show(pantailak, "Laberintoa");
                         unekoPantaila = "Laberintoa";
@@ -315,11 +322,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
-				try {
-					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/judas-priest-painkiller-official-lyric-video_tJKPe9Ua.wav");
-				} catch (LineUnavailableException e) {
-					e.printStackTrace();
-				}
 				lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
 				lblZorionak.setBounds(0, 0, getWidth(), getHeight());
@@ -333,6 +335,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			}
 			else {
 				try {
+					Audio.getNireAudio().soinuaGelditu();
 					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
 				} catch (LineUnavailableException e) {
 					e.printStackTrace();
