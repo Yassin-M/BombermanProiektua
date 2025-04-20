@@ -167,7 +167,7 @@ public class GelaxkaBista extends JLabel implements Observer{
 	        setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
         } else if (egoera[1]!=0) {
         	irudia = "/Bista/irudiak/bomb1.png";
-			if (egoera[1]==2) irudia = "/Bista/irudiak/bluebomb1.png";
+			if (egoera[1]==3) irudia = "/Bista/irudiak/bluebomb1.png";
 			ImageIcon icon = new ImageIcon(Gelaxka.class.getResource(irudia));
 			setIcon(new ImageIcon(icon.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH)));
         } 

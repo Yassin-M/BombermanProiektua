@@ -52,7 +52,7 @@ public abstract class Laberintoa {
 
 	public boolean suaJarri(int i, int j, int pMota){
 		boolean zuzena = false;
-		if (laberintoa[i][j].zerDago() != BlokeMota.BLOKEGOGORRA) {
+		if (laberintoa[i][j].zerDago() != BlokeMota.BLOKEGOGORRA || pMota == 4) {
 			zuzena = true;
 			laberintoa[i][j].setSua(i,j,pMota);
 		}
@@ -105,12 +105,12 @@ public abstract class Laberintoa {
 			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
 		}
 	}
-	public void kenduBlokeBiguna() {
+	/*public void kenduBlokeBiguna() {
 		this.blokeBigunKop--;
 		if (this.blokeBigunKop == 0 && this.etsaiKop == 0) {
 		    partidaAmaitu(true);
 		}
-    }
+    }*/
 	
 	public void kenduEtsaia() {
         this.etsaiKop--;

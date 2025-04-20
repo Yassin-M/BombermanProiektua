@@ -69,7 +69,7 @@ public class Gelaxka extends Observable {
 	
 	public void setSua(int i, int j, int pMota) {
 		BlastFactory BF = BlastFactory.getNireBF();
-		if (lortuEgoera()[blokeGogorra] == 0) {
+		if (lortuEgoera()[blokeGogorra] == 0 || pMota == 4) {
 			if(elementua!=null) {
 				if (lortuEgoera()[jokalaria] != 0) {
 					gehituElementua(BF.sortuBlast(i,j,pMota));
@@ -78,7 +78,7 @@ public class Gelaxka extends Observable {
 				else if (lortuEgoera()[blokeBiguna] == 1) {
 					this.elementua = BF.sortuBlast(i,j,pMota);
 					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
-					BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().kenduBlokeBiguna();
+					//BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().kenduBlokeBiguna();
 				}
 				else if (lortuEgoera()[etsaia] == 1) {
 					gehituElementua(BF.sortuBlast(i,j,pMota));

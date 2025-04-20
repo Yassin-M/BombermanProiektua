@@ -16,7 +16,7 @@ public class BlastFactory {
 	public Blast sortuBlast(int i, int j, int pMota) {
 		Blast b = null;
 		switch (pMota) {
-		case 1:
+		case 1, 4:
 			b = new Sua(i, j);
 			break;
 		case 2:

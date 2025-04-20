@@ -8,6 +8,6 @@ public class BombaSakratua extends Bomba {
 
 	@Override
 	public Integer[] lortuEgoera() {
-		return new Integer[]{0,2,0,0,0,0,0,0};
+		return new Integer[]{0,3,0,0,0,0,0,0};
 	}
 }

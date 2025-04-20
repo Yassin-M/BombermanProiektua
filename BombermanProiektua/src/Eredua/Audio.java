@@ -45,6 +45,7 @@ public class Audio {
 			clip.stop();
 		}
 	 }
+	 
 	 public void setBolumena(float bolumena) {
 	        if (bol != null) {
 	            float min = bol.getMinimum();
@@ -52,5 +53,5 @@ public class Audio {
 	            float dB = (max - min) * bolumena + min;
 	            bol.setValue(dB);
 	        }
-	    }
+	   }
 }
