@@ -335,6 +335,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			}
 			else {
 				try {
+					Audio.getNireAudio().soinuaGelditu();
 					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
 				} catch (LineUnavailableException e) {
 					e.printStackTrace();
