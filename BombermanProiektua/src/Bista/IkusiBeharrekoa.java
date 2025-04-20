@@ -63,7 +63,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		addKeyListener(getControler());
 		addComponentListener(getControler());
 		setFocusable(true);
-		Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/judas-priest-painkiller-official-lyric-video_tJKPe9Ua.wav");
+		Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
 		Audio.getNireAudio().setBolumena(1.0f);
 	}
 	private JPanel getPanel() {
@@ -322,6 +322,13 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
 			if (irabazi) {
+				try {
+					Audio.getNireAudio().soinuaGelditu();
+					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Canción de victoria de Brawl Stars (2020).wav");
+				} catch (LineUnavailableException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				lblZorionak = new JLabel("ZORIONAK!");
 				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
 				lblZorionak.setBounds(0, 0, getWidth(), getHeight());
