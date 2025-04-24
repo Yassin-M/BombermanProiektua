@@ -151,7 +151,7 @@ public abstract class Laberintoa {
 	public boolean etsaiaMugitu(int i, int j, int iBerria, int jBerria, boolean pNorabidea,int mota) {
 		boolean zuzena = true;
 		Random rand = new Random();
-		if (laberintoa[iBerria][jBerria].zerDago() == null) {
+		if (laberintoa[iBerria][jBerria].zerDago() == null || laberintoa[iBerria][jBerria].zerDago() == BlokeMota.POSOIA) {
 			zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);	
 			if (zuzena) {
 				laberintoa[i][j].kenduAurrekoa();
