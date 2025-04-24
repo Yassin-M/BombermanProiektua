@@ -19,7 +19,7 @@ public class JokUrdina extends Jokalaria {
 
 	@Override
 	public Integer[] lortuEgoera() {
-		Integer [] emaitza = new Integer[]{0,0,0,0,0,1,0,2};
+		Integer [] emaitza = new Integer[]{0,0,0,0,0,1,0,2,0};
 		switch (norabidea) {
 		case GORA:
 			emaitza[6] = 1;
@@ -36,6 +36,7 @@ public class JokUrdina extends Jokalaria {
 		default:
 			break;
 		}
+		emaitza[8] = super.irudia;
 		return emaitza;
 	}
 }

@@ -8,6 +8,7 @@ public abstract class Jokalaria implements GelaxkaElementua {
 	protected int i;
 	protected int j;
 	protected Norabidea norabidea;
+	protected int irudia;
 	
 	protected Timer timer = null;
 	protected int kont;
@@ -23,22 +24,58 @@ public abstract class Jokalaria implements GelaxkaElementua {
 
 	public void mugituEskuinera() {
 		j++;
-		this.norabidea = Norabidea.ESKUINERA;
+		if(norabidea!=Norabidea.ESKUINERA) {
+			irudia = 1;
+			this.norabidea = Norabidea.ESKUINERA;
+		}else {
+			if(irudia==5) {
+				irudia = 2;
+			}else {
+				irudia++;
+			}
+		}
 	}
 
 	public void mugituEzkerretara() {
 		j--;
-		this.norabidea = Norabidea.EZKERRERA;
+		if(norabidea!=Norabidea.EZKERRERA) {
+			irudia = 1;
+			this.norabidea = Norabidea.EZKERRERA;
+		}else {
+			if(irudia==5) {
+				irudia = 2;
+			}else {
+				irudia++;
+			}
+		}
 	}
 
 	public void mugituGora() {
 		i--;
-		this.norabidea = Norabidea.GORA;
+		if(norabidea!=Norabidea.GORA) {
+			irudia = 1;
+			this.norabidea = Norabidea.GORA;
+		}else {
+			if(irudia==5) {
+				irudia = 2;
+			}else {
+				irudia++;
+			}
+		}
 	}
 
 	public void mugituBehera() {
 		i++;
-		this.norabidea = Norabidea.BEHERA;
+		if(norabidea!=Norabidea.BEHERA) {
+			irudia = 1;
+			this.norabidea = Norabidea.BEHERA;
+		}else {
+			if(irudia==4) {
+				irudia = 1;
+			}else {
+				irudia++;
+			}
+		}
 	}
 	
 	public int getJposizioa() {
@@ -79,4 +116,6 @@ public abstract class Jokalaria implements GelaxkaElementua {
 	public Norabidea getNorabidea() {
 		return this.norabidea;
 	}
+	
+	public abstract Integer[] lortuEgoera();
 }

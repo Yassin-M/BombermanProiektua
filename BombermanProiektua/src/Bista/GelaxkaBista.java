@@ -148,21 +148,21 @@ public class GelaxkaBista extends JLabel implements Observer{
         		irudia = "/Bista/irudiak/"+jokmota+"withbomb1.png";
         	}
         	else {
-				switch(egoera[6]) {
+        		switch(egoera[6]) {
 				case 1:
-					irudia = "/Bista/irudiak/"+jokmota+"up1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"up"+egoera[8]+".png";
 					break;
 				case 2:
-					irudia = "/Bista/irudiak/"+jokmota+"down1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"down"+egoera[8]+".png";
 					break;
 				case 3:
-					irudia = "/Bista/irudiak/"+jokmota+"left1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"left"+egoera[8]+".png";
 					break;
 				case 4:
-					irudia = "/Bista/irudiak/"+jokmota+"right1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"right"+egoera[8]+".png";
                     break;
 				default:
-					irudia = "/Bista/irudiak/"+jokmota+"down1.png";
+					irudia = "/Bista/irudiak/"+jokmota+"down"+egoera[8]+".png";
 					break;
 				}
 			}

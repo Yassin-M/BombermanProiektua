@@ -11,7 +11,7 @@ public abstract class Bomba implements GelaxkaElementua {
 	private int j;
 	private BombaPortaera bombaPortaera;
 	
-	public Bomba(int i, int j, BombaPortaera pPortaera) {
+	protected Bomba(int i, int j, BombaPortaera pPortaera) {
 			this.i = i;
 			this.j = j;
 			this.bombaPortaera = pPortaera; 
