@@ -153,7 +153,7 @@ public abstract class Laberintoa {
 	public boolean etsaiaMugitu(int i, int j, int iBerria, int jBerria, boolean pNorabidea,int mota) {
 		boolean zuzena = true;
 		Random rand = new Random();
-		if (laberintoa[iBerria][jBerria].zerDago() == null || laberintoa[iBerria][jBerria].zerDago() == BlokeMota.POSOIA) {
+		if (laberintoa[iBerria][jBerria].zerDago() == null) {
 			zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);	
 			if (zuzena) {
 				laberintoa[i][j].kenduAurrekoa();
@@ -162,6 +162,17 @@ public abstract class Laberintoa {
 		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80){
 			laberintoa[i][j].etsaiaHil();
 			kenduEtsaia();
+		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.POSOIA) {
+			  if (mota==1) {
+				  zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);	
+				  if (zuzena) {
+						laberintoa[i][j].kenduAurrekoa();
+						laberintoa[iBerria][jBerria].etsaiaHasieratu();	
+				  }
+			  } else if (rand.nextInt(100) >= 80) {
+					laberintoa[i][j].etsaiaHil();
+					kenduEtsaia();
+				}
 		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.JOKALARIA) {
 			laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);
 			laberintoa[i][j].kenduAurrekoa();
