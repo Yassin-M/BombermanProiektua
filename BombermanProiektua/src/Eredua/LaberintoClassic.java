@@ -21,6 +21,8 @@ public class LaberintoClassic extends Laberintoa {
 					continue;
 				} else if (pJok.equals("blue") && ((i==0 && j==2)||(i==2 && j==0))) {
 					continue;
+				} else if (pJok.equals("blue") && ((i==0 && j==3)||(i==3 && j==0))){
+					laberintoa[i][j].setBlokeBiguna();
 				}
 				else if (i%2 != 0 && j%2 != 0) {
 					laberintoa[i][j].setBlokeGogorra();

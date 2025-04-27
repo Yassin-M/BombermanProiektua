@@ -59,7 +59,9 @@ public class Gelaxka extends Observable {
 			if (lortuEgoera()[jokalaria] != 0) {
 				gehituElementua(etsai);
 				BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
-			} 
+			} else if (lortuEgoera()[blast] != 0) {
+				zuzena = false;
+			}
 			else {
 				this.elementua = etsai;
 			}
