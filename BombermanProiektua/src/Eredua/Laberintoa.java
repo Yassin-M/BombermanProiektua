@@ -113,7 +113,8 @@ public abstract class Laberintoa {
 		if (irabazi) {
 			try {
 				Audio.getNireAudio().soinuaGelditu();
-				Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Canción de victoria de Brawl Stars (2020).wav");
+				Audio.getNireAudio();
+				Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Canción de victoria de Brawl Stars (2020).wav");
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
 			}
@@ -122,7 +123,8 @@ public abstract class Laberintoa {
         
         	try {
 				Audio.getNireAudio().soinuaGelditu();
-				Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
+				Audio.getNireAudio();
+				Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
 			}

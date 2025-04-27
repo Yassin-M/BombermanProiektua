@@ -64,7 +64,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		addComponentListener(getControler());
 		setFocusable(true);
 		try {
-			Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
+			Audio.getNireAudio();
+			Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
 			Audio.getNireAudio().setBolumena(1.0f);
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
@@ -259,7 +260,8 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				panel.revalidate();
 				panel.repaint();
 				try {
-					Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
+					Audio.getNireAudio();
+					Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
 					Audio.getNireAudio().setBolumena(1.0f);
 				} catch (LineUnavailableException e) {
 					e.printStackTrace();
