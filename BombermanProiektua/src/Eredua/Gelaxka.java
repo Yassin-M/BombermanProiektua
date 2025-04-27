@@ -125,7 +125,7 @@ public class Gelaxka extends Observable {
 					((ElementuTalde) this.elementua).kenduTimer();
 				}
 				this.elementua = BF.sortuBlast(i,j,pMota);
-			}
+			} else if (lortuEgoera()[etsaia] != 0) {}
 			else {
 				this.elementua = BF.sortuBlast(i,j,pMota);
 			}

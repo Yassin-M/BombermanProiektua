@@ -19,6 +19,10 @@ public class LaberintoSoft extends Laberintoa {
 				}
 				else if ((i==0 && j==1)||(i==1 && j==0)) {
 					continue;
+				} else if (pJok.equals("blue") && ((i==0 && j==2)||(i==2 && j==0))) {
+					continue;
+				} else if (pJok.equals("blue") && ((i==0 && j==3)||(i==3 && j==0))){
+					laberintoa[i][j].setBlokeBiguna();
 				} else { 
 					Random r = new Random();
 					if (r.nextInt(100) >= 40) {
