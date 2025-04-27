@@ -141,14 +141,46 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
             int key = e.getKeyCode();
             if (unekoPantaila.equals("Hasiera")) {
                 switch (key) {
-                    case KeyEvent.VK_LEFT:
-                        hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
+                case KeyEvent.VK_LEFT:
+                    switch(j) {
+                    case "white":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
                         j = "white";
                         break;
-                    case KeyEvent.VK_RIGHT:
-                        hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioBlack.png");
+                    case "black":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
+                        j = "white";
+                    	break;
+                    case "blue":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioBlack.png");
+                        j = "black";
+                    	break;
+                    case "red":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioBlue.png");
+                        j = "blue";
+                    	break;
+                    }
+                    break;
+                case KeyEvent.VK_RIGHT:
+                	switch(j) {
+                    case "white":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioBlack.png");
                         j = "black";
                         break;
+                    case "black":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioBlue.png");
+                        j = "blue";
+                    	break;
+                    case "blue":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioRed.png");
+                        j = "red";
+                    	break;
+                    case "red":
+                    	hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioRed.png");
+                        j = "red";
+                    	break;
+                    }
+                    break;
                     case KeyEvent.VK_SPACE:
                     	unekoPantaila = "Mapa";
                     	unekoMapa = "Classic";
