@@ -118,7 +118,6 @@ public abstract class Laberintoa {
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
 			}
-			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
         } else {
         
         	try {
@@ -129,8 +128,8 @@ public abstract class Laberintoa {
 				e.printStackTrace();
 			}
 			jokalaria.jokalariaHil();
-			BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
 		}
+		BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
 	}
 	/*public void kenduBlokeBiguna() {
 		this.blokeBigunKop--;

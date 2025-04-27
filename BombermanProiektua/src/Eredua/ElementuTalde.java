@@ -28,7 +28,7 @@ public class ElementuTalde implements GelaxkaElementua {
 		return null;
 	}
 	
-	public Blast getSua() {
+	public Blast getBlast() {
 		for (GelaxkaElementua elementua : elementuak) {
 			if (elementua instanceof Blast) {
 				return (Blast) elementua;

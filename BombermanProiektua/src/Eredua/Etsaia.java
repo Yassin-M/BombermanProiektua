@@ -127,6 +127,7 @@ public abstract class Etsaia implements GelaxkaElementua {
 		if (this.timer!=null) {
 	        timer.cancel();
 	        timer = null;
+	        aktibo = false;
 		}
     }
 	

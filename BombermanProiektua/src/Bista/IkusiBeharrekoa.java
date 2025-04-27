@@ -207,7 +207,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
                 	}
             	
             }
-            else {
+            else if (unekoPantaila.equals("Laberintoa")){
                 switch (key) {
                     case KeyEvent.VK_UP:
                     	bombaJarrita = false;
@@ -267,6 +267,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 					e.printStackTrace();
 				}
 				cardLayout.show(pantailak, "Hasiera");
+				unekoPantaila = "Hasiera";
             	j = "white";
             	try {
 					Audio.getNireAudio().soinuaGelditu();
@@ -350,7 +351,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			}
 			cardLayout.show(pantailak, "Amaitu");
 			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
-			unekoPantaila = "Hasiera";
+			unekoPantaila = "Amaitu";
 		}
 	}
 	

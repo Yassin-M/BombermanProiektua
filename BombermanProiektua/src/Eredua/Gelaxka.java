@@ -167,7 +167,7 @@ public class Gelaxka extends Observable {
         	this.elementua=((ElementuTalde)this.elementua).getBomba();
         }
         else if (lortuEgoera()[blast]!=0) {
-        	this.elementua=((ElementuTalde)this.elementua).getSua();
+        	this.elementua=((ElementuTalde)this.elementua).getBlast();
         }
         else {
         	this.elementua=null;
@@ -223,7 +223,7 @@ public class Gelaxka extends Observable {
 	public void amatatuTimer() {
 		if (elementua instanceof ElementuTalde) {
 			((ElementuTalde)this.elementua).kenduTimer();
-			if (((ElementuTalde) this.elementua).getSua() != null && ((ElementuTalde) this.elementua).getEtsaia()!=null) {
+			if (((ElementuTalde) this.elementua).getBlast() != null && ((ElementuTalde) this.elementua).getEtsaia()!=null) {
 				this.elementua = null;
 			}
 		}
