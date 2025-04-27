@@ -119,7 +119,7 @@ public abstract class Laberintoa {
 				e.printStackTrace();
 			}
         } else {
-        
+			jokalaria.jokalariaHil();
         	try {
 				Audio.getNireAudio().soinuaGelditu();
 				Audio.getNireAudio();
@@ -127,7 +127,6 @@ public abstract class Laberintoa {
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
 			}
-			jokalaria.jokalariaHil();
 		}
 		BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
 	}

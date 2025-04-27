@@ -204,7 +204,7 @@ public class Gelaxka extends Observable {
 			return BlokeMota.BLOKEBIGUNA;
 		} else if (egoera[blokeGogorra] == 1) {
 			return BlokeMota.BLOKEGOGORRA;
-		} else if (egoera[blast] == 1) {
+		} else if (egoera[blast] != 0 && egoera[blast] != 2) {
 			return BlokeMota.SUA;
 		} else if(egoera[blast] == 2) {
 			return BlokeMota.POSOIA;
