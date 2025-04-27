@@ -186,13 +186,13 @@ public class Gelaxka extends Observable {
 	
 	public void etsaiaHil() {
 		if (lortuEgoera()[etsaia]==1) {
-			this.elementua = null;
 			if (this.elementua instanceof Etsaia) {
 				((Etsaia)this.elementua).ezabatu();
 			}
 			else if (this.elementua instanceof ElementuTalde) {
 				((ElementuTalde)this.elementua).kenduTimer();
 			}
+			this.elementua = null;
 			setChanged();
 			notifyObservers(lortuEgoera());
 		}

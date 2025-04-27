@@ -19,7 +19,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
-import java.util.Observer;
+import java.util.Observer; 
 
 import javax.swing.JLabel;
 import java.awt.Graphics;
@@ -350,8 +350,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 						case JOKALARIA:
 							if(BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria() instanceof JokZuria) {
 								irudia = "/Bista/irudiak/whitedown1.png";
-							}else {
+							} else if (BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria() instanceof JokBeltza) {
 								irudia = "/Bista/irudiak/blackdown1.png";
+							} else if (BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria() instanceof JokUrdina) {
+								irudia = "/Bista/irudiak/bluedown1.png";
+							} else if (BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().getJokalaria() instanceof JokGorria) {
+								irudia = "/Bista/irudiak/reddown1.png";
 							}
 							break;
 						case null:

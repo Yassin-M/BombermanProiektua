@@ -65,10 +65,10 @@ public abstract class Laberintoa {
 		return zuzena;
 	}
 	
-	public void posoiaJarri(int i,int j, boolean pZuzena) {
-		if(pZuzena) {
+	public void posoiaJarri(int i,int j/*, boolean pZuzena*/) {
+		//if(pZuzena) {
 		laberintoa[i][j].setPosoia(i,j,2);
-		}
+		//}
 	}
 	
 	public void suaKendu(int i, int j) {
@@ -140,9 +140,11 @@ public abstract class Laberintoa {
 	
 	public void kenduEtsaia() {
         this.etsaiKop--;
+        System.out.println("Etsaia kendu da. Etsai kop: " + this.etsaiKop);
         if (this.etsaiKop == 0) {
             partidaAmaitu(true);
         }
+        
 	}
 	
 	public void timerrakAmatatu(boolean pIrabazi) {
@@ -156,30 +158,32 @@ public abstract class Laberintoa {
 			zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);	
 			if (zuzena) {
 				laberintoa[i][j].kenduAurrekoa();
+				if (mota==1) posoiaJarri(i,j);
 				laberintoa[iBerria][jBerria].etsaiaHasieratu();	
 			}
 		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.SUA && rand.nextInt(100) >= 80){
 			laberintoa[i][j].etsaiaHil();
+			if (mota==1) posoiaJarri(i,j);
 			kenduEtsaia();
 		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.POSOIA) {
 			  if (mota==1) {
 				  zuzena = laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);	
 				  if (zuzena) {
 						laberintoa[i][j].kenduAurrekoa();
+						if (mota==1) posoiaJarri(i,j);
 						laberintoa[iBerria][jBerria].etsaiaHasieratu();	
 				  }
 			  } else if (rand.nextInt(100) >= 80) {
 					laberintoa[i][j].etsaiaHil();
 					kenduEtsaia();
-				}
+			  } else zuzena = false;
 		} else if (laberintoa[iBerria][jBerria].zerDago() == BlokeMota.JOKALARIA) {
 			laberintoa[iBerria][jBerria].setEtsaia(pNorabidea,mota);
 			laberintoa[i][j].kenduAurrekoa();
+			if (mota==1) posoiaJarri(i,j);
 			partidaAmaitu(false);
 		} else zuzena = false;
-		if(mota==1) {
-			posoiaJarri(i,j,zuzena);
-		}
+		
 		return zuzena;
 	}
  }
