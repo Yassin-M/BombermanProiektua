@@ -83,11 +83,11 @@ public abstract class Laberintoa {
 		int j = jok.getJposizioa();
 		if(jok.bizirik && baldintza.test(jok)) {
 			BlokeMota zerDago = laberintoa[i+pI][j+pJ].zerDago();
-			if (zerDago == null || zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA) {
+			if (zerDago == null || zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA || zerDago == BlokeMota.POSOIA) {
 				laberintoa[i][j].kenduJokalaria();
 				mugimendua.accept(jok);
 				setJokalaria(i+pI, j+pJ, jok);
-	            if (zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA) {
+	            if (zerDago == BlokeMota.SUA || zerDago == BlokeMota.ETSAIA || zerDago == BlokeMota.POSOIA) {
 					partidaAmaitu(false);
 					if (zerDago == BlokeMota.ETSAIA) {
 						laberintoa[i+pI][j+pJ].amatatuTimer();
