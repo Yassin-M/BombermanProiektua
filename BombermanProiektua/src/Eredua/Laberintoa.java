@@ -116,6 +116,11 @@ public abstract class Laberintoa {
 	}
 	
 	public void partidaAmaitu(boolean irabazi) {
+		try {
+			Audio.getNireAudio().soinuaGelditu();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
 		if (irabazi) {
 			try {
 				Audio.getNireAudio().soinuaGelditu();

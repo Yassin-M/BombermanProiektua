@@ -32,6 +32,11 @@ public class Audio {
                 AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(filepath));
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
+				if (filepath.equals("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav")) {
+					clip.loop(Clip.LOOP_CONTINUOUSLY);
+				} else {
+					clip.loop(0);
+				}
                 clip.start();
                 bol = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
