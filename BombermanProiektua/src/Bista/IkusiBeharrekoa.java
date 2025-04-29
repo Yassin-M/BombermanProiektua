@@ -26,6 +26,7 @@ import java.awt.Graphics;
 import javax.swing.JLayeredPane;
 import java.awt.Font;
 import java.awt.CardLayout;
+import java.awt.Color;
 
 @SuppressWarnings({"deprecation","removal"})
 
@@ -44,6 +45,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JButton btnEz;
 	private JPanel contentPane_2;
 	private JLabel lblZorionak;
+	private JButton btnBerriroJolastu;
+	private JButton btnItxi;
+	private JLabel mensaje;
+	private JLabel imagenBomberman;
+	private JPanel botonesPanel;
 	
 	private HasierakoPantaila hasierakoPantaila;
 	private String unekoPantaila;
@@ -58,7 +64,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
-		setContentPane(getPantailak());
+		setContentPane(getPantailak(true));
 		BombermanKudeatzailea.getNireKudeatzaile().addObserver(this);
 		addKeyListener(getControler());
 		addComponentListener(getControler());
@@ -273,7 +279,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			if(arg0.getSource().equals(btnBtnbai)) {
+			if(arg0.getSource().equals(btnBerriroJolastu)) {
 				BombermanKudeatzailea.getNireKudeatzaile().laberintoaErreseteatu();
 				BombermanKudeatzailea.getNireKudeatzaile().addObserver(IkusiBeharrekoa.this);
 				panel.removeAll();
@@ -283,7 +289,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				unekoPantaila = "Hasiera";
             	j = "white";
 			}
-			if(arg0.getSource().equals(btnEz)) {
+			if(arg0.getSource().equals(btnItxi)) {
 				System.exit(0);
 			}
 		}
@@ -350,38 +356,86 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		}
 		if (o instanceof BombermanKudeatzailea && arg instanceof Boolean) {
 			boolean irabazi = (boolean) arg;
-			if (irabazi) {
-				lblZorionak = new JLabel("ZORIONAK!");
-				lblZorionak.setFont(new Font("Dialog", Font.BOLD, 65));
-				lblZorionak.setBounds(0, 0, getWidth(), getHeight());
-				layeredPane.add(lblZorionak, new Integer(2));
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
+			Amaitu(irabazi);
+			//pantailak.add(Amaitu(irabazi),"Amaitu");
 			cardLayout.show(pantailak, "Amaitu");
-			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
 			unekoPantaila = "Amaitu";
+			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
+
 		}
 	}
 	
-	private JPanel getPantailak(){
+	private JPanel getPantailak(boolean pIrabazi){
 		if (pantailak == null) {
 			cardLayout = new CardLayout();
 			pantailak = new JPanel(cardLayout);
 			pantailak.add(getLayeredPane_1(), "Laberintoa");
 			pantailak.add(getHasierakoPantaila(), "Hasiera");
-			pantailak.add(Amaitu(), "Amaitu");
+			pantailak.add(Amaitu(pIrabazi), "Amaitu");
 			cardLayout.show(pantailak, "Hasiera");
 			this.unekoPantaila = "Hasiera";
 		}
 		return pantailak;
 	}
 	
-	public JPanel Amaitu() {
+	public JPanel Amaitu(boolean irabazi) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		if (contentPane_2 == null) {
+			setBounds(100, 100, getWidth(), getHeight());
+			// Panel principal con fondo
+		    contentPane_2 = new JPanel() {
+		        private static final long serialVersionUID = 1L;
+		        private Image fondo = new ImageIcon(getClass().getResource("/Bista/irudiak/back2.png")).getImage();
+
+		        @Override
+		        protected void paintComponent(Graphics g) {
+		            super.paintComponent(g);
+		            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+		        }
+		    };
+			contentPane_2.setLayout(new BorderLayout(0, 0));
+		    // Mensaje de felicitación o consuelo
+		    mensaje = new JLabel(irabazi ? "Zorionak! Irabazi duzu!" : "Animo! Berriz saia zaitez!");
+		    mensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		    mensaje.setFont(new Font("Arial", Font.BOLD, 30));
+		    mensaje.setForeground(irabazi ? Color.GREEN : Color.RED);
+		    contentPane_2.add(mensaje, BorderLayout.NORTH);
+
+		    // Imagen de Bomberman (contento o triste)
+		    imagenBomberman = new JLabel();
+		    imagenBomberman.setHorizontalAlignment(SwingConstants.CENTER);
+		    ImageIcon icono = new ImageIcon(getClass().getResource(irabazi ? "/Bista/irudiak/bomber4.png" : "/Bista/irudiak/bomber3.png"));
+		    imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+		    contentPane_2.add(imagenBomberman, BorderLayout.CENTER);
+
+		    // Botones para volver a jugar o salir
+		    botonesPanel = new JPanel();
+		    botonesPanel.setOpaque(false);
+		    botonesPanel.setLayout(new GridLayout(1, 2, 10, 10));
+
+		    btnBerriroJolastu = new JButton("Berriro jolastu");
+		    btnBerriroJolastu.setFont(new Font("Arial", Font.BOLD, 20));
+		    btnBerriroJolastu.setBackground(Color.WHITE);
+		    btnBerriroJolastu.addActionListener(getControler());
+		    botonesPanel.add(btnBerriroJolastu);
+
+		    btnItxi = new JButton("Itxi");
+		    btnItxi.setFont(new Font("Arial", Font.BOLD, 20));
+		    btnItxi.setBackground(Color.WHITE);
+		    btnItxi.addActionListener(getControler());
+		    botonesPanel.add(btnItxi);
+
+		    contentPane_2.add(botonesPanel, BorderLayout.SOUTH);
+		} else {
+			mensaje.setText(irabazi ? "Zorionak! Irabazi duzu!" : "Animo! Berriz saia zaitez!");
+			mensaje.setForeground(irabazi ? Color.GREEN : Color.RED);
+			ImageIcon icono = new ImageIcon(getClass().getResource(irabazi ? "/Bista/irudiak/bomber4.png" : "/Bista/irudiak/bomber3.png"));
+			if (irabazi) imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+			else imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
+		}
+	    return contentPane_2;
+		/*
 		setBounds(100, 100, getWidth(), getHeight());
 		contentPane_2 = new JPanel();
 		contentPane_2.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -389,6 +443,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		contentPane_2.add(getLblBerriroJolsatuNahi(), BorderLayout.NORTH);
 		contentPane_2.add(getPanel_4(), BorderLayout.CENTER);
 		return contentPane_2;
+		*/
 	}
 
 	private JLabel getLblBerriroJolsatuNahi() {
