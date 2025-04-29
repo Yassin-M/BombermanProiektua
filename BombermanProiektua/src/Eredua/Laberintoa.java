@@ -150,7 +150,6 @@ public abstract class Laberintoa {
 	
 	public void kenduEtsaia() {
         this.etsaiKop--;
-        System.out.println("Etsaia kendu da. Etsai kop: " + this.etsaiKop);
         if (this.etsaiKop == 0) {
             partidaAmaitu(true);
         }

@@ -1,12 +1,10 @@
 package Bista;
 
-import javax.sound.sampled.LineUnavailableException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import Eredua.*;
 
 import java.awt.BorderLayout;
@@ -39,10 +37,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private Controler controler=null;
 	private JPanel pantailak;
 	private CardLayout cardLayout;
-	private JLabel lblBerriroJolsatuNahi;
-	private JPanel panel_4;
-	private JButton btnBtnbai;
-	private JButton btnEz;
 	private JPanel contentPane_2;
 	private JLabel lblZorionak;
 	private JButton btnBerriroJolastu;
@@ -205,13 +199,13 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
                     	if(unekoMapa.equals("Classic")) {
                             hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Soft.png");
                             unekoMapa = "Soft";
-                        	}else if(unekoMapa.equals("Soft")) {
-                        		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Empty.png");
-                        		unekoMapa = "Empty";
-                        	}else if(unekoMapa.equals("Empty")) {
-                        		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Empty.png");
-                        		unekoMapa = "Empty";
-                        	}
+                    	}else if(unekoMapa.equals("Soft")) {
+                    		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Empty.png");
+                    		unekoMapa = "Empty";
+                    	}else if(unekoMapa.equals("Empty")) {
+                    		hasierakoPantaila.irudiaAldatu("/Bista/irudiak/"+j+"Empty.png");
+                    		unekoMapa = "Empty";
+                    	}
                         break;
 					case KeyEvent.VK_SPACE:
 						//j = "blue";
@@ -361,7 +355,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			cardLayout.show(pantailak, "Amaitu");
 			unekoPantaila = "Amaitu";
 			hasierakoPantaila.irudiaAldatu("/Bista/irudiak/inicioWhite.png");
-
+			bombaJarrita = false;
 		}
 	}
 	
@@ -446,37 +440,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		*/
 	}
 
-	private JLabel getLblBerriroJolsatuNahi() {
-		if (lblBerriroJolsatuNahi == null) {
-			lblBerriroJolsatuNahi = new JLabel("Berriro jolastu nahi duzu?");
-			lblBerriroJolsatuNahi.setHorizontalAlignment(SwingConstants.CENTER);
-		}
-		return lblBerriroJolsatuNahi;
-	}
-	private JPanel getPanel_4() {
-		if (panel_4 == null) {
-			panel_4 = new JPanel();
-			panel_4.setLayout(new GridLayout(0, 1, 0, 0));
-			panel_4.add(getBtnBtnbai());
-			panel_4.add(getBtnEz());
-		}
-		return panel_4;
-	}
-	private JButton getBtnBtnbai() {
-		if (btnBtnbai == null) {
-			btnBtnbai = new JButton("Bai");
-			btnBtnbai.addActionListener(getControler());
-		}
-		return btnBtnbai;
-	}
-	private JButton getBtnEz() {
-		if (btnEz == null) {
-			btnEz = new JButton("Ez");
-			btnEz.addActionListener(getControler());
-		}
-		return btnEz;
-	}
-	
 	public HasierakoPantaila getHasierakoPantaila() {
 		if(hasierakoPantaila==null) {
 			hasierakoPantaila = new HasierakoPantaila();
