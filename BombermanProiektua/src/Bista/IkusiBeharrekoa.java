@@ -1,5 +1,6 @@
 package Bista;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -373,6 +374,13 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	}
 	
 	public JPanel Amaitu(boolean irabazi) {
+		if (!irabazi) {
+			try {
+				Audio.getNireAudio().playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Brawl Stars OST - Lose.wav");
+			} catch (LineUnavailableException e) {
+				e.printStackTrace();
+			}
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		if (contentPane_2 == null) {
