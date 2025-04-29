@@ -12,8 +12,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Audio {
 	private static Audio nireAudio = null;
+	private static Clip fondoa;
 	private static Clip clip;
 	private static FloatControl bol;
+	private static String unekoPath;
 	
 	private Audio() throws LineUnavailableException {
 		clip = AudioSystem.getClip();
@@ -26,29 +28,48 @@ public class Audio {
 		return nireAudio;
 	}
 	
+	public static void playFondokoSoinua() {
+		new Thread(() -> {
+       	 try {
+               AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav"));
+               fondoa = AudioSystem.getClip();
+               fondoa.open(audioIn);
+               fondoa.loop(Clip.LOOP_CONTINUOUSLY);
+               fondoa.loop(0);
+               fondoa.start();
+               bol = (FloatControl) fondoa.getControl(FloatControl.Type.MASTER_GAIN);
+           } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+               e.printStackTrace();
+           }
+       }).start();
+	}
+	
 	 public static void playSoinua(String filepath) {
-        new Thread(() -> {
-            try {
+		 if (!filepath.equals("../BombermanProiektua/BombermanProiektua/src/Audioa/WhatsApp Audio 2025-04-29 at 17.44.56.wav")) {
+			 soinuaGelditu();
+		 }
+         new Thread(() -> {
+        	 try {
                 AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(filepath));
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
-				if (filepath.equals("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav")) {
-					clip.loop(Clip.LOOP_CONTINUOUSLY);
-				} else {
-					clip.loop(0);
-				}
                 clip.start();
-                bol = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
         }).start();
     }
 	 
-	 public void soinuaGelditu() {
-		if (clip.isRunning()) {
-			clip.stop();
+	 public static void soinuaGelditu() {
+		if (fondoa.isRunning()) {
+			fondoa.stop();
 		}
+	 }
+	 
+	 public static void clipaAmaitu() {
+		 if (clip.isRunning()) {
+			 clip.stop();
+		 }
 	 }
 	 
 	 public void setBolumena(float bolumena) {
