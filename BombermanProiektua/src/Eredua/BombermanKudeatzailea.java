@@ -56,12 +56,6 @@ public class BombermanKudeatzailea extends Observable{
 	}
 	
 	public void itxaron(boolean pIrabazi) {
-		try {
-			Audio.getNireAudio().soinuaGelditu();
-			Audio.getNireAudio();
-			Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Brawl Stars OST - Lose.wav");
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -76,6 +70,5 @@ public class BombermanKudeatzailea extends Observable{
             }
         };
         timer.scheduleAtFixedRate(timerTask, 0, 1000);
-		}
 	}
 }
