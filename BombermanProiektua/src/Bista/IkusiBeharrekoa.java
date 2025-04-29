@@ -63,13 +63,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		addKeyListener(getControler());
 		addComponentListener(getControler());
 		setFocusable(true);
-		try {
-			Audio.getNireAudio();
-			Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
-			Audio.getNireAudio().setBolumena(1.0f);
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -227,11 +220,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 							BombermanKudeatzailea.getNireKudeatzaile().laberintoaSortu(3, j);
 							break;
 						}
-						try {
-							Audio.getNireAudio().setBolumena(0.75f);
-						} catch (LineUnavailableException e1) {
-							e1.printStackTrace();
-						}
                         cardLayout.show(pantailak, "Laberintoa");
                         unekoPantaila = "Laberintoa";
                         if (lblZorionak != null) layeredPane.remove(lblZorionak);
@@ -291,21 +279,9 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 				panel.removeAll();
 				panel.revalidate();
 				panel.repaint();
-				try {
-					Audio.getNireAudio();
-					Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
-					Audio.getNireAudio().setBolumena(1.0f);
-				} catch (LineUnavailableException e) {
-					e.printStackTrace();
-				}
 				cardLayout.show(pantailak, "Hasiera");
 				unekoPantaila = "Hasiera";
             	j = "white";
-            	try {
-					Audio.getNireAudio().soinuaGelditu();
-				} catch (LineUnavailableException e) {
-					e.printStackTrace();
-				}
 			}
 			if(arg0.getSource().equals(btnEz)) {
 				System.exit(0);

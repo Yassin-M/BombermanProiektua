@@ -4,6 +4,8 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.sound.sampled.LineUnavailableException;
+
 @SuppressWarnings("deprecation")
 public class BombermanKudeatzailea extends Observable{
 	private static BombermanKudeatzailea nireBombermanKudeatzaile;
@@ -11,6 +13,13 @@ public class BombermanKudeatzailea extends Observable{
 	private int kont = 2;
 	
 	private BombermanKudeatzailea() {
+		try {
+			Audio.getNireAudio();
+			Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
+			Audio.getNireAudio().setBolumena(1.0f);
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
 		lab = null;
 	}
 	
@@ -30,6 +39,11 @@ public class BombermanKudeatzailea extends Observable{
 	}
 	
 	public void laberintoaSortu(int mota, String jokalariMota) {
+		try {
+			Audio.getNireAudio().setBolumena(0.75f);
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
 		lab = LaberintoFactory.getNireLaberintoFactory().sortuLaberintoa(mota, jokalariMota);
 		setChanged();
 		if (lab instanceof LaberintoClassic) {
