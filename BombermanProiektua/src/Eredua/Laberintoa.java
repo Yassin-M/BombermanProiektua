@@ -52,6 +52,12 @@ public abstract class Laberintoa {
 	}
 	
 	public void bombaJarri(int i, int j, int pBombaMota) {
+		try {
+			Audio.getNireAudio();
+			Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/WhatsApp Audio 2025-04-29 at 17.44.56.wav");
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
 		laberintoa[i][j].setBomba(i,j,pBombaMota);
 	}
 	
