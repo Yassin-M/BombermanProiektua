@@ -17,7 +17,6 @@ public class BombermanKudeatzailea extends Observable{
 			Audio.getNireAudio();
 			Audio.clipaAmaitu();
 			Audio.playFondokoSoinua();
-			Audio.getNireAudio().setBolumena(1.0f);
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		};
@@ -41,7 +40,7 @@ public class BombermanKudeatzailea extends Observable{
 	
 	public void laberintoaSortu(int mota, String jokalariMota) {
 		try {
-			Audio.getNireAudio().setBolumena(0.75f);
+			Audio.getNireAudio().setBolumena(0.83f);
 		} catch (LineUnavailableException e1) {
 			e1.printStackTrace();
 		}
