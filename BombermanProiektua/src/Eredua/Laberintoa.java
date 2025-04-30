@@ -11,14 +11,12 @@ import javax.sound.sampled.LineUnavailableException;
 public abstract class Laberintoa {
 	protected Gelaxka[][] laberintoa;
 	protected Jokalaria jokalaria;
-	protected int blokeBigunKop = 0;
 	protected int etsaiKop = 0;
 	private int score = 0;
 	
 	protected Laberintoa() {
 		this.laberintoa = null;
 		this.jokalaria = null;
-		this.blokeBigunKop = 0;
 		this.etsaiKop = 0;
 		this.score = 0;
 	}
@@ -117,14 +115,15 @@ public abstract class Laberintoa {
 	
 	public void partidaAmaitu(boolean irabazi) {
 		try {
-			Audio.getNireAudio().soinuaGelditu();
+			Audio.getNireAudio();
+			Audio.soinuaGelditu();
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
 		if (irabazi) {
 			try {
-				Audio.getNireAudio().soinuaGelditu();
 				Audio.getNireAudio();
+				Audio.soinuaGelditu();
 				Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Canción de victoria de Brawl Stars (2020).wav");
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
@@ -132,8 +131,8 @@ public abstract class Laberintoa {
         } else {
 			jokalaria.jokalariaHil();
         	try {
-				Audio.getNireAudio().soinuaGelditu();
 				Audio.getNireAudio();
+				Audio.soinuaGelditu();
 				Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
@@ -141,12 +140,6 @@ public abstract class Laberintoa {
 		}
 		BombermanKudeatzailea.getNireKudeatzaile().itxaron(irabazi);
 	}
-	/*public void kenduBlokeBiguna() {
-		this.blokeBigunKop--;
-		if (this.blokeBigunKop == 0 && this.etsaiKop == 0) {
-		    partidaAmaitu(true);
-		}
-    }*/
 	
 	public void kenduEtsaia() {
         this.etsaiKop--;

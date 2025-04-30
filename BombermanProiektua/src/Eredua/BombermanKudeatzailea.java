@@ -15,11 +15,12 @@ public class BombermanKudeatzailea extends Observable{
 	private BombermanKudeatzailea() {
 		try {
 			Audio.getNireAudio();
-			Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
+			Audio.clipaAmaitu();
+			Audio.playFondokoSoinua();
 			Audio.getNireAudio().setBolumena(1.0f);
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
-		}
+		};
 		lab = null;
 	}
 	
