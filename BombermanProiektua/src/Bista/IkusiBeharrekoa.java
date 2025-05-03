@@ -57,10 +57,11 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private boolean bombaJarrita = false;	
 
 	public IkusiBeharrekoa() {
-		setBounds(100, 100, 666, 450);
+		setBounds(getWidth()/2, getHeight()/2, 666, 450);
         setTitle("Bomberman");
 		setIconImage(new ImageIcon(getClass().getResource("/Bista/irudiak/whitewithbomb1.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setContentPane(getPantailak(true,0));
 		BombermanKudeatzailea.getNireKudeatzaile().addObserver(this);
@@ -383,7 +384,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		if (contentPane_2 == null) {
-			setBounds(100, 100, getWidth(), getHeight());
+			//setBounds(getWidth()/2,getHeight()/2, getWidth(), getHeight());
 			// Panel principal con fondo
 		    contentPane_2 = new JPanel() {
 		        private static final long serialVersionUID = 1L;
@@ -401,6 +402,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		    mensaje.setFont(new Font("Arial", Font.BOLD, 30));
 		    mensaje.setForeground(irabazi ? Color.GREEN : Color.RED);
 		    contentPane_2.add(mensaje, BorderLayout.NORTH);
+
 
 		    JPanel centerPanel = new JPanel();
 		    centerPanel.setLayout(new GridBagLayout());
@@ -420,9 +422,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		    puntuazioaLabel.repaint();
 
 		 	
-		 	imagenBomberman = new JLabel();
-		 	ImageIcon icono = new ImageIcon(getClass().getResource(irabazi ? "/Bista/irudiak/bomber4.png" : "/Bista/irudiak/bomber3.png"));
-		 	imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
+		 // Imagen de Bomberman (contento o triste)
+		    imagenBomberman = new JLabel();
+		    imagenBomberman.setHorizontalAlignment(SwingConstants.CENTER);
+		    ImageIcon icono = new ImageIcon(getClass().getResource(irabazi ? "/Bista/irudiak/bomber4.png" : "/Bista/irudiak/bomber3.png"));
+			if (irabazi) imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(getWidth() / 4, getHeight() / 4, Image.SCALE_SMOOTH)));
+			else imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(getWidth() / 8, getHeight() / 4, Image.SCALE_SMOOTH)));
 		 	gbc.gridy = 1;
 		 	centerPanel.add(imagenBomberman, gbc);
 
@@ -445,13 +450,40 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		    botonesPanel.add(btnItxi);
 
 		    contentPane_2.add(botonesPanel, BorderLayout.SOUTH);
+		    contentPane_2.addComponentListener(new ComponentAdapter() {
+	            @Override
+	            public void componentResized(ComponentEvent e) {
+	                int width = contentPane_2.getWidth();
+	                int height = contentPane_2.getHeight();
+
+	                // Scale font size dynamically
+	                int fontSize = Math.min(width, height) / 20;
+	                puntuazioaLabel.setFont(new Font("Arial", Font.BOLD, fontSize));
+	                mensaje.setFont(new Font("Arial", Font.BOLD, fontSize));
+	                btnBerriroJolastu.setFont(new Font("Arial", Font.BOLD, fontSize / 2));
+	                btnItxi.setFont(new Font("Arial", Font.BOLD, fontSize / 2));
+
+	                // Scale Bomberman image dynamically
+	                ImageIcon currentIcon = (ImageIcon) imagenBomberman.getIcon();
+	                if (currentIcon != null) {
+	                    Image currentImage = currentIcon.getImage();
+	                    Image scaledImage = currentImage.getScaledInstance(getWidth()/6, getHeight()/4, Image.SCALE_SMOOTH);
+	                    imagenBomberman.setIcon(new ImageIcon(scaledImage));
+	                }
+
+	                // Revalidate and repaint the panel
+	                contentPane_2.revalidate();
+	                contentPane_2.repaint();
+	            }
+	        });
 		} else {
 			mensaje.setText(irabazi ? "Zorionak! Irabazi duzu!" : "Animo! Berriz saia zaitez!");
 			mensaje.setForeground(irabazi ? Color.GREEN : Color.RED);
 			puntuazioaLabel.setText("Puntuazioa: " + puntuazioa);
 			ImageIcon icono = new ImageIcon(getClass().getResource(irabazi ? "/Bista/irudiak/bomber4.png" : "/Bista/irudiak/bomber3.png"));
-			if (irabazi) imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH)));
-			else imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(75, 150, Image.SCALE_SMOOTH)));
+			if (irabazi) imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(getWidth()/4, getHeight()/4, Image.SCALE_SMOOTH)));
+			else imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(getWidth()/8, getHeight()/4, Image.SCALE_SMOOTH)));
+
 		}
 	    return contentPane_2;
 	}
