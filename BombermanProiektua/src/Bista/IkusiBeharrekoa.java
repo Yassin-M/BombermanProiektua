@@ -438,7 +438,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			else imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(getWidth() / 8, getHeight() / 4, Image.SCALE_SMOOTH)));
 		 	gbc.gridy = 1;
 		 	centerPanel.add(imagenBomberman, gbc);
-
 		 	contentPane_2.add(centerPanel, BorderLayout.CENTER);
 
 		    botonesPanel = new JPanel();
@@ -488,7 +487,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			ImageIcon icono = new ImageIcon(getClass().getResource(irabazi ? "/Bista/irudiak/bomber4.png" : "/Bista/irudiak/bomber3.png"));
 			if (irabazi) imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(getWidth()/4, getHeight()/4, Image.SCALE_SMOOTH)));
 			else imagenBomberman.setIcon(new ImageIcon(icono.getImage().getScaledInstance(getWidth()/8, getHeight()/4, Image.SCALE_SMOOTH)));
-
 		}
 	    return contentPane_2;
 	}
