@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import Eredua.*;
 
@@ -29,6 +30,7 @@ import javax.swing.JLayeredPane;
 import java.awt.Font;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 
 @SuppressWarnings({"deprecation","removal"})
 
@@ -49,6 +51,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	private JLabel puntuazioaLabel;
 	private JLabel imagenBomberman;
 	private JPanel botonesPanel;
+	private JTextArea puntuazioTaula;
 	
 	private HasierakoPantaila hasierakoPantaila;
 	private String unekoPantaila;
@@ -105,6 +108,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
         
         return fondoLabel;
 	}
+	
 
 	private JLayeredPane getLayeredPane_1() {
 		if (layeredPane == null) {
@@ -265,6 +269,10 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 			//fondoa
 			fondoLabel.setSize(getWidth(), getHeight());
 			fondoLabel.repaint();
+			
+            puntuazioTaula.setFont(new Font("Arial", Font.BOLD, Math.min(getWidth(), getHeight()) / 35));
+            puntuazioTaula.revalidate();
+            puntuazioTaula.repaint();
 		}
 		
 		@Override
@@ -456,14 +464,12 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	                int width = contentPane_2.getWidth();
 	                int height = contentPane_2.getHeight();
 
-	                // Scale font size dynamically
 	                int fontSize = Math.min(width, height) / 20;
 	                puntuazioaLabel.setFont(new Font("Arial", Font.BOLD, fontSize));
 	                mensaje.setFont(new Font("Arial", Font.BOLD, fontSize));
 	                btnBerriroJolastu.setFont(new Font("Arial", Font.BOLD, fontSize / 2));
 	                btnItxi.setFont(new Font("Arial", Font.BOLD, fontSize / 2));
 
-	                // Scale Bomberman image dynamically
 	                ImageIcon currentIcon = (ImageIcon) imagenBomberman.getIcon();
 	                if (currentIcon != null) {
 	                    Image currentImage = currentIcon.getImage();
@@ -471,7 +477,6 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 	                    imagenBomberman.setIcon(new ImageIcon(scaledImage));
 	                }
 
-	                // Revalidate and repaint the panel
 	                contentPane_2.revalidate();
 	                contentPane_2.repaint();
 	            }
@@ -490,11 +495,28 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 
 	public HasierakoPantaila getHasierakoPantaila() {
 		if(hasierakoPantaila==null) {
-			hasierakoPantaila = new HasierakoPantaila();
+			if (hasierakoPantaila == null) {
+				hasierakoPantaila = new HasierakoPantaila();
+				hasierakoPantaila.setLayout(new BorderLayout());
+				JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+				bottomPanel.setOpaque(false);
+				bottomPanel.add(getPuntuazioTaula());
+				hasierakoPantaila.add(bottomPanel, BorderLayout.SOUTH);
+			}
+			return hasierakoPantaila;
 		}
 		return hasierakoPantaila;
 	}
+
 	
+	private JTextArea getPuntuazioTaula() {
+		puntuazioTaula = new JTextArea("Puntuazio taula: \n Bloke biguna -> 100 \n Etsaia (edozein koloretakoa) -> 500");
+	 	puntuazioTaula.setOpaque(false);
+	 	puntuazioTaula.setForeground(Color.BLACK);
+	 	puntuazioTaula.revalidate();
+	    puntuazioTaula.repaint();
+	    return puntuazioTaula;
+	}
 	private class HasierakoPantaila extends JPanel { //esto es como lo de nireFondoa para que se reescale la imagne del principio
         private static final long serialVersionUID = 637219010381401442L;
 		private Image imagen;
