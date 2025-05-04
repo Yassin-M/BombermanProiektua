@@ -508,7 +508,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 
 	
 	private JTextArea getPuntuazioTaula() {
-		puntuazioTaula = new JTextArea("Puntuazio taula: \n Bloke biguna -> 100 \n Etsaia (edozein koloretakoa) -> 500");
+		puntuazioTaula = new JTextArea("Puntuazio taula: \n Bloke biguna -> 100 \n Bloke gogorra -> 200 \n Etsaia -> 500");
 	 	puntuazioTaula.setOpaque(false);
 	 	puntuazioTaula.setForeground(Color.BLACK);
 	 	puntuazioTaula.revalidate();

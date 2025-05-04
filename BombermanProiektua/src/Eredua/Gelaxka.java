@@ -39,7 +39,6 @@ public class Gelaxka extends Observable {
 	public void setJokalaria(Jokalaria pJok) {
 		if (lortuEgoera()[etsaia] == 1) {
 			gehituElementua(pJok);
-			BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 		} 
 		else if (lortuEgoera()[blast] != 0){
 			gehituElementua(pJok);
@@ -58,7 +57,6 @@ public class Gelaxka extends Observable {
 
 			if (lortuEgoera()[jokalaria] != 0) {
 				gehituElementua(etsai);
-				BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(100);
 			} else if (lortuEgoera()[blast] != 0) {
 				zuzena = false;
 			}
@@ -100,6 +98,7 @@ public class Gelaxka extends Observable {
 					this.elementua = BF.sortuBlast(i,j,pMota);
 				}
 				else {
+					if (lortuEgoera()[blokeGogorra] == 1) BombermanKudeatzailea.getNireKudeatzaile().getLaberintoa().addScore(200);
 					this.elementua = BF.sortuBlast(i,j,pMota);
 				}
 			}
