@@ -1,7 +1,9 @@
 package Eredua;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -31,7 +33,15 @@ public class Audio {
 	public static void playFondokoSoinua() {
 		new Thread(() -> {
        	 try {
-               AudioInputStream audioIn = AudioSystem.getAudioInputStream(Audio.class.getResourceAsStream("/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav"));
+       		 	// Carga el recurso como InputStream
+       		 	InputStream inputStream = Audio.class.getResourceAsStream("/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav");
+       		 	if (inputStream == null) {
+       		 		throw new IOException("Audio file not found in classpath");
+				}
+				// Envuelve el InputStream en un BufferedInputStream
+       		 	BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+				// Usa el BufferedInputStream para obtener el AudioInputStream
+       		 	AudioInputStream audioIn = AudioSystem.getAudioInputStream(bufferedInputStream);
                fondoa = AudioSystem.getClip();
                fondoa.open(audioIn);
                fondoa.loop(Clip.LOOP_CONTINUOUSLY);
@@ -50,7 +60,17 @@ public class Audio {
 		 }
          new Thread(() -> {
         	 try {
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(Audio.class.getResourceAsStream(filepath));
+        		// Carga el recurso como InputStream
+                 InputStream inputStream = Audio.class.getResourceAsStream(filepath);
+                 if (inputStream == null) {
+                     throw new IOException("Audio file not found in classpath");
+                 }
+
+                 // Envuelve el InputStream en un BufferedInputStream
+                 BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+
+                 // Usa el BufferedInputStream para obtener el AudioInputStream
+                 AudioInputStream audioIn = AudioSystem.getAudioInputStream(bufferedInputStream);
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
                 clip.start();
