@@ -52,7 +52,7 @@ public abstract class Laberintoa {
 	public void bombaJarri(int i, int j, int pBombaMota) {
 		try {
 			Audio.getNireAudio();
-			Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/WhatsApp Audio 2025-04-29 at 17.44.56.wav");
+			Audio.playSoinua("/Audioa/WhatsApp Audio 2025-04-29 at 17.44.56.wav");
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
@@ -124,7 +124,7 @@ public abstract class Laberintoa {
 			try {
 				Audio.getNireAudio();
 				Audio.soinuaGelditu();
-				Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Canción de victoria de Brawl Stars (2020).wav");
+				Audio.playSoinua("/Audioa/Canción de victoria de Brawl Stars (2020).wav");
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
 			}
@@ -133,7 +133,7 @@ public abstract class Laberintoa {
         	try {
 				Audio.getNireAudio();
 				Audio.soinuaGelditu();
-				Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/el-primo-me-muero-101soundboards.wav");
+				Audio.playSoinua("/Audioa/el-primo-me-muero-101soundboards.wav");
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
 			}

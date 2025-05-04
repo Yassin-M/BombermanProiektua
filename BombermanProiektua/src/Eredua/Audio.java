@@ -31,7 +31,7 @@ public class Audio {
 	public static void playFondokoSoinua() {
 		new Thread(() -> {
        	 try {
-               AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("../BombermanProiektua/BombermanProiektua/src/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav"));
+               AudioInputStream audioIn = AudioSystem.getAudioInputStream(Audio.class.getResourceAsStream("/Audioa/Judas Priest - Painkiller (Official Lyric Video).wav"));
                fondoa = AudioSystem.getClip();
                fondoa.open(audioIn);
                fondoa.loop(Clip.LOOP_CONTINUOUSLY);
@@ -45,12 +45,12 @@ public class Audio {
 	}
 	
 	 public static void playSoinua(String filepath) {
-		 if (!filepath.equals("../BombermanProiektua/BombermanProiektua/src/Audioa/WhatsApp Audio 2025-04-29 at 17.44.56.wav")) {
+		 if (!filepath.equals("/Audioa/WhatsApp Audio 2025-04-29 at 17.44.56.wav")) {
 			 soinuaGelditu();
 		 }
          new Thread(() -> {
         	 try {
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(filepath));
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(Audio.class.getResourceAsStream(filepath));
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
                 clip.start();

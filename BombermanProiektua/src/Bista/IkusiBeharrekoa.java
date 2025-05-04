@@ -384,7 +384,7 @@ public class IkusiBeharrekoa extends JFrame implements Observer {
 		if (!irabazi) {
 			try {
 				Audio.getNireAudio();
-				Audio.playSoinua("../BombermanProiektua/BombermanProiektua/src/Audioa/Brawl Stars OST - Lose.wav");
+				Audio.playSoinua("/Audioa/Brawl Stars OST - Lose.wav");
 			} catch (LineUnavailableException e) {
 				e.printStackTrace();
 			}
